@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "img": "/Blog-1.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "8 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "2 Comments"
+  },
+  {
+    "id": 2,
+    "img": "/Blog-2.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "10 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "3 Comments"
+  },
+  {
+    "id": 3,
+    "img": "/Blog-3.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "12 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "6 Comments"
+  },
+  {
+    "id": 4,
+    "img": "/Blog-4.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "15 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "10 Comments"
+  },
+  {
+    "id": 5,
+    "img": "/Blog-5.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "16 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "8 Comments"
+  },
+  {
+    "id": 6,
+    "img": "/Blog-6.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "18 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "12 Comments"
+  },
+  {
+    "id": 7,
+    "img": "/Blog-7.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "20 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "4 Comments"
+  },
+  {
+    "id": 8,
+    "img": "/Blog-8.webp",
+    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "date": "22 jul, 2026",
+    "author": "By Andrew Johns",
+    "comments": "6 Comments"
+  }
+]
