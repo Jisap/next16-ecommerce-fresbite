@@ -1,0 +1,25 @@
+[
+  {
+    "id": "tradingProduct1",
+    "image1": "/OrganicProducts/product-15-1.webp",
+    "image2": "/OrganicProducts/product-15-2.webp",
+    "image3": "/OrganicProducts/product-15-3.webp",
+    "image4": "/OrganicProducts/product-15-4.webp",
+    "image5": "/OrganicProducts/product-15-5.webp",
+    "image6": "/OrganicProducts/product-15-6.webp",
+    "mainimage1": "/OrganicProducts/mainproduct-15-1.webp",
+    "mainimage2": "/OrganicProducts/mainproduct-15-2.webp",
+    "mainimage3": "/OrganicProducts/mainproduct-15-3.webp",
+    "mainimage4": "/OrganicProducts/mainproduct-15-4.webp",
+    "mainimage5": "/OrganicProducts/mainproduct-15-5.webp",
+    "mainimage6": "/OrganicProducts/mainproduct-15-6.webp",
+    "title": "Walnut Kenral fresh",
+    "price": "Rs. 2,000.00",
+    "lessprice": "",
+    "review": "",
+    "offer": "",
+    "megasale": "",
+    "seller": "",
+    "supersaver": ""
+  }
+]
