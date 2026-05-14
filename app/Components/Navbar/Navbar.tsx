@@ -1,8 +1,15 @@
+import Navbottom from "./Navbottom"
+import Navmiddle from "./Navmiddle"
+import NavTop from "./NavTop"
 
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <>
+      <NavTop />
+      <Navmiddle />
+      <Navbottom />
+    </>
   )
 }
 

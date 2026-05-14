@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Sen, Unbounded } from "next/font/google";
 import "./globals.css";
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/page";
 
 const sen = Sen({
   variable: "--font-sen",
@@ -29,7 +31,11 @@ export default function RootLayout({
       lang="en"
       className={`${sen.variable} ${unbounded.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -30,3 +30,17 @@ body {
   font-family: var(--font-sen);
   position: relative;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  animation: marquee 20s linear infinite;
+}
