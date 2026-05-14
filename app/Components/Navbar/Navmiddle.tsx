@@ -8,6 +8,8 @@ import { useEffect, useState } from "react"
 const Navmiddle = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -47,9 +49,17 @@ const Navmiddle = () => {
           </button>
         </form>
 
-        <ul>
-          <li>
-
+        <ul className="flex space-x-3 lg:space-x-5 items-center justify-end">
+          <li className="hidden sm:block">
+            <button
+              onClick={() => {
+                setIsLogin(true)
+                setShowModal(true)
+              }}
+              className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300"
+            >
+              <Icon icon="lucide:user" width="24" height="24" />
+            </button>
           </li>
         </ul>
       </div>
