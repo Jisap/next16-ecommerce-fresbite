@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import Sidebar from "./Sidebar"
+import Search from "./Search"
 
 
 const Navmiddle = () => {
@@ -54,32 +55,13 @@ const Navmiddle = () => {
           Fresh<span className="text-prim">Bite</span>
         </Link>
 
-        {/* Search Form - Visible on desktop, can be adapted for mobile */}
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="hidden lg:flex items-center w-full rounded-sm overflow-hidden max-w-xl bg-white border border-gray-200 relative mx-4">
-          <span className="px-4 text-gray-500">
-            <Icon icon="iconamoon:search-thin" width="20" height="20" />
-          </span>
-
-          <input
-            type="text"
-            placeholder="Search your groceries items..."
-            className="flex-1 px-3 py-3 text-[16px] text-[#222] border-0 outline-none"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-
-          <button
-            type="submit"
-            className="bg-prim text-white hover:bg-black transition-colors duration-300 px-6 py-3 font-semibold text-sm uppercase rounded-sm cursor-pointer"
-          >
-            Search
-          </button>
-        </form>
+        {/* Search Component - Visible on desktop */}
+        <div className="hidden lg:flex flex-1 justify-center">
+          <Search />
+        </div>
 
         <ul className="flex space-x-3 lg:space-x-5 items-center justify-end">
-          <li className="hidden sm:block">
+          <li>
             <button
               onClick={() => {
                 setIsLogin(true)
@@ -91,7 +73,7 @@ const Navmiddle = () => {
             </button>
           </li>
 
-          <li className="hidden sm:block">
+          <li>
             <Link
               href='/UI-components/Pages/Wishlist'
               className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative"
@@ -105,7 +87,7 @@ const Navmiddle = () => {
             </Link>
           </li>
 
-          <li className="hidden sm:block">
+          <li>
             <button
               onClick={() => window.dispatchEvent(new Event("cart-open"))}
               className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative"

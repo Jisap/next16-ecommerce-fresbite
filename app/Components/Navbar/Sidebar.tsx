@@ -87,22 +87,22 @@ const Sidebar = ({ open, onClose }: { open: boolean, onClose: () => void }) => {
 
         <ul>
           <li>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 textmd font-medium hover:text-prim transition-colos duration-300 cursor-pointer">
-              Mil anddairy products
+            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+              Milk and dairy products
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 textmd font-medium hover:text-prim transition-colos duration-300 cursor-pointer">
-              Vegitable and fruits
+            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+              Vegetable and fruits
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 textmd font-medium hover:text-prim transition-colos duration-300 cursor-pointer">
+            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Animal biscuits and products
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 textmd font-medium hover:text-prim transition-colos duration-300 cursor-pointer">
+            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Bread, toast and biscuits
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 textmd font-medium hover:text-prim transition-colos duration-300 cursor-pointer">
+            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Chicken, meat and Fish
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 textmd font-medium hover:text-prim transition-colos duration-300 cursor-pointer">
+            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Vitamins and minerals
             </Link>
           </li>
