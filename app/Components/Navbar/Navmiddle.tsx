@@ -54,7 +54,9 @@ const Navmiddle = () => {
         </Link>
 
         {/* Search Form - Visible on desktop, can be adapted for mobile */}
-        <form className="hidden lg:flex items-center w-full rounded-sm overflow-hidden max-w-xl bg-white border border-gray-200 relative mx-4">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="hidden lg:flex items-center w-full rounded-sm overflow-hidden max-w-xl bg-white border border-gray-200 relative mx-4">
           <span className="px-4 text-gray-500">
             <Icon icon="iconamoon:search-thin" width="20" height="20" />
           </span>
@@ -94,7 +96,7 @@ const Navmiddle = () => {
               className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative"
             >
               <Icon icon="tabler:heart" width="24" height="24" />
-              {wishlistCount > 0 && (
+              {wishlistCount >= 0 && (
                 <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-sm rounded-full text-white">
                   {wishlistCount}
                 </span>
