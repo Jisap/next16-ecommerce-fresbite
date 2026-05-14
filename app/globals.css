@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "boostrap-icons/font/boostrap-icons";
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 * {
   box-sizing: border-box;
@@ -22,7 +22,8 @@
   --color-secondary-dark: #e5b718;
   --color-gray-light: #f1f1f1;
 
-  --color-gradient-bg: linear-gradient(95deg, rgba(255, 105, 78, 1)) --font-unbounded: var(--font-unbounded);
+  --color-gradient-bg: linear-gradient(95deg, rgba(255, 105, 78, 1));
+  --font-unbounded: var(--font-unbounded);
 }
 
 body {

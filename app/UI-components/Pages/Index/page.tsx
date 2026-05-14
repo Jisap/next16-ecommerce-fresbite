@@ -1,9 +1,12 @@
 import React from 'react'
+import Hero from './Hero/page'
 
-const page = () => {
+const Index = () => {
   return (
-    <div>page</div>
+    <>
+      <Hero />
+    </>
   )
 }
 
-export default page
+export default Index
