@@ -3,6 +3,7 @@
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import Sidebar from "./Sidebar"
 
 
 const Navmiddle = () => {
@@ -45,7 +46,7 @@ const Navmiddle = () => {
           onClick={() => setOpenMenu(true)}
           className="flex lg:hidden cursor-pointer"
         >
-          <Icon icon="material-symbols:light:menu" width="30" height="30" />
+          <Icon icon="material-symbols-light:menu" width="30" height="30" />
         </button>
 
         {/* Logo - Always visible */}
@@ -119,6 +120,11 @@ const Navmiddle = () => {
           </li>
         </ul>
       </div>
+
+      <Sidebar
+        open={openMenu}
+        onClose={() => setOpenMenu(false)}
+      />
 
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
