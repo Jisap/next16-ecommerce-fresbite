@@ -10,6 +10,32 @@ const Navmiddle = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLogin, setIsLogin] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  const [wishlistCount, setWishlistCount] = useState(0);
+
+  useEffect(() => {
+    const updateWishlistCount = () => {
+      const stored = JSON.parse(localStorage.getItem("wishlist") || "[]");
+      setWishlistCount(stored.length);
+    }
+
+    const updateCartCount = () => {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const totalQty = cart.reduce((sum: number, item: any) => sum + (item.qty || 1), 0)
+      setCartCount(totalQty);
+    }
+
+    updateWishlistCount();
+    updateCartCount();
+
+    window.addEventListener("wishlistUpdated", updateWishlistCount);
+    window.addEventListener("cartUpdated", updateCartCount);
+
+    return () => {
+      window.removeEventListener("wishlistUpdated", updateWishlistCount);
+      window.removeEventListener("cartUpdated", updateCartCount);
+    }
+  }, [])
 
   return (
     <>
@@ -59,6 +85,34 @@ const Navmiddle = () => {
               className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300"
             >
               <Icon icon="lucide:user" width="24" height="24" />
+            </button>
+          </li>
+
+          <li className="hidden sm:block">
+            <Link
+              href='/UI-components/Pages/Wishlist'
+              className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative"
+            >
+              <Icon icon="tabler:heart" width="24" height="24" />
+              {wishlistCount > 0 && (
+                <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-sm rounded-full text-white">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
+          </li>
+
+          <li className="hidden sm:block">
+            <button
+              onClick={() => window.dispatchEvent(new Event("cart-open"))}
+              className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative"
+            >
+              <Icon icon="lucide:shopping-bag" width="24" height="24" />
+              {cartCount > 0 && (
+                <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-sm rounded-full text-white">
+                  {cartCount}
+                </span>
+              )}
             </button>
           </li>
         </ul>
