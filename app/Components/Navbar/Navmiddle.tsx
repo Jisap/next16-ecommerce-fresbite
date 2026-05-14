@@ -119,6 +119,89 @@ const Navmiddle = () => {
           </li>
         </ul>
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="relative bg-white border border-white/10 rounded-xl p-10 w-[450px] md:w-125 shadow-2xl animate-fadeIn">
+            <button
+              className="absolute top-5 right-5 text-4xl cursor-pointer hover:text-prim transition-all"
+              onClick={() => setShowModal(false)}
+            >
+              <Icon icon="material-symbols-light:close" width="24" height="24" />
+            </button>
+
+            <h2 className="clash-font text-3xl font-semibold mb-8">
+              {isLogin ? "Login to your account" : "Register a new account"}
+            </h2>
+
+            <form>
+              {!isLogin && (
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full bg-gray-200 border border-white/10 px-4 py-3 rounded-xl focus:outline-none focus:border-prim"
+                  required
+                />
+              )}
+
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="w-full bg-gray-200 border border-white/10 px-4 py-3 rounded-xl focus:outline-none focus:border-prim mb-3"
+                required
+              />
+
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full bg-gray-200 border border-white/10 px-4 py-3 rounded-xl focus:outline-none focus:border-prim"
+                required
+              />
+
+              <button
+                type="submit"
+                className="w-full mt-3 bg-prim text-white py-3 rounded-xl font-semibold hover:bg-black transition-colors duration-300 cursor-pointer"
+              >
+                {isLogin ? "Login Now" : "Register Now"}
+              </button>
+            </form>
+
+            <p className="text-center text-sm mt-4 font-semibold cursor-pointer">
+              {isLogin ? (
+                <>
+                  Dont have an account?{" "}
+                  <button
+                    className="text-prim hover:underline cursor-pointer"
+                    onClick={() => setIsLogin(false)}
+                  >
+                    Register Here
+                  </button>
+                </>
+              ) : (
+                <>
+                  Already have an account?{" "}
+                  <button
+                    className="text-prim hover:underline cursor-pointer"
+                    onClick={() => setIsLogin(true)}
+                  >
+                    Login
+                  </button>
+                </>
+              )}
+            </p>
+
+            <p className="text-center mt-6 pt-4 border-t border-white/20">
+              By signing in or signing up to <Link target="#" href="#" className="font-bold hover:underline">Freshbite</Link>, you agree to our{" "}
+              <Link href="/UI-Components/Pages/Contact" className="font-bold hover:underline">
+                Terms of Use
+              </Link>{" "}and{" "}
+              <Link href="/UI-Components/Pages/Contact" className="font-bold hover:underline">
+                Privacy Policy
+              </Link>
+            </p>
+          </div>
+        </div>
+      )}
     </>
   )
 }
