@@ -2874,6 +2874,65 @@ const TopSelling = ({ product }: TopSellingProps) => {
         </Swiper>
       </div>
 
+      {/* Popup modal */}
+      <div className={`
+        fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm top-0 left-0 transition-opacity duration-300
+        ${openModal ? "opacity-100 visible" : "opacity-0 invisible"}  
+      `}
+      >
+        <div className={`
+          relative bg-white max-w-6xl w-full mx-4 rounded-sm p-5 lg:p-10 flex lg:flex-row flex-col overflow-y-auto max-h-175 gap-10 transition-all duration-300 ease-out
+          ${openModal ? "scale-100 opacity-100" : "scale-90 opacity-0"}  
+        `}
+        >
+          <button
+            onClick={() => setOpenModal(false)}
+            className="absolute top-0 right-0 z-50 text-xl font-bold hover:bg-black cursor-pointer transition-all duration-300 bg-prim-dark text-white p-2"
+          >
+            <Icon icon="material-symbols-light:close" width="24" height="24" />
+          </button>
+
+          <div className="w-full lg:w-1/2 h-full">
+            <div className="overflow-hidden border border-gray-200 rounded-sm">
+              {(mainImage || selectedProduct?.image1) && (
+                <Image
+                  src={mainImage || selectedProduct?.image1}
+                  alt=""
+                  width={500}
+                  height={500}
+                  className="w-full h-112.5 lg:h-112.5 object-cover"
+                />
+              )}
+            </div>
+
+            <div className="flex justify-between items-center overflow-x-auto gap-2 mt-4">
+              {[1, 2, 3, 4, 5, 6].map((i) => {
+                const img = selectedProduct?.[`image${i}`];
+                if (!img) return null;
+
+                return (
+                  <Image
+                    key={`${selectedProduct.id}-${i}`}
+                    src={img}
+                    alt="thumb"
+                    width={100}
+                    height={100}
+                    className="border border-gray-200 rounded-sm cursor-pointer object-cover h-24 w-full"
+                    onClick={() => setMainImage(img)}
+                  />
+                )
+              })}
+            </div>
+          </div>
+
+          <div className="w-full lg:w-1/2 h-full lg:overflow-y-auto lg:h-150 hide-scrollbar">
+            <h3 className="text-2xl font-semibold mb-2">
+              {selectedProduct?.title}
+            </h3>
+          </div>
+        </div>
+      </div>
+
       <Toaster position="top-right" />
     </>
   )
