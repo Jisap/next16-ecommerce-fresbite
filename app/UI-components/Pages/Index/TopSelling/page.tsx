@@ -4,14 +4,78 @@ import titleicon from "@/public/freshbite-title-icon1.png"
 import Image from "next/image"
 import Products from "../../../../JsonData/TopSelling.json"
 import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
 import { Autoplay } from "swiper/modules"
+import { useEffect, useState } from "react"
+import toast, { Toaster } from "react-hot-toast";
+import { Icon } from "@iconify/react"
+
+export interface Product {
+  id: string;
+  image1: string;
+  image2: string;
+  image3?: string;
+  image4?: string;
+  image5?: string;
+  title: string;
+  price: string;
+  lessprice?: string;
+  review?: string;
+  offer?: string;
+  megasale?: string;
+  seller?: string;
+  supersaver?: string;
+  weight?: string;
+  qty?: number;
+}
+
+export interface CartProduct extends Product {
+  weight: string;
+  qty: number;
+  priceNumber: number;
+}
+
+type TopSellingProps = {
+  product: Product[];
+}
 
 
 
+const TopSelling = ({ product }: TopSellingProps) => {
 
+  const [wishlist, setWishlist] = useState<string[]>([]);
 
+  useEffect(() => {
+    const handleUpdate = () => {
+      const stored: string[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
+      setWishlist(stored);
+    }
 
-const TopSelling = () => {
+    handleUpdate();
+    window.addEventListener("wishlistUpdated", handleUpdate);
+
+    return () => {
+      window.removeEventListener("wishlistUpdated", handleUpdate);
+    }
+  }, []);
+
+  const toggleWishlist = (product: Product) => {
+    const stored: string[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    let updated: string[];
+    if (stored.includes(product.id)) {
+      updated = stored.filter(id => id !== product.id);
+      toast(`${product.title} Removed from wishlist`)
+    } else {
+      updated = [...stored, product.id];
+      toast(`${product.title} Removed from wishlist`)
+    }
+
+    localStorage.setItem("wishlist", JSON.stringify(updated));
+    setWishlist(updated);
+
+    window.dispatchEvent(new Event("wishlistUpdated"))
+  }
+
   return (
     <>
       <div className="px-2 lg:px-8 xl:px-12 pt-20 pb-10">
@@ -100,6 +164,19 @@ const TopSelling = () => {
                     alt={product.title}
                     className="w-full h-full object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-all duration-500"
                   />
+
+                  <div className="absolute border border-gray-200 rounded-sm top-0 right-0 m-3 transform translate-x-10 group-hover:translate-x-0 transition-all duration-500 opacity-0 group-hover:opacity-100">
+                    <Icon
+                      icon={wishlist.includes(product.id) ? "mdi:heart" : "line-md:heart"}
+                      width={30}
+                      height={30}
+                      onClick={() => toggleWishlist(product)}
+                      className={`
+                        border-b border-gray-200 p-1 cursor-pointer transition-all duration-300 ease-in-out
+                        ${wishlist.includes(product.id) ? "text-red-600 scale-110" : "text-black scale-100"}
+                      `}
+                    />
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
