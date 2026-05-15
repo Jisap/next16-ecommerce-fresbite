@@ -9,6 +9,7 @@ import { Autoplay } from "swiper/modules"
 import { useEffect, useState } from "react"
 import toast, { Toaster } from "react-hot-toast";
 import { Icon } from "@iconify/react"
+import { useRouter } from "next/navigation"
 
 export interface Product {
   id: string;
@@ -42,6 +43,34 @@ type TopSellingProps = {
 
 
 const TopSelling = ({ product }: TopSellingProps) => {
+
+  const router = useRouter();
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [selectedWeight, setSelectedWeight] = useState<{ [key: string]: string }>({});
+
+  const weights = ["1kg", "2kg", "3kg", "4kg", "5kg"];
+
+  const [qty, setQty] = useState<Record<string, number>>({});
+
+  const increaseQty = (id: string) => {
+    setQty((prev) => ({
+      ...prev,
+      [id]: (prev[id] || 1) + 1
+    }))
+  }
+  const decreaseQty = (id: string) => {
+    setQty((prev) => ({
+      ...prev,
+      [id]: prev[id] > 1 ? - 1 : 1
+    }))
+  }
+
+  // Modal
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [mainImage, setMainImage] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string>("1 KG");
+
 
   const [wishlist, setWishlist] = useState<string[]>([]);
 
@@ -171,11 +200,94 @@ const TopSelling = ({ product }: TopSellingProps) => {
                       width={30}
                       height={30}
                       onClick={() => toggleWishlist(product)}
-                      className={`
-                        border-b border-gray-200 p-1 cursor-pointer transition-all duration-300 ease-in-out
-                        ${wishlist.includes(product.id) ? "text-red-600 scale-110" : "text-black scale-100"}
-                      `}
+                      className="border-b border-gray-200 p-1 cursor-pointer "
+                      onClickCapture={() => {
+                        setSelectedProduct(product);
+                        setOpenModal(true);
+                      }}
+
                     />
+
+                    <Icon
+                      icon="iconamoon:eye-light"
+                      width={30}
+                      height={30}
+                      className="border-b border-gray-200 p-1 cursor-pointer"
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setOpenModal(true);
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div className="product-content p-5">
+                  <button
+                    onClick={() => { router.push(`/products/${product.id}`) }}
+                    className="text-xl font-semibold mb-3 group-hover:text-prim duration-500 cursor-pointer"
+                  >
+                    {product.title}
+                  </button>
+
+                  <div className="flex items-center justify-between mb-3 gap-3 relative">
+                    <div className="relative">
+                      <button
+                        onClick={() => setOpenId(openId === product.id ? null : product.id)}
+                        className="border border-gray-200 rounded px-3 py-2 text-md flex items-center gap-2 w-full justify-between cursor-pointer"
+                      >
+                        {selectedWeight[product.id] || "1 kg"}
+                        <Icon
+                          icon="iconamoon:arrow-down-2-duotone"
+                          width={20}
+                          height={20}
+                          className={`
+                            transition-transform duration-300
+                            ${openId === product.id ? "rotate-180" : ""}
+                          `}
+                        />
+                      </button>
+
+                      <ul className={`
+                        absolute left-0 top-full mt-1 w-full bg-white border border-gray-200 rounded z-10 transition-all duration-300 ease-in-out
+                        ${openId === product.id ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"}   
+                      `}
+                      >
+                        {weights.map((item) => (
+                          <li
+                            key={item}
+                            onClick={() => {
+                              setSelectedWeight(prev => ({
+                                ...prev,
+                                [product.id]: item
+                              }));
+                              setOpenId(null)
+                            }}
+                            className="px-3 py-2 text-md cursor-pointer hover:bg-prim/10"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="flex items-center border border-gray-200 rounded">
+                      <button
+                        onClick={() => decreaseQty(product.id)}
+                        className="px-3 py-2 text-md cursor-pointer"
+                      >
+                        <Icon icon="ic:baseline-minus" width={20} height={20} />
+                      </button>
+
+                      <span className="px-3 text-lg">{qty[product.id]}</span>
+
+                      <button
+                        onClick={() => increaseQty(product.id)}
+                        className="px-3 py-2 text-md cursor-pointer"
+                      >
+                        <Icon icon="ic:baseline-plus" width={20} height={20} />
+                      </button>
+
+                    </div>
                   </div>
                 </div>
               </div>
@@ -183,6 +295,8 @@ const TopSelling = ({ product }: TopSellingProps) => {
           ))}
         </Swiper>
       </div>
+
+      <Toaster position="top-right" />
     </>
   )
 }
