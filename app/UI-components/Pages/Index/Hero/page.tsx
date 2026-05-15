@@ -42,8 +42,73 @@ const Hero = () => {
             <h3 className="text-white text-4xl font-medium mb-3 text-center">
               Bakery <br /> Products
             </h3>
+
+            <Link href="/shop" className="bg-prim text-white hover:bg-black transition-colors duration-300 px-4 py-2 rounded-md flex items-center cursor-pointer text-md font-bold uppercase h-fit mx-auto">
+              Shop Now
+              <Icon icon="lucide:shopping-bag" width="18" height="18" className="ms-1" />
+            </Link>
           </div>
+
+          <div className="absolute bg-black/10 top-0 left-0 h-full w-full"></div>
         </div>
+
+
+        <div className="w-full lg:w-[40%] h-full relative">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            loop={true}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false
+            }}
+            pagination={{ clickable: true }}
+            className="h-full w-full relative"
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className="h-full rounded-md bg-cover bg-center flex items-center justify-center"
+                  style={{ backgroundImage: `url(${slide.img.src})` }}
+                >
+                  <div className="pt-20 text-center">
+                    <span className="underline text-sm xl:text-xl uppercase font-bold block mb-2">
+                      {slide.title}
+                    </span>
+
+                    <h3 className="text-black text-3xl xl:text-5xl font-bold mb-4">
+                      {slide.title.split(" ")[0]} {slide.title.split(" ")[1]}
+                    </h3>
+
+                    <Link
+                      href="/UI-Componentes/Pages/Shop"
+                      className="bg-white hover:bg-black hover:text-white transition-all duration-300 px-4 py-2 mt-2 rounded-md 
+                      inline-flex items-center font-bold uppercase"
+                    >
+                      Shop Now
+                      <Icon icon="lucide:shopping-bag" width="18" height="18" className="ms-1" />
+                    </Link>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        <div className="w-full lg:w-[30%] bg-[url('/freshbite-banner2.png')] bg-cover bg-center flex justify-center items-start h-full rounded-lg relative overflow-hidden">
+          <div className="content h-full pt-20 z-1">
+            <h3 className="text-white text-4xl font-medium mb-3 text-center">
+              Fresh <br /> Vegetables
+            </h3>
+
+            <Link href="/shop" className="bg-prim text-white hover:bg-black transition-colors duration-300 px-4 py-2 rounded-md flex items-center cursor-pointer text-md font-bold uppercase h-fit mx-auto">
+              Shop Now
+              <Icon icon="lucide:shopping-bag" width="18" height="18" className="ms-1" />
+            </Link>
+          </div>
+
+          <div className="absolute bg-black/10 top-0 left-0 h-full w-full"></div>
+        </div>
+
       </div>
     </>
   )
