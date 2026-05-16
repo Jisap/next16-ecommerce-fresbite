@@ -80,11 +80,11 @@ const TopSelling = ({ product }: TopSellingProps) => {
   }, [selectedProduct]);
 
   const priceBySize: Record<string, string> = {
-    "1 kg": selectedProduct?.price || "0.00",
-    "2 kg": "3,800.00",
-    "3 kg": "4,400.00",
-    "4 kg": "5,500.00",
-    "5 kg": "6,200.00",
+    "1 kg": selectedProduct?.price || "0",
+    "2 kg": "3800",
+    "3 kg": "4400",
+    "4 kg": "5500",
+    "5 kg": "6200",
   };
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -2929,6 +2929,101 @@ const TopSelling = ({ product }: TopSellingProps) => {
             <h3 className="text-2xl font-semibold mb-2">
               {selectedProduct?.title}
             </h3>
+
+            <p>
+              Tax included. Shipping calculated at checkout.
+            </p>
+
+            <div className="flex items-center gap-4 mb-4">
+              <div className="text-2xl font-bold">
+                Rs. {priceBySize[selectedSize].replace("Rs.", "").trim()}
+              </div>
+
+              {selectedProduct?.lessprice && (
+                <div className="font-semibold line-through text-gray-500 text-md">
+                  Rs. {selectedProduct?.lessprice.replace(/Rs\.?/i, "").trim()}
+                </div>
+              )}
+            </div>
+
+            <span className="text-gray-500">
+              Tax included. Shipping calculated at checkout.
+            </span>
+
+            <div className="flex items-center gap-2 border-b border-gray-200 pb-5 pt-2 mb-4">
+              <svg width="15" height="15" aria-hidden="true">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96,0.3)"></circle>
+                <circle cx="7.5" cy="7.5" r="5" strokeWidth="1" fill="rgb(62,214,96)"></circle>
+              </svg>
+              13 in Stock
+            </div>
+
+            <p className="mb-3 text-gray-500">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit aperiam voluptatum ex maxime, saepe illo debitis odit, error, doloremque natus blanditiis pariatur nesciunt ut ullam minus voluptatem! Quas, enim.
+            </p>
+
+            <div className="mb-6">
+              <div className="mb-3">
+                <strong>Size:</strong>
+                <span className="ml-2 text-sm font-medium text-gray-500">{selectedSize}</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`
+                      border rounded-sm px-4 py-2 cursor-pointer transition-all duration-300 font-medium text-sm
+                      ${selectedSize === size ? "bg-black text-white border-black shadow-md" : "border-gray-200 hover:border-black hover:bg-black hover:text-white"}  
+                    `}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center border border-gray-200 rounded w-fit mb-5 mt-4">
+                <button
+                  onClick={() => decreaseQty(selectedProduct.id)}
+                  className="px-3 py-2 text-md cursor-pointer"
+                >
+                  <Icon icon="ic:baseline-minus" width={20} height={20} />
+                </button>
+
+                <span className="px-3 text-lg">{qty[selectedProduct.id] || 1}</span>
+
+                <button
+                  onClick={() => increaseQty(selectedProduct.id)}
+                  className="px-3 py-2 text-md cursor-pointer"
+                >
+                  <Icon icon="ic:baseline-plus" width={20} height={20} />
+                </button>
+              </div>
+
+              <div className="w-full flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!selectedProduct) return;
+
+                    addToCart(selectedProduct);
+                    window.dispatchEvent(new Event("cart-open"));
+                    setOpenModal(false);
+
+                    toast.success(`${selectedProduct?.title} added to cart`, {
+                      className: "bg-black text-white",
+                    })
+                  }}
+                  className="bg-prim text-white px-6 py-3 rounded hover:bg-black transition-all duration-300 cursor-pointer font-bold w-full"
+                >
+                  ADD TO CART
+                </button>
+
+                <button className="bg-black text-white px-6 py-3 rounded hover:bg-prim transition-all duration-300 cursor-pointer w-full">
+                  BUY IT NOW
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
