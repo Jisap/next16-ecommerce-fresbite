@@ -15,7 +15,7 @@ interface ProductCardProps {
   qty: Record<string, number>;
   increaseQty: (id: string) => void;
   decreaseQty: (id: string) => void;
-  addToCart: (product: any) => void;
+  addToCart: (product: any, weight?: string) => void;
   toggleWishlist: (product: any) => void;
   wishlist: string[];
   setSelectedProduct: (product: any) => void;
@@ -158,7 +158,7 @@ const ProductCard = ({
 
         {/* Add to Cart Button */}
         <button
-          onClick={() => addToCart(product)}
+          onClick={() => addToCart(product, selectedWeight[product.id])}
           className="w-full rounded py-2 font-semibold text-md bg-gray-light hover:bg-black transition-colors duration-300 hover:text-white cursor-pointer flex items-center justify-center"
         >
           ADD TO CART

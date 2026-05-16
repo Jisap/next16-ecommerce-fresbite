@@ -9,9 +9,9 @@ import titleicon from "@/public/freshbite-title-icon2.webp"
 import { useRouter } from "next/navigation"
 import toast, { Toaster } from "react-hot-toast"
 
-// Importamos los nuevos componentes
 import ProductCard from "./ProductCard"
 import ProductModal from "./ProductModal"
+import { useCart } from "@/app/hooks/useCart"
 
 export interface Product {
   id: string;
@@ -29,88 +29,30 @@ export interface Product {
   [key: string]: any;
 }
 
-interface CartProduct extends Product {
-  weight: string;
-  qty: number;
-  priceNumber: number;
-}
-
 const TopSelling = ({ product: Products }: { product: Product[] }) => {
   const router = useRouter()
   const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"]
 
-  // --- ESTADOS ---
+  // --- HOOK GLOBAL ---
+  const { 
+    wishlist, 
+    qty, 
+    increaseQty, 
+    decreaseQty, 
+    addToCart, 
+    toggleWishlist 
+  } = useCart()
+
+  // --- ESTADOS LOCALES ---
   const [selectedWeight, setSelectedWeight] = useState<Record<string, string>>({})
   const [openId, setOpenId] = useState<string | null>(null)
-  const [qty, setQty] = useState<Record<string, number>>({})
-  const [wishlist, setWishlist] = useState<string[]>([])
-  const [cart, setCart] = useState<CartProduct[]>([])
-
+  
   // Estados para el Modal
   const [openModal, setOpenModal] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<any>(null)
   const [mainImage, setMainImage] = useState<string | null>(null)
   const [selectedSize, setSelectedSize] = useState<string>("1 kg")
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  // --- LÓGICA DE CARRITO Y CANTIDAD ---
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]")
-    setCart(storedCart)
-  }, [])
-
-  const getPriceNumber = (price?: string) => {
-    if (!price) return 0
-    const cleaned = price.replace(/,/g, "").replace(/Rs\.?/g, "").trim()
-    const value = parseFloat(cleaned)
-    return isNaN(value) ? 0 : value
-  }
-
-  const increaseQty = (id: string) => {
-    setQty((prev) => ({ ...prev, [id]: (prev[id] || 1) + 1 }))
-  }
-
-  const decreaseQty = (id: string) => {
-    setQty((prev) => ({ ...prev, [id]: Math.max(1, (prev[id] || 1) - 1) }))
-  }
-
-  const addToCart = (product: Product) => {
-    const weight = selectedWeight[product.id] || "1 kg"
-    const stored: CartProduct[] = JSON.parse(localStorage.getItem("cart") || "[]")
-
-    if (stored.some((item) => item.id === product.id && item.weight === weight)) {
-      toast("Already in Cart 🛒")
-      return
-    }
-
-    const basePrice = getPriceNumber(product.price)
-
-    let multiplier = 1;
-    if (weight === "1 kg") multiplier = 2;
-    if (weight === "2 kg") multiplier = 3;
-    if (weight === "3 kg") multiplier = 4;
-    if (weight === "4 kg") multiplier = 5;
-    if (weight === "5 kg") multiplier = 6;
-
-    const updated = [...stored, {
-      ...product,
-      weight,
-      qty: qty[product.id] || 1,
-      priceNumber: basePrice * multiplier
-    }]
-
-    localStorage.setItem("cart", JSON.stringify(updated))
-    window.dispatchEvent(new Event("cart-updated"))
-    window.dispatchEvent(new Event("cart-open"))
-    toast.success(`${product.title} added to cart 🛒`)
-  }
-
-  const toggleWishlist = (product: Product) => {
-    setWishlist((prev) =>
-      prev.includes(product.id) ? prev.filter(id => id !== product.id) : [...prev, product.id]
-    )
-    toast.success(wishlist.includes(product.id) ? "Removed from wishlist" : "Added to wishlist")
-  }
 
   const toggle = (index: number) => setOpenIndex(openIndex === index ? null : index)
 

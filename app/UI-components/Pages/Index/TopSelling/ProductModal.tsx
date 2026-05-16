@@ -17,7 +17,7 @@ interface ProductModalProps {
   qty: Record<string, number>;
   increaseQty: (id: string) => void;
   decreaseQty: (id: string) => void;
-  addToCart: (product: any) => void;
+  addToCart: (product: any, weight?: string) => void;
   openIndex: number | null;
   toggle: (index: number) => void;
 }
@@ -155,7 +155,7 @@ const ProductModal = ({
           <div className="w-full flex flex-col sm:flex-row gap-3 mb-8">
             <button
               onClick={() => {
-                addToCart(selectedProduct);
+                addToCart(selectedProduct, selectedSize);
                 setOpenModal(false);
               }}
               className="bg-prim text-white px-6 py-3 rounded hover:bg-black transition-all duration-300 cursor-pointer font-bold w-full uppercase tracking-wider"
