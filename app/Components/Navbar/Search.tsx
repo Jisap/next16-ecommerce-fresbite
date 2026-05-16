@@ -88,8 +88,8 @@ const Search: React.FC<SearchProps> = ({ onQueryChange }) => {
             type="text"
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value)
-              if (onQueryChange) onQueryChange(e.target.value)
+              setQuery(e.target.value)                         // Actualiza el estado local del search 
+              if (onQueryChange) onQueryChange(e.target.value) // Pasa el valor al componente padre
             }}
             placeholder="Search for products..."
             className="w-full px-3 py-3 text-sm text-gray-800 outline-none placeholder:text-gray-400"
