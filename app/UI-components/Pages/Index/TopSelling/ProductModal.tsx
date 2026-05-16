@@ -42,7 +42,7 @@ const ProductModal = ({
 
   return (
     <div className={`
-      fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300
+      fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300
       ${openModal ? "opacity-100 visible" : "opacity-0 invisible"}  
     `}>
       <div className={`
@@ -91,7 +91,7 @@ const ProductModal = ({
         {/* Right: Info */}
         <div className="w-full lg:w-1/2 h-full lg:overflow-y-auto lg:h-[70vh] hide-scrollbar">
           <h3 className="text-2xl font-semibold mb-2">{selectedProduct.title}</h3>
-          
+
           <div className="flex items-center gap-4 mb-4 mt-4">
             <div className="text-2xl font-bold text-prim">
               Rs. {priceBySize[selectedSize]?.replace(/Rs\.?/i, "").trim()}
@@ -184,72 +184,72 @@ const ProductModal = ({
 
           {/* Accordions */}
           <div className="space-y-2 border-t border-gray-100 pt-6">
-             {/* Offers */}
-             <div className="pb-4">
-                <button onClick={() => toggle(0)} className="flex justify-between items-center w-full group">
-                  <div className="flex items-center text-left">
-                    <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
-                      <Icon icon="material-symbols:percent" width={18} />
-                    </div>
-                    <span className="font-semibold">Offers available for you</span>
+            {/* Offers */}
+            <div className="pb-4">
+              <button onClick={() => toggle(0)} className="flex justify-between items-center w-full group">
+                <div className="flex items-center text-left">
+                  <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
+                    <Icon icon="material-symbols:percent" width={18} />
                   </div>
-                  <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 0 ? "rotate-180" : ""}`} />
-                </button>
-                <div className={`overflow-hidden transition-all duration-500 ${openIndex === 0 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
-                  <ul className="space-y-2">
-                    {[{text: "Get up to 50% off on selected products", code: ""}, {text: "Buy 2 & get 15% off", code: "BUY2SAVE"}, {text: "Get 11% off first order", code: "11%OFF"}].map((off, i) => (
-                      <li key={i}>
-                        <Link href="/" className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md flex justify-between items-center hover:bg-prim/5 transition-all">
-                          <span className="text-xs font-medium text-gray-700">{off.text}</span>
-                          {off.code && <span className="bg-white border border-dashed border-prim px-2 py-0.5 text-[10px] font-bold text-prim">{off.code}</span>}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <span className="font-semibold">Offers available for you</span>
                 </div>
-             </div>
+                <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 0 ? "rotate-180" : ""}`} />
+              </button>
+              <div className={`overflow-hidden transition-all duration-500 ${openIndex === 0 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
+                <ul className="space-y-2">
+                  {[{ text: "Get up to 50% off on selected products", code: "" }, { text: "Buy 2 & get 15% off", code: "BUY2SAVE" }, { text: "Get 11% off first order", code: "11%OFF" }].map((off, i) => (
+                    <li key={i}>
+                      <Link href="/" className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md flex justify-between items-center hover:bg-prim/5 transition-all">
+                        <span className="text-xs font-medium text-gray-700">{off.text}</span>
+                        {off.code && <span className="bg-white border border-dashed border-prim px-2 py-0.5 text-[10px] font-bold text-prim">{off.code}</span>}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-             {/* Pickup */}
-             <div className="border-t border-gray-100 py-4">
-                <button onClick={() => toggle(1)} className="flex justify-between items-center w-full group">
-                  <div className="flex items-center text-left">
-                    <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
-                      <Icon icon="mingcute:truck-line" width={18} />
-                    </div>
-                    <span className="font-semibold">Choose pickup and save time!</span>
+            {/* Pickup */}
+            <div className="border-t border-gray-100 py-4">
+              <button onClick={() => toggle(1)} className="flex justify-between items-center w-full group">
+                <div className="flex items-center text-left">
+                  <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
+                    <Icon icon="mingcute:truck-line" width={18} />
                   </div>
-                  <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 1 ? "rotate-180" : ""}`} />
-                </button>
-                <div className={`overflow-hidden transition-all duration-500 ${openIndex === 1 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
-                  <div className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md">
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Opt for our convenient pickup option and get your items faster. Save on shipping costs and collect at your nearest store.
-                    </p>
-                    <Link href="/" className="inline-block mt-2 text-prim font-bold text-xs hover:underline">View Information →</Link>
-                  </div>
+                  <span className="font-semibold">Choose pickup and save time!</span>
                 </div>
-             </div>
+                <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 1 ? "rotate-180" : ""}`} />
+              </button>
+              <div className={`overflow-hidden transition-all duration-500 ${openIndex === 1 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md">
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Opt for our convenient pickup option and get your items faster. Save on shipping costs and collect at your nearest store.
+                  </p>
+                  <Link href="/" className="inline-block mt-2 text-prim font-bold text-xs hover:underline">View Information →</Link>
+                </div>
+              </div>
+            </div>
 
-             {/* Returns */}
-             <div className="border-t border-gray-100 py-4">
-                <button onClick={() => toggle(2)} className="flex justify-between items-center w-full group">
-                  <div className="flex items-center text-left">
-                    <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
-                      <Icon icon="solar:refresh-bold" width={18} />
-                    </div>
-                    <span className="font-semibold">Flexible returns</span>
+            {/* Returns */}
+            <div className="border-t border-gray-100 py-4">
+              <button onClick={() => toggle(2)} className="flex justify-between items-center w-full group">
+                <div className="flex items-center text-left">
+                  <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
+                    <Icon icon="solar:refresh-bold" width={18} />
                   </div>
-                  <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 2 ? "rotate-180" : ""}`} />
-                </button>
-                <div className={`overflow-hidden transition-all duration-500 ${openIndex === 2 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
-                  <div className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md">
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Shop with total confidence! We offer a hassle-free 30-day return window for all organic products.
-                    </p>
-                    <Link href="/" className="inline-block mt-2 text-prim font-bold text-xs hover:underline">Learn More →</Link>
-                  </div>
+                  <span className="font-semibold">Flexible returns</span>
                 </div>
-             </div>
+                <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 2 ? "rotate-180" : ""}`} />
+              </button>
+              <div className={`overflow-hidden transition-all duration-500 ${openIndex === 2 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md">
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Shop with total confidence! We offer a hassle-free 30-day return window for all organic products.
+                  </p>
+                  <Link href="/" className="inline-block mt-2 text-prim font-bold text-xs hover:underline">Learn More →</Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
