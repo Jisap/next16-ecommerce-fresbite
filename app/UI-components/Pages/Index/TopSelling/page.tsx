@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import toast, { Toaster } from "react-hot-toast";
 import { Icon } from "@iconify/react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export interface Product {
   id: string;
@@ -3075,6 +3076,61 @@ const TopSelling = ({ product }: TopSellingProps) => {
                   </h6>
                 </li>
               </ul>
+
+              {/* Offers Accordion */}
+              <div className="border-t border-gray-200 pt-6 mt-2">
+                <button
+                  onClick={() => toggle(0)}
+                  className="flex justify-between items-center w-full cursor-pointer group"
+                >
+                  <div className="flex items-center">
+                    <div className="w-9 h-9 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all duration-300">
+                      <Icon icon="material-symbols:percent" width="20" height="20" />
+                    </div>
+                    <span className="font-semibold text-lg">
+                      Offers available for you
+                    </span>
+                  </div>
+
+                  <Icon
+                    icon="iconamoon:arrow-down-2-duotone"
+                    width="24"
+                    className={`transition-transform duration-500 ${openIndex === 0 ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                <div className={`
+                  overflow-hidden transition-all duration-500 ease-in-out
+                  ${openIndex === 0 ? "max-h-96 opacity-100 mt-5" : "max-h-0 opacity-0"}
+                `}
+                >
+                  <ul className="space-y-3">
+                    {[
+                      { text: "Get up to 50% off on selected products", code: "" },
+                      { text: "Buy 2 & get 15% off", code: "BUY2SAVE" },
+                      { text: "Get 11% off first order", code: "11%OFF" }
+                    ].map((offer, idx) => (
+                      <li key={idx}>
+                        <Link
+                          href="/"
+                          className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md flex justify-between items-center group/offer hover:bg-prim/5 transition-all duration-300"
+                        >
+                          <div className="flex items-center">
+                            <span className="text-sm font-medium text-gray-700">{offer.text}</span>
+                          </div>
+                          {offer.code && (
+                            <span className="bg-white border border-dashed border-prim px-2 py-1 text-[10px] font-bold rounded text-prim group-hover/offer:bg-prim group-hover/offer:text-white transition-colors">
+                              {offer.code}
+                            </span>
+                          )}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Pickup */}
             </div>
           </div>
         </div>
