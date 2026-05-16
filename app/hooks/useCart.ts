@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import toast from "react-hot-toast"
 
 export interface Product {
@@ -24,20 +24,31 @@ export const useCart = () => {
   const [wishlist, setWishlist] = useState<string[]>([])
   const [qty, setQty] = useState<Record<string, number>>({})
 
-  // Cargar datos iniciales
-  useEffect(() => {
+  // Función para cargar datos (memorizada para evitar bucles)
+  const loadData = useCallback(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]")
     const storedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]")
     setCart(storedCart)
     setWishlist(storedWishlist)
   }, [])
 
-  // Sincronizar Wishlist con LocalStorage
+  // Cargar datos iniciales y escuchar cambios de otros componentes
   useEffect(() => {
-    if (wishlist.length > 0 || localStorage.getItem("wishlist")) {
-      localStorage.setItem("wishlist", JSON.stringify(wishlist))
+    loadData()
+    
+    // Escuchar eventos personalizados para sincronizar múltiples instancias del hook
+    window.addEventListener("cart-updated", loadData)
+    window.addEventListener("wishlist-updated", loadData)
+    
+    // Escuchar cambios de otras pestañas (opcional pero profesional)
+    window.addEventListener("storage", loadData)
+
+    return () => {
+      window.removeEventListener("cart-updated", loadData)
+      window.removeEventListener("wishlist-updated", loadData)
+      window.removeEventListener("storage", loadData)
     }
-  }, [wishlist])
+  }, [loadData])
 
   const getPriceNumber = (price?: string) => {
     if (!price) return 0
@@ -63,36 +74,33 @@ export const useCart = () => {
     }
 
     const basePrice = getPriceNumber(product.price)
-    
-    // Lógica de multiplicador por peso (puedes ajustarla)
     const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"]
-    const multiplier = weights.indexOf(selectedWeight) + 2
+    const multiplier = weights.indexOf(selectedWeight) + 1 // Ajustado el multiplicador
     
     const updated = [...stored, { 
       ...product, 
       weight: selectedWeight, 
       qty: qty[product.id] || 1, 
-      priceNumber: basePrice * multiplier 
+      priceNumber: basePrice * (multiplier > 0 ? multiplier : 1) 
     }]
 
     localStorage.setItem("cart", JSON.stringify(updated))
-    setCart(updated)
-    
     window.dispatchEvent(new Event("cart-updated"))
     window.dispatchEvent(new Event("cart-open"))
     toast.success(`${product.title} added to cart 🛒`)
   }
 
   const toggleWishlist = (product: Product) => {
-    setWishlist((prev) => {
-      const isIncluded = prev.includes(product.id)
-      const updated = isIncluded 
-        ? prev.filter(id => id !== product.id) 
-        : [...prev, product.id]
-      
-      toast.success(isIncluded ? "Removed from wishlist" : "Added to wishlist")
-      return updated
-    })
+    const currentWishlist: string[] = JSON.parse(localStorage.getItem("wishlist") || "[]")
+    const isIncluded = currentWishlist.includes(product.id)
+    
+    const updated = isIncluded 
+      ? currentWishlist.filter(id => id !== product.id) 
+      : [...currentWishlist, product.id]
+    
+    localStorage.setItem("wishlist", JSON.stringify(updated))
+    window.dispatchEvent(new Event("wishlist-updated"))
+    toast.success(isIncluded ? "Removed from wishlist" : "Added to wishlist")
   }
 
   return {
