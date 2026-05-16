@@ -41,66 +41,73 @@ const Navmiddle = () => {
 
   return (
     <>
-      <div className="flex relative justify-between items-center py-3 lg:space-y-0 space-y-3 px-2 lg:px-8 xl:px-12">
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setOpenMenu(true)}
-          className="flex lg:hidden cursor-pointer"
-        >
-          <Icon icon="material-symbols-light:menu" width="30" height="30" />
-        </button>
+      <div className="px-2 lg:px-8 xl:px-12 border-b border-gray-100 lg:border-none">
+        <div className="flex relative justify-between items-center py-3 lg:py-5">
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setOpenMenu(true)}
+            className="flex lg:hidden cursor-pointer p-1"
+          >
+            <Icon icon="material-symbols-light:menu" width="30" height="30" />
+          </button>
 
-        {/* Logo - Always visible */}
-        <Link href="/" className="logo font-unbounded text-xl sm:text-2xl cursor-pointer">
-          Fresh<span className="text-prim">Bite</span>
-        </Link>
+          {/* Logo */}
+          <Link href="/" className="logo font-unbounded text-xl sm:text-2xl cursor-pointer">
+            Fresh<span className="text-prim">Bite</span>
+          </Link>
 
-        {/* Search Component - Visible on desktop */}
-        <div className="hidden lg:flex flex-1 justify-center">
-          <Search />
+          {/* Search Component - Desktop */}
+          <div className="hidden lg:flex flex-1 justify-center max-w-2xl px-10">
+            <Search />
+          </div>
+
+          <ul className="flex space-x-3 lg:space-x-5 items-center justify-end">
+            <li>
+              <button
+                onClick={() => {
+                  setIsLogin(true)
+                  setShowModal(true)
+                }}
+                className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 hover:bg-prim hover:text-white transition-all"
+              >
+                <Icon icon="lucide:user" width="22" height="22" />
+              </button>
+            </li>
+
+            <li>
+              <Link
+                href='/UI-components/Pages/Wishlist'
+                className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative hover:bg-prim hover:text-white transition-all"
+              >
+                <Icon icon="tabler:heart" width="22" height="22" />
+                {wishlistCount >= 0 && (
+                  <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-[10px] rounded-full text-white ring-2 ring-white">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+            </li>
+
+            <li>
+              <button
+                onClick={() => window.dispatchEvent(new Event("cart-open"))}
+                className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative hover:bg-prim hover:text-white transition-all"
+              >
+                <Icon icon="lucide:shopping-bag" width="22" height="22" />
+                {cartCount > 0 && (
+                  <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-[10px] rounded-full text-white ring-2 ring-white">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            </li>
+          </ul>
         </div>
 
-        <ul className="flex space-x-3 lg:space-x-5 items-center justify-end">
-          <li>
-            <button
-              onClick={() => {
-                setIsLogin(true)
-                setShowModal(true)
-              }}
-              className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300"
-            >
-              <Icon icon="lucide:user" width="24" height="24" />
-            </button>
-          </li>
-
-          <li>
-            <Link
-              href='/UI-components/Pages/Wishlist'
-              className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative"
-            >
-              <Icon icon="tabler:heart" width="24" height="24" />
-              {wishlistCount >= 0 && (
-                <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-sm rounded-full text-white">
-                  {wishlistCount}
-                </span>
-              )}
-            </Link>
-          </li>
-
-          <li>
-            <button
-              onClick={() => window.dispatchEvent(new Event("cart-open"))}
-              className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative"
-            >
-              <Icon icon="lucide:shopping-bag" width="24" height="24" />
-              {cartCount > 0 && (
-                <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-sm rounded-full text-white">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-          </li>
-        </ul>
+        {/* Search Component - Mobile/Tablet */}
+        <div className="lg:hidden pb-4">
+          <Search />
+        </div>
       </div>
 
       <Sidebar

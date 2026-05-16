@@ -6,6 +6,7 @@ import { useState } from "react"
 const Search = () => {
   const [category, setCategory] = useState("All Categories")
   const [isOpen, setIsOpen] = useState(false)
+  const [query, setQuery] = useState("")
 
   const categories = [
     "All Categories",
@@ -17,18 +18,26 @@ const Search = () => {
     "Beverages"
   ]
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim()) {
+      console.log(`Buscando "${query}" en la categoría "${category}"`);
+      // Aquí el instructor conectará la lógica de filtrado de productos
+    }
+  }
+
   return (
-    <div className="flex-1 max-w-2xl mx-4">
+    <div className="flex-1 max-w-2xl lg:mx-4">
       <form 
-        onSubmit={(e) => e.preventDefault()}
-        className="flex items-center w-full bg-white border border-gray-200 rounded-md overflow-hidden shadow-sm focus-within:border-prim focus-within:ring-1 focus-within:ring-prim/20 transition-all duration-300"
+        onSubmit={handleSearch}
+        className="flex items-center w-full bg-white border border-gray-200 rounded-md shadow-sm focus-within:border-prim focus-within:ring-1 focus-within:ring-prim/20 transition-all duration-300 relative"
       >
         {/* Category Dropdown */}
         <div className="relative hidden md:block">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 bg-gray-50 border-r border-gray-200 hover:bg-gray-100 transition-colors cursor-pointer min-w-[150px] justify-between"
+            className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 bg-gray-50 border-r border-gray-200 hover:bg-gray-100 transition-colors cursor-pointer min-w-[150px] justify-between rounded-l-md"
           >
             {category}
             <Icon 
@@ -40,7 +49,7 @@ const Search = () => {
           </button>
 
           {isOpen && (
-            <div className="absolute top-full left-0 w-full bg-white border border-gray-200 shadow-xl z-50 py-1 rounded-b-md animate-fadeIn">
+            <div className="absolute top-full left-0 w-full bg-white border border-gray-200 shadow-xl z-[100] py-1 rounded-b-md animate-fadeIn">
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -63,6 +72,8 @@ const Search = () => {
           <Icon icon="iconamoon:search-thin" width="20" height="20" className="text-gray-400" />
           <input
             type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for products..."
             className="w-full px-3 py-3 text-sm text-gray-800 outline-none placeholder:text-gray-400"
           />
@@ -71,7 +82,7 @@ const Search = () => {
         {/* Search Button */}
         <button
           type="submit"
-          className="bg-prim text-white px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-black transition-colors duration-300 cursor-pointer"
+          className="bg-prim text-white px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-black transition-colors duration-300 cursor-pointer rounded-r-md"
         >
           Search
         </button>
