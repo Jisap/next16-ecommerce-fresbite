@@ -2959,7 +2959,7 @@ const TopSelling = ({ product }: TopSellingProps) => {
             </div>
 
             <p className="mb-3 text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit aperiam voluptatum ex maxime, saepe illo debitis odit, error, doloremque natus blanditiis pariatur nesciunt ut ullam minus voluptatem! Quas, enim.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit aperiam voluptatum ex maxime, saepe illo debitis odit, error.
             </p>
 
             <div className="mb-6">
@@ -3023,6 +3023,58 @@ const TopSelling = ({ product }: TopSellingProps) => {
                   BUY IT NOW
                 </button>
               </div>
+
+              <div className="py-5">
+                <span className="text-xl font-medium">
+                  Payment & Security
+                </span>
+
+                <ul className="flex flex-wrap gap-2 items-center pt-2">
+                  {[
+                    "/visa-svgrepo-com.svg",
+                    "/mastercard-svgrepo-com.svg",
+                    "/american-express-svgrepo-com.svg",
+                    "/paypal-svgrepo-com.svg",
+                    "/dinners-club-svgrepo-com.svg",
+                    "/discover-3-svgrepo-com.svg"
+                  ].map((src, index) => (
+                    <li key={index} className="border border-gray-200 rounded-sm px-2 py-1 hover:shadow-md transition-all duration-300">
+                      <img src={src} alt="payment" className="h-6 w-auto" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <p className="text-gray-500 mb-3">
+                Your payment information is processed securely. We do not store credit card
+                detais not have access to your credit card information.
+              </p>
+
+              <ul className="flex justify-between items-center flex-wrap gap-5 border border-gray-200 p-5 mb-3">
+                <li className="flex items-center text-center flex-col">
+                  <Icon icon="akar-icons:location" width="30" height="30" />
+
+                  <h6 className="font-semibold text-md pt-2">
+                    Store pickup
+                  </h6>
+                </li>
+
+                <li className="flex items-center text-center flex-col">
+                  <Icon icon="grommet-icons:rotate-left" width="30" height="30" />
+
+                  <h6 className="font-semibold text-md pt-2">
+                    Return policy
+                  </h6>
+                </li>
+
+                <li className="flex items-center text-center flex-col">
+                  <Icon icon="ic:round-attach-money" width="30" height="30" />
+
+                  <h6 className="font-semibold text-md pt-2">
+                    Money back
+                  </h6>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
