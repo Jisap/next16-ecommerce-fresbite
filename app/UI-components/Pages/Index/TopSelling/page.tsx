@@ -3130,7 +3130,81 @@ const TopSelling = ({ product }: TopSellingProps) => {
                 </div>
               </div>
 
-              {/* Pickup */}
+              {/* Pickup Accordion */}
+              <div className="border-t border-gray-200 pt-6 mt-2">
+                <button
+                  onClick={() => toggle(1)}
+                  className="flex justify-between items-center w-full cursor-pointer group"
+                >
+                  <div className="flex items-center">
+                    <div className="w-9 h-9 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all duration-300">
+                      <Icon icon="mingcute:truck-line" width="20" height="20" />
+                    </div>
+                    <span className="font-semibold text-lg">
+                      Choose pickup and save time!
+                    </span>
+                  </div>
+
+                  <Icon
+                    icon="iconamoon:arrow-down-2-duotone"
+                    width="24"
+                    className={`transition-transform duration-500 ${openIndex === 1 ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                <div className={`
+                  overflow-hidden transition-all duration-500 ease-in-out
+                  ${openIndex === 1 ? "max-h-96 opacity-100 mt-5" : "max-h-0 opacity-0"}
+                `}
+                >
+                   <div className="bg-gray-50 border-l-4 border-prim p-4 rounded-r-md">
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      Opt for our convenient pickup option and get your items faster. Save on shipping costs and collect at your nearest store.
+                    </p>
+                    <Link href="/" className="inline-block mt-3 text-prim font-bold text-sm hover:underline">
+                      View Information →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Return Accordion */}
+              <div className="border-t border-gray-200 pt-6 mt-2">
+                <button
+                  onClick={() => toggle(2)}
+                  className="flex justify-between items-center w-full cursor-pointer group"
+                >
+                  <div className="flex items-center">
+                    <div className="w-9 h-9 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all duration-300">
+                      <Icon icon="solar:refresh-bold" width="20" height="20" />
+                    </div>
+                    <span className="font-semibold text-lg">
+                      Flexible returns
+                    </span>
+                  </div>
+
+                  <Icon
+                    icon="iconamoon:arrow-down-2-duotone"
+                    width="24"
+                    className={`transition-transform duration-500 ${openIndex === 2 ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                <div className={`
+                  overflow-hidden transition-all duration-500 ease-in-out
+                  ${openIndex === 2 ? "max-h-96 opacity-100 mt-5" : "max-h-0 opacity-0"}
+                `}
+                >
+                  <div className="bg-gray-50 border-l-4 border-prim p-4 rounded-r-md">
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      Shop with total confidence! We offer a hassle-free 30-day return window for all organic products.
+                    </p>
+                    <Link href="/" className="inline-block mt-3 text-prim font-bold text-sm hover:underline">
+                      Learn More →
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
