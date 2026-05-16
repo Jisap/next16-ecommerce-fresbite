@@ -17,7 +17,7 @@ const Navmiddle = () => {
 
   // Estados para la búsqueda
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   // Estados para el Modal de Producto y Selección de Pesos
   const [openModal, setOpenModal] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<any>(null)
@@ -25,19 +25,19 @@ const Navmiddle = () => {
   const [selectedSize, setSelectedSize] = useState<string>("1 kg")
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [openId, setOpenId] = useState<string | null>(null)
-  
+
   const [selectedWeights, setSelectedWeights] = useState<Record<string, string>>({});
-  
+
   const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"]
 
-  const { 
+  const {
     cart,
-    wishlist, 
-    qty, 
-    increaseQty, 
-    decreaseQty, 
-    addToCart, 
-    toggleWishlist 
+    wishlist,
+    qty,
+    increaseQty,
+    decreaseQty,
+    addToCart,
+    toggleWishlist
   } = useCart()
 
   const cartCount = useMemo(() => cart.reduce((sum, item) => sum + (item.qty || 1), 0), [cart]);
@@ -46,12 +46,12 @@ const Navmiddle = () => {
   const filteredProducts = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     if (q.length > 1) {
-      return productsData.filter(p => 
+      return productsData.filter(p =>
         p.title.toLowerCase().includes(q)
       );
     }
     return [];
-  }, [searchQuery]);
+  }, [searchQuery]); // Dependencia: se recalcula solo cuando cambia searchQuery
 
   const toggleAccordion = (index: number) => setOpenIndex(openIndex === index ? null : index)
 
@@ -74,6 +74,7 @@ const Navmiddle = () => {
             <Search onQueryChange={(q) => setSearchQuery(q)} />
           </div>
 
+          {/* Buttons - User - Wishlist - Cart */}
           <ul className="flex space-x-3 lg:space-x-5 items-center justify-end">
             <li>
               <button onClick={() => { setIsLogin(true); setShowModal(true); }} className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 hover:bg-prim hover:text-white transition-all">
@@ -117,8 +118,8 @@ const Navmiddle = () => {
                   <h2 className="text-2xl font-bold text-gray-800">Results for: <span className="text-prim">"{searchQuery}"</span></h2>
                   <p className="text-gray-500 text-sm mt-1">{filteredProducts.length} products found in store</p>
                 </div>
-                <button 
-                  onClick={() => setSearchQuery("")} 
+                <button
+                  onClick={() => setSearchQuery("")}
                   className="text-gray-400 hover:text-prim flex items-center gap-2 font-semibold transition-all cursor-pointer bg-gray-50 px-4 py-2 rounded-full hover:bg-prim/10"
                 >
                   <Icon icon="material-symbols:close-rounded" width="20" /> Close
@@ -133,8 +134,8 @@ const Navmiddle = () => {
                       product={product}
                       openId={openId}
                       setOpenId={setOpenId}
-                      selectedWeight={selectedWeights} 
-                      setSelectedWeight={setSelectedWeights} 
+                      selectedWeight={selectedWeights}
+                      setSelectedWeight={setSelectedWeights}
                       weights={weights}
                       qty={qty}
                       increaseQty={increaseQty}
