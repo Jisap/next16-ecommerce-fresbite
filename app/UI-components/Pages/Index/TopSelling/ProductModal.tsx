@@ -96,6 +96,7 @@ const ProductModal = ({
             <div className="text-2xl font-bold text-prim">
               Rs. {priceBySize[selectedSize]?.replace(/Rs\.?/i, "").trim()}
             </div>
+
             {selectedProduct.lessprice && (
               <div className="font-semibold line-through text-gray-500 text-md">
                 Rs. {selectedProduct.lessprice.replace(/Rs\.?/i, "").trim()}
@@ -125,6 +126,7 @@ const ProductModal = ({
               <strong>Size:</strong>
               <span className="ml-2 text-sm font-medium text-gray-500">{selectedSize}</span>
             </div>
+
             <div className="flex flex-wrap gap-2">
               {["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"].map((size) => (
                 <button
@@ -146,7 +148,9 @@ const ProductModal = ({
             <button onClick={() => decreaseQty(selectedProduct.id)} className="px-3 py-2 cursor-pointer">
               <Icon icon="ic:baseline-minus" width={20} height={20} />
             </button>
-            <span className="px-4 text-lg min-w-[3rem] text-center font-medium">{qty[selectedProduct.id] || 1}</span>
+
+            <span className="px-4 text-lg min-w-12 text-center font-medium">{qty[selectedProduct.id] || 1}</span>
+
             <button onClick={() => increaseQty(selectedProduct.id)} className="px-3 py-2 cursor-pointer">
               <Icon icon="ic:baseline-plus" width={20} height={20} />
             </button>
@@ -162,6 +166,7 @@ const ProductModal = ({
             >
               ADD TO CART
             </button>
+
             <button className="bg-black text-white px-6 py-3 rounded hover:bg-prim transition-all duration-300 cursor-pointer w-full uppercase tracking-wider font-bold">
               BUY IT NOW
             </button>
@@ -170,6 +175,7 @@ const ProductModal = ({
           {/* Payment Info */}
           <div className="mb-8">
             <span className="text-lg font-semibold block mb-3">Payment & Security</span>
+
             <ul className="flex flex-wrap gap-3 items-center mb-4">
               {["/visa-svgrepo-com.svg", "/mastercard-svgrepo-com.svg", "/american-express-svgrepo-com.svg", "/paypal-svgrepo-com.svg", "/dinners-club-svgrepo-com.svg", "/discover-3-svgrepo-com.svg"].map((src, index) => (
                 <li key={index} className="border border-gray-100 rounded-sm px-2 py-1 hover:shadow-md transition-all duration-300 bg-white">
@@ -177,6 +183,7 @@ const ProductModal = ({
                 </li>
               ))}
             </ul>
+
             <p className="text-gray-500 text-xs">
               Your payment information is processed securely. We do not store credit card details.
             </p>
@@ -191,10 +198,12 @@ const ProductModal = ({
                   <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
                     <Icon icon="material-symbols:percent" width={18} />
                   </div>
+
                   <span className="font-semibold">Offers available for you</span>
                 </div>
                 <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 0 ? "rotate-180" : ""}`} />
               </button>
+
               <div className={`overflow-hidden transition-all duration-500 ${openIndex === 0 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
                 <ul className="space-y-2">
                   {[{ text: "Get up to 50% off on selected products", code: "" }, { text: "Buy 2 & get 15% off", code: "BUY2SAVE" }, { text: "Get 11% off first order", code: "11%OFF" }].map((off, i) => (
@@ -218,13 +227,16 @@ const ProductModal = ({
                   </div>
                   <span className="font-semibold">Choose pickup and save time!</span>
                 </div>
+
                 <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 1 ? "rotate-180" : ""}`} />
               </button>
+
               <div className={`overflow-hidden transition-all duration-500 ${openIndex === 1 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md">
                   <p className="text-xs text-gray-600 leading-relaxed">
                     Opt for our convenient pickup option and get your items faster. Save on shipping costs and collect at your nearest store.
                   </p>
+
                   <Link href="/" className="inline-block mt-2 text-prim font-bold text-xs hover:underline">View Information →</Link>
                 </div>
               </div>
@@ -237,15 +249,18 @@ const ProductModal = ({
                   <div className="w-8 h-8 rounded-full bg-prim/10 flex items-center justify-center mr-3 group-hover:bg-prim group-hover:text-white transition-all">
                     <Icon icon="solar:refresh-bold" width={18} />
                   </div>
+
                   <span className="font-semibold">Flexible returns</span>
                 </div>
                 <Icon icon="iconamoon:arrow-down-2-duotone" width={22} className={`transition-transform duration-500 ${openIndex === 2 ? "rotate-180" : ""}`} />
               </button>
+
               <div className={`overflow-hidden transition-all duration-500 ${openIndex === 2 ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="bg-gray-50 border-l-4 border-prim p-3 rounded-r-md">
                   <p className="text-xs text-gray-600 leading-relaxed">
                     Shop with total confidence! We offer a hassle-free 30-day return window for all organic products.
                   </p>
+
                   <Link href="/" className="inline-block mt-2 text-prim font-bold text-xs hover:underline">Learn More →</Link>
                 </div>
               </div>

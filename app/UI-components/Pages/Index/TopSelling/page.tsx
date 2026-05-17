@@ -7,7 +7,7 @@ import { Autoplay } from "swiper/modules"
 import "swiper/css"
 import titleicon from "@/public/freshbite-title-icon2.webp"
 import { useRouter } from "next/navigation"
-import toast, { Toaster } from "react-hot-toast"
+import { Toaster } from "react-hot-toast"
 
 import ProductCard from "./ProductCard"
 import ProductModal from "./ProductModal"
@@ -34,19 +34,19 @@ const TopSelling = ({ product: Products }: { product: Product[] }) => {
   const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"]
 
   // --- HOOK GLOBAL ---
-  const { 
-    wishlist, 
-    qty, 
-    increaseQty, 
-    decreaseQty, 
-    addToCart, 
-    toggleWishlist 
+  const {
+    wishlist,
+    qty,
+    increaseQty,
+    decreaseQty,
+    addToCart,
+    toggleWishlist
   } = useCart()
 
   // --- ESTADOS LOCALES ---
   const [selectedWeight, setSelectedWeight] = useState<Record<string, string>>({})
   const [openId, setOpenId] = useState<string | null>(null)
-  
+
   // Estados para el Modal
   const [openModal, setOpenModal] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<any>(null)

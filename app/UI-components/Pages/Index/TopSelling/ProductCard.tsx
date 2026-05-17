@@ -41,7 +41,10 @@ const ProductCard = ({
   const router = useRouter();
 
   return (
-    <div className={`group border border-gray-200 w-full rounded-lg bg-white relative hover:shadow-xl transition-all duration-500 ${openId === product.id ? "z-50" : "z-10"}`}>
+    <div className={`
+      group border border-gray-200 w-full rounded-lg bg-white relative hover:shadow-xl transition-all duration-500 
+      ${openId === product.id ? "z-50" : "z-10"}`}
+    >
       {/* Badges */}
       {(() => {
         if (product.megasale) return <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-medium px-2 py-1 rounded z-10">{product.megasale}</span>;

@@ -77,13 +77,28 @@ const Navmiddle = () => {
           {/* Buttons - User - Wishlist - Cart */}
           <ul className="flex space-x-3 lg:space-x-5 items-center justify-end">
             <li>
-              <button onClick={() => { setIsLogin(true); setShowModal(true); }} className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 hover:bg-prim hover:text-white transition-all">
-                <Icon icon="lucide:user" width="22" height="22" />
+              <button
+                onClick={() => { setIsLogin(true); setShowModal(true); }}
+                className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 hover:bg-prim hover:text-white transition-all"
+              >
+                <Icon
+                  icon="lucide:user"
+                  width="22"
+                  height="22"
+                />
               </button>
             </li>
+
             <li>
-              <Link href='/UI-components/Pages/Wishlist' className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative hover:bg-prim hover:text-white transition-all">
-                <Icon icon="tabler:heart" width="22" height="22" />
+              <Link
+                href='/UI-components/Pages/Wishlist'
+                className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative hover:bg-prim hover:text-white transition-all"
+              >
+                <Icon
+                  icon="tabler:heart"
+                  width="22"
+                  height="22"
+                />
                 {wishlistCount > 0 && (
                   <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-[10px] rounded-full text-white ring-2 ring-white">
                     {wishlistCount}
@@ -91,8 +106,12 @@ const Navmiddle = () => {
                 )}
               </Link>
             </li>
+
             <li>
-              <button onClick={() => window.dispatchEvent(new Event("cart-open"))} className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative hover:bg-prim hover:text-white transition-all">
+              <button
+                onClick={() => window.dispatchEvent(new Event("cart-open"))}
+                className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative hover:bg-prim hover:text-white transition-all"
+              >
                 <Icon icon="lucide:shopping-bag" width="22" height="22" />
                 {cartCount > 0 && (
                   <span className="bg-prim absolute -top-1 -right-1 font-unbounded w-5 h-5 flex justify-center items-center text-[10px] rounded-full text-white ring-2 ring-white">
@@ -111,13 +130,14 @@ const Navmiddle = () => {
 
         {/* PANEL DE RESULTADOS DE BÚSQUEDA (AHORA DENTRO DEL RELATIVE) */}
         {searchQuery.length > 1 && (
-          <div className="absolute top-full left-0 w-full bg-white z-[99] shadow-2xl border-t border-gray-100 animate-fadeIn max-h-[85vh] overflow-y-auto pb-20">
+          <div className="absolute top-full left-0 w-full bg-white z-99 shadow-2xl border-t border-gray-100 animate-fadeIn max-h-[85vh] overflow-y-auto pb-20">
             <div className="max-w-7xl mx-auto p-6 lg:p-10">
               <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-50">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800">Results for: <span className="text-prim">"{searchQuery}"</span></h2>
                   <p className="text-gray-500 text-sm mt-1">{filteredProducts.length} products found in store</p>
                 </div>
+
                 <button
                   onClick={() => setSearchQuery("")}
                   className="text-gray-400 hover:text-prim flex items-center gap-2 font-semibold transition-all cursor-pointer bg-gray-50 px-4 py-2 rounded-full hover:bg-prim/10"
@@ -189,7 +209,7 @@ const Navmiddle = () => {
 
       {/* Modal de Login / Registro */}
       {showModal && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-110 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="relative bg-white rounded-2xl p-8 lg:p-10 w-full max-w-[500px] shadow-2xl animate-fadeIn overflow-y-auto max-h-[90vh]">
             <button
               className="absolute top-5 right-5 text-gray-400 hover:text-prim transition-all cursor-pointer p-1"
@@ -201,6 +221,7 @@ const Navmiddle = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-2">
               {isLogin ? "Welcome back!" : "Create an account"}
             </h2>
+
             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
               {!isLogin && (
                 <input
@@ -210,18 +231,21 @@ const Navmiddle = () => {
                   required
                 />
               )}
+
               <input
                 type="email"
                 placeholder="Email Address"
                 className="w-full bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:border-prim"
                 required
               />
+
               <input
                 type="password"
                 placeholder="Password"
                 className="w-full bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:border-prim"
                 required
               />
+
               <button
                 type="submit"
                 className="w-full mt-4 bg-prim text-white py-4 rounded-xl font-bold text-lg hover:bg-black transition-all cursor-pointer shadow-lg shadow-prim/20"
@@ -229,6 +253,7 @@ const Navmiddle = () => {
                 {isLogin ? "Login Now" : "Register Now"}
               </button>
             </form>
+
             <div className="mt-8 text-center">
               <p className="text-gray-600 font-medium">
                 {isLogin ? "Don't have an account?" : "Already have an account?"}
