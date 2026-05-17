@@ -299,7 +299,7 @@ const CartSidebar = () => {
 
           <Link
             href="/UI-Components/Pages/Checkout"
-            className="bg-prim text-white rounded-sm w-full text-center py-2 text-md font-medium hover:bg-black transition-colors duration-300 mt-3"
+            className="bg-prim text-white rounded-sm w-full text-center py-2 text-md font-medium hover:bg-black transition-colors duration-300 mt-3 block"
           >
             Check Out
           </Link>
