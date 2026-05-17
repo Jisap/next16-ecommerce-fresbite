@@ -30,6 +30,10 @@ const Checkout = () => {
   // El subtotal ya viene del hook, así que solo calculamos los impuestos extra
   const estimatedTax = +(cartSubtotal * 0.1).toFixed(2);
 
+
+  // Es un mock, puesto que solo comprueba que los campos requeridos estén llenos
+  // borra el carrito y redirecciona al usuario. Si se implementa una pasarela de pago real
+  // se debería conectar aquí.
   const handlePlaceOrder = (e: React.FormEvent) => {
     e.preventDefault();
     const inputs = document.querySelectorAll("input[required], select[required]");
@@ -234,8 +238,70 @@ const Checkout = () => {
           </div>
 
           {/* Right order summary */}
-          <div className="">
+          <div className="lg:col-span-5">
+            <div className="border border-gray-200 p-4 rounded-sm space-y-3">
+              <h5 className="text-xl font-semibold mb-3">
+                Order Summary
+              </h5>
 
+              {cart.length === 0 ? (
+                <p className="text-gray-500">Your Cart is empty!</p>
+              ) : (
+                cart.map((item) => (
+                  <div
+                    key={`${item.id}-${item.weight}`}
+                    className="flex items-center mb-3 border-b pb-2 cursor-pointer p-1 rounded"
+                  >
+                    <Image
+                      src={item.image1}
+                      alt={item.title}
+                      width={80}
+                      height={80}
+                      className="object-cover rounded mr-3"
+                    />
+
+                    <div className="grow">
+                      <h6 className="font-medium">{item.title}</h6>
+
+                      <p className="text-sm text-gray-500">
+                        Size: <strong>{item.weight}</strong>
+                        {item.qty}
+                      </p>
+
+                      <p className="font-semibold">
+                        Rs. {(item.priceNumber * item.qty).toFixed(2)}
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => removeFromCart(item.id, item.weight)}
+                      className="text-red-500 text-sm font-semibold hover:text-red-700 cursor-pointer"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))
+              )}
+
+              <div className="flex justify-between font-bold text-lg border-t pt-3 mt-3">
+                <span>Total</span>
+                <span>Rs. {(cartSubtotal + estimatedTax).toFixed(2)}</span>
+              </div>
+
+              <button
+                onClick={handlePlaceOrder}
+                className="w-full mt-4 py-2 bg-prim hover:bg-black duration-300 cursor-pointer text-white rounded transition"
+              >
+                Place Order
+              </button>
+
+              <Link
+                href="/UI-components/Pages/Shop"
+                className="block text-center py-2 mt-2 border-rounded transition cursor-pointer"
+              >
+                Back to Product
+              </Link>
+            </div>
           </div>
         </div>
       </div>
