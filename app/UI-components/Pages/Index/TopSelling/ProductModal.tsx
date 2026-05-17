@@ -94,12 +94,12 @@ const ProductModal = ({
 
           <div className="flex items-center gap-4 mb-4 mt-4">
             <div className="text-2xl font-bold text-prim">
-              Rs. {priceBySize[selectedSize]?.replace(/Rs\.?/i, "").trim()}
+              Rs. {(Number(priceBySize[selectedSize]?.replace(/Rs\.?/i, "").replace(/,/g, "").trim() || 0) * (qty[selectedProduct.id] || 1)).toLocaleString()}
             </div>
 
             {selectedProduct.lessprice && (
               <div className="font-semibold line-through text-gray-500 text-md">
-                Rs. {selectedProduct.lessprice.replace(/Rs\.?/i, "").trim()}
+                Rs. {(Number(selectedProduct.lessprice.replace(/Rs\.?/i, "").replace(/,/g, "").trim() || 0) * (qty[selectedProduct.id] || 1)).toLocaleString()}
               </div>
             )}
           </div>
