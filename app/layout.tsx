@@ -3,6 +3,7 @@ import { Sen, Unbounded } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/page";
+import CartSidebar from "./UI-components/Pages/Cart/page";
 
 const sen = Sen({
   variable: "--font-sen",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
+        <CartSidebar />
         <Footer />
       </body>
     </html>

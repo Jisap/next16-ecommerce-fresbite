@@ -89,7 +89,7 @@ const Wishlist = () => {
       {/* Grid de Productos */}
       {wishlistProducts.length > 0 && (
         <div className="w-full py-16 px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8">
             {wishlistProducts.map((product) => (
               <ProductCard
                 key={product.id}

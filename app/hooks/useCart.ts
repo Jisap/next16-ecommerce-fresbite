@@ -105,6 +105,26 @@ export const useCart = () => {
     toast.success(isIncluded ? "Removed from wishlist" : "Added to wishlist")
   }
 
+  const removeFromCart = (id: string, weight: string) => {
+    const stored: CartProduct[] = JSON.parse(localStorage.getItem("cart") || "[]")
+    const updated = stored.filter(item => !(item.id === id && item.weight === weight))
+    localStorage.setItem("cart", JSON.stringify(updated))
+    window.dispatchEvent(new Event("cart-updated"))
+    toast.success("Item removed from cart")
+  }
+
+  const updateCartItemQty = (id: string, weight: string, newQty: number) => {
+    if (newQty < 1) return;
+    const stored: CartProduct[] = JSON.parse(localStorage.getItem("cart") || "[]")
+    const updated = stored.map(item =>
+      (item.id === id && item.weight === weight) ? { ...item, qty: newQty } : item
+    )
+    localStorage.setItem("cart", JSON.stringify(updated))
+    window.dispatchEvent(new Event("cart-updated"))
+  }
+
+  const cartSubtotal = cart.reduce((total, item) => total + ((item.priceNumber || 0) * (item.qty || 1)), 0)
+
   return {
     cart,
     wishlist,
@@ -112,7 +132,10 @@ export const useCart = () => {
     increaseQty,
     decreaseQty,
     addToCart,
+    removeFromCart,
+    updateCartItemQty,
     toggleWishlist,
-    getPriceNumber
+    getPriceNumber,
+    cartSubtotal
   }
 }

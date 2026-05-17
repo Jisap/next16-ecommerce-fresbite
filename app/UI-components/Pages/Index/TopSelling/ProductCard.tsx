@@ -138,7 +138,7 @@ const ProductCard = ({
             <button onClick={() => decreaseQty(product.id)} className="px-3 py-2 text-md cursor-pointer">
               <Icon icon="ic:baseline-minus" width={20} height={20} />
             </button>
-            <span className="px-3 text-lg min-w-[2.5rem] text-center">{qty[product.id] || 1}</span>
+            <span className="px-3 text-lg min-w-10 text-center">{qty[product.id] || 1}</span>
             <button onClick={() => increaseQty(product.id)} className="px-3 py-2 text-md cursor-pointer">
               <Icon icon="ic:baseline-plus" width={20} height={20} />
             </button>
