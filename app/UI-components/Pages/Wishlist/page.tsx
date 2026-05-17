@@ -11,6 +11,7 @@ import sectionBanner from "@/public/section-banner.png"
 import ProductCard from "../Index/TopSelling/ProductCard"
 import ProductModal from "../Index/TopSelling/ProductModal"
 import { useCart } from "@/app/hooks/useCart"
+import { Toaster } from "react-hot-toast"
 
 // Unificamos todos los productos para poder buscar los favoritos vengan de donde vengan
 const allProducts = [...topSellingData, ...organicData, ...tradingData]
@@ -140,6 +141,8 @@ const Wishlist = () => {
           toggle={toggleAccordion}
         />
       )}
+
+      <Toaster position="top-right" />
     </>
   )
 }
