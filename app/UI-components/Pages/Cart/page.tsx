@@ -50,7 +50,8 @@ const CartSidebar = () => {
     qty,
     removeFromCart,
     updateCartItemQty,
-    cartSubtotal
+    cartSubtotal,
+    addToCart
   } = useCart()
 
   // Escuchar cuando alguien hace click en el botón del carrito (Navmiddle) 
@@ -138,7 +139,7 @@ const CartSidebar = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="">
                     <h3 className="text-md font-semibold group-hover:text-prim mb-1 duration-500">
                       {product.title}
                     </h3>
@@ -197,6 +198,7 @@ const CartSidebar = () => {
               disableOnInteraction: false,
             }}
             loop={true}
+            className="mt-4"
           >
             {products.slice(0, 8).map((product) => (
               <SwiperSlide key={product.id}>
@@ -214,7 +216,7 @@ const CartSidebar = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="pt-2">
                     <h3 className="text-md font-semibold group-hover:text-prim mb-1 duration-500">
                       {product.title}
                     </h3>
@@ -230,13 +232,31 @@ const CartSidebar = () => {
                         </span>
                       )}
                     </div>
+
+                    <div className="flex items-center gap-2 mb-1">
+                      <Icon icon="material-symbols:star-rounded" width="20" height="20" />
+                      <Icon icon="material-symbols:star-rounded" width="20" height="20" />
+                      <Icon icon="material-symbols:star-rounded" width="20" height="20" />
+                      <Icon icon="material-symbols:star-rounded" width="20" height="20" />
+                      <Icon icon="material-symbols:star-outline" width="20" height="20" />
+                    </div>
+
+                    {/* Add to Cart Button */}
+                    <button
+                      onClick={() => addToCart(product, "1 kg")}
+                      className="w-full rounded p-2 text-sm font-medium bg-gray-light hover:bg-black transition-colors duration-300 hover:text-white cursor-pointer flex items-center justify-center"
+                    >
+                      ADD TO CART
+                      <Icon icon="lucide:shopping-bag" width={20} height={20} className="ms-1" />
+                    </button>
                   </div>
                 </div>
-
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
+
+
       </div>
     </>
   )
