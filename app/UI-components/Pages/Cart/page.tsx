@@ -184,6 +184,59 @@ const CartSidebar = () => {
             </>
           )}
         </div>
+
+        <div className="p-5 sm:p-10 pt-5 border-t border-b border-gray-200">
+          <h5 className="text-xl font-semibold">You might also like</h5>
+
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={1}
+            spaceBetween={10}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+          >
+            {products.slice(0, 8).map((product) => (
+              <SwiperSlide key={product.id}>
+                <div className="flex items-start gap-5">
+                  <div className="border border-gray-200 w-36 h-36 group relative">
+                    <img
+                      src={product.image1}
+                      alt={product.title}
+                      className="w-full h-full object-cover rounded"
+                    />
+                    <img
+                      src={product.image2}
+                      alt={product.title}
+                      className="w-full h-full object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 className="text-md font-semibold group-hover:text-prim mb-1 duration-500">
+                      {product.title}
+                    </h3>
+
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-medium text-black text-shadow-md">
+                        {product.price}
+                      </span>
+
+                      {product.lessprice && (
+                        <span className="line-through font-semibold text-black text-md">
+                          {product.lessprice}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </>
   )
