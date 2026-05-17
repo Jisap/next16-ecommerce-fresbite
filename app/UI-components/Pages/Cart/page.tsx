@@ -256,7 +256,54 @@ const CartSidebar = () => {
           </Swiper>
         </div>
 
+        <div className="p-5 sm:px-10 pt-5">
+          <div
+            onClick={() => setOpenNote(!openNote)}
+            className="flex justify-between items-center cursor-pointer select-none"
+          >
+            <label className="font-medium">
+              Order special instructions
+            </label>
 
+            <Icon
+              icon="iconamoon:arrow-down-2-light"
+              width={24}
+              height={24}
+              className={`transition-transform duration-300 ${openNote ? "rotate-180" : ""}`}
+            />
+          </div>
+
+          <div className={`
+            transition-all duration-300 overflow-hidden
+            ${openNote ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}
+            `}
+          >
+            <textarea
+              className="border border-gray-200 w-full p-4 mt-2 rounded" placeholder="Message"
+            />
+          </div>
+        </div>
+
+        <div className="product-total p-5 sm:px-10 py-3 w-full">
+          <div className="flex justify-between items-center">
+            <span className="text-xl font-unbounded font-medium">
+              Subtotal
+            </span>
+
+            <p className="text-md font-unbounded font-medium">
+              Rs. {cartSubtotal.toLocaleString("en-IN", {
+                minimumFractionDigits: 2,
+              })}
+            </p>
+          </div>
+
+          <Link
+            href="/UI-Components/Pages/Checkout"
+            className="bg-prim text-white rounded-sm w-full text-center py-2 text-md font-medium hover:bg-black transition-colors duration-300 mt-3"
+          >
+            Check Out
+          </Link>
+        </div>
       </div>
     </>
   )
