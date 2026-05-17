@@ -298,7 +298,8 @@ const CartSidebar = () => {
           </div>
 
           <Link
-            href="/UI-Components/Pages/Checkout"
+            href="/UI-components/Pages/Checkout"
+            onClick={() => setIsCartOpen(false)}
             className="bg-prim text-white rounded-sm w-full text-center py-2 text-md font-medium hover:bg-black transition-colors duration-300 mt-3 block"
           >
             Check Out
