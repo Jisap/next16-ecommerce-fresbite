@@ -89,23 +89,23 @@ const CategoriesOffers = () => {
                   <Image
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-full object-cover"
                   />
+                </div>
 
-                  <div className="content text-center">
-                    <span className="bg-red-500 text-white px-2 uppercase font-medium text-sm py-1 rounded-sm">
-                      {item.offer}
-                    </span>
+                <div className="content text-center">
+                  <span className="bg-red-500 text-white px-2 uppercase font-medium text-sm py-1 rounded-sm">
+                    {item.offer}
+                  </span>
 
-                    <div className="py-5">
-                      <h6 className="text-xl font-medium">
-                        {item.title}
-                      </h6>
+                  <div className="py-5">
+                    <h6 className="text-xl font-medium">
+                      {item.title}
+                    </h6>
 
-                      <p className="text-gray-400">
-                        {item.desc}
-                      </p>
-                    </div>
+                    <p className="text-gray-400">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               </div>
