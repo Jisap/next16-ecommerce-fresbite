@@ -220,6 +220,51 @@ const ProductDetails = () => {
               Buy It now
             </button>
 
+            {/* Trust Badges */}
+            <div className="grid grid-cols-3 gap-3 border-t border-gray-100 pt-6 mt-6">
+              <div className="flex flex-col items-center text-center p-3 bg-gray-50 rounded-lg hover:shadow-sm transition-all duration-300">
+                <Icon icon="lucide:store" className="text-prim mb-1.5" width={24} />
+                <span className="text-xs font-bold text-gray-800">Store Pickup</span>
+                <span className="text-[10px] text-gray-500 mt-0.5 leading-tight">Free local pickup</span>
+              </div>
+
+              <div className="flex flex-col items-center text-center p-3 bg-gray-50 rounded-lg hover:shadow-sm transition-all duration-300">
+                <Icon icon="lucide:refresh-cw" className="text-prim mb-1.5" width={24} />
+                <span className="text-xs font-bold text-gray-800">Return Policy</span>
+                <span className="text-[10px] text-gray-500 mt-0.5 leading-tight">30-day window</span>
+              </div>
+
+              <div className="flex flex-col items-center text-center p-3 bg-gray-50 rounded-lg hover:shadow-sm transition-all duration-300">
+                <Icon icon="lucide:badge-dollar-sign" className="text-prim mb-1.5" width={24} />
+                <span className="text-xs font-bold text-gray-800">Money Back</span>
+                <span className="text-[10px] text-gray-500 mt-0.5 leading-tight">100% guarantee</span>
+              </div>
+            </div>
+
+            {/* Delivery, Return, SKU List */}
+            <div className="border-t border-gray-100 pt-6 mt-6">
+              <ul className="space-y-3 text-sm text-gray-700">
+                <li className="flex items-center gap-3">
+                  <Icon icon="lucide:truck" className="text-prim" width={18} />
+                  <span>
+                    <strong className="font-semibold text-black">Delivery:</strong> Estimated delivery time: 5 - 7 days
+                  </span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Icon icon="lucide:refresh-cw" className="text-prim" width={18} />
+                  <span>
+                    <strong className="font-semibold text-black">Return:</strong> Within 45 days of purchase
+                  </span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Icon icon="lucide:barcode" className="text-prim" width={18} />
+                  <span>
+                    <strong className="font-semibold text-black">SKU:</strong> 445
+                  </span>
+                </li>
+              </ul>
+            </div>
+
             {/* Accordions (Offers, Pickup, Returns) */}
             <div className="space-y-3 border-t border-gray-100 pt-6 mt-6">
               {/* Offers */}
@@ -291,30 +336,6 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Delivery, Return, SKU List */}
-            <div className="border-t border-gray-100 pt-6 mt-6">
-              <ul className="space-y-3 text-sm text-gray-700">
-                <li className="flex items-center gap-3">
-                  <Icon icon="lucide:truck" className="text-prim" width={18} />
-                  <span>
-                    <strong className="font-semibold text-black">Delivery:</strong> Estimated delivery time: 5 - 7 days
-                  </span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Icon icon="lucide:refresh-cw" className="text-prim" width={18} />
-                  <span>
-                    <strong className="font-semibold text-black">Return:</strong> Within 45 days of purchase
-                  </span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Icon icon="lucide:barcode" className="text-prim" width={18} />
-                  <span>
-                    <strong className="font-semibold text-black">SKU:</strong> 445
-                  </span>
-                </li>
-              </ul>
             </div>
 
             {/* Payment & Security */}
