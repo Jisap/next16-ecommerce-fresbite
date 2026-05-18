@@ -44,11 +44,11 @@ const ProductDetails = () => {
   const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"];
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  
+
   // Estados para el visor de imágenes (Lightbox)
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
- 
+
   if (!product) return <div className="p-10 text-xl">Product not found</div>
 
   const imagePairs = [
@@ -57,7 +57,7 @@ const ProductDetails = () => {
     { thumb: product.image3, main: product.mainimage3 },
     { thumb: product.image4, main: product.mainimage4 },
     { thumb: product.image5, main: product.mainimage5 },
-  ].filter(pair => pair.thumb && pair.main) as { 
+  ].filter(pair => pair.thumb && pair.main) as {
     thumb: string;
     main: string
   }[];
@@ -91,7 +91,7 @@ const ProductDetails = () => {
     <>
       <div className="px-4 lg:px-12 xl:px-[12%] py-8 sm:py-16 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          
+
           {/* COLUMNA 1: Galería de imágenes (Swiper + Thumbs) */}
           <div>
             <div className="relative group">
@@ -99,7 +99,6 @@ const ProductDetails = () => {
                 modules={[Navigation, Thumbs]}
                 thumbs={{ swiper: thumbsSwiper }}
                 onBeforeInit={(swiper) => {
-                  // Corregido: prevEl y nextEl con 'l' de Element en lugar de '1' (y eliminados ts-ignore)
                   if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
                     swiper.params.navigation.prevEl = ".custom-prev";
                     swiper.params.navigation.nextEl = ".custom-next";
@@ -147,7 +146,7 @@ const ProductDetails = () => {
               </button>
             </div>
 
-            {/* Thumbs Swiper: ahora correctamente dentro de la Columna 1 debajo de la imagen principal */}
+            {/* Thumbs Swiper: dentro de la Columna 1 debajo de la imagen principal */}
             <Swiper
               onSwiper={setThumbsSwiper}
               spaceBetween={20}
@@ -175,12 +174,11 @@ const ProductDetails = () => {
             </Swiper>
           </div>
 
-          {/* COLUMNA 2: Detalles del Producto (para que los implemente el instructor) */}
+          {/* COLUMNA 2: Detalles del Producto */}
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold">{product.title}</h1>
-            <p className="text-gray-500">Aquí irá el resto de la UI del producto (precios, tallas, botón de compra)...</p>
+            <h3 className="text-2xl font-semibold mb-2">{product?.title}</h3>
+            <p className="text-gray-500">Tax included. Shipping calculated at checkout</p>
           </div>
-
         </div>
       </div>
 
