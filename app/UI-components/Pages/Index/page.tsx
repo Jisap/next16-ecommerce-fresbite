@@ -4,6 +4,7 @@ import Category from './Category/page'
 import TopSelling from './TopSelling/page'
 import products from '@/app/JsonData/TopSelling.json'
 import Offers from './Offers/page'
+import CategoriesOffers from './CategoriesOffers/page'
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <Category />
       <TopSelling product={products} />
       <Offers />
+      <CategoriesOffers />
     </>
   )
 }
