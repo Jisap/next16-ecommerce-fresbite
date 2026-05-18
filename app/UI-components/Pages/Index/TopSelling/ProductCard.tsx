@@ -40,6 +40,22 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const router = useRouter();
 
+  const getPriceNumber = (price?: string) => {
+    if (!price) return 0
+    const cleaned = price.replace(/,/g, "").replace(/Rs\.?/g, "").trim()
+    const value = parseFloat(cleaned)
+    return isNaN(value) ? 0 : value
+  }
+
+  const basePrice = getPriceNumber(product.price)
+  const baseLessPrice = product.lessprice ? getPriceNumber(product.lessprice) : 0
+  const currentWeight = selectedWeight[product.id] || "1 kg"
+  const multiplier = weights.indexOf(currentWeight) + 1
+  const currentQty = qty[product.id] || 1
+
+  const finalPrice = basePrice * (multiplier > 0 ? multiplier : 1) * currentQty
+  const finalLessPrice = baseLessPrice * (multiplier > 0 ? multiplier : 1) * currentQty
+
   return (
     <div className={`
       group border border-gray-200 w-full rounded-lg bg-white relative hover:shadow-xl transition-all duration-500 
@@ -147,9 +163,9 @@ const ProductCard = ({
 
         {/* Pricing */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="font-semibold text-black text-md">{product.price}</span>
+          <span className="font-semibold text-black text-md">Rs. {finalPrice.toFixed(2)}</span>
           {product.lessprice && (
-            <span className="line-through font-semibold text-gray-400 text-md">{product.lessprice}</span>
+            <span className="line-through font-semibold text-gray-400 text-md">Rs. {finalLessPrice.toFixed(2)}</span>
           )}
           {product.review && (
             <span className="ml-auto flex items-center bg-green-100 text-green-700 text-md px-3 py-1 rounded font-bold">

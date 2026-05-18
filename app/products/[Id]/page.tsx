@@ -16,6 +16,7 @@ import topProducts from "@/app/JsonData/TopProducts.json";
 import topSelling from "@/app/JsonData/TopSelling.json";
 import trendingProducts from "@/app/JsonData/TradingProducts.json";
 import { CartProduct, Product, useCart } from "@/app/hooks/useCart"
+import ProductCard from "@/app/UI-components/Pages/Index/TopSelling/ProductCard"
 
 
 
@@ -44,6 +45,7 @@ const ProductDetails = () => {
   const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"];
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   // Estados para el visor de imágenes (Lightbox)
   const [photoIndex, setPhotoIndex] = useState<number>(0);
@@ -177,8 +179,42 @@ const ProductDetails = () => {
           {/* COLUMNA 2: Detalles del Producto */}
           <div className="space-y-4">
             <h3 className="text-2xl font-semibold mb-2">{product?.title}</h3>
+
             <p className="text-gray-500">Tax included. Shipping calculated at checkout</p>
+
+            <div className="flex items-center gap-2 border-b border-gray-200 pb-5 pt-2 mb-4">
+              <svg width="15" height="15" aria-hidden="true">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96,0.3)"></circle>
+                <circle cx="7.5" cy="7.5" r="5" strokeWidth="1" fill="rgb(62,214,96)"></circle>
+              </svg>
+              <span className="text-sm font-medium">13 in Stock</span>
+            </div>
+
+            <ProductCard
+              product={product}
+              openId={openId}
+              setOpenId={setOpenId}
+              selectedWeight={selectedWeight}
+              setSelectedWeight={setSelectedWeight}
+              weights={weights}
+              qty={qty}
+              increaseQty={increaseQty}
+              decreaseQty={decreaseQty}
+              addToCart={addToCart}
+              toggleWishlist={toggleWishlist}
+              wishlist={wishlist}
+              setSelectedProduct={setSelectedProduct}
+              setOpenModal={setOpenModal}
+            />
+
+            <button className="bg-black text-white px-6 py-3 rounded hover:bg-prim transition duration-300 w-full cursor-pointer uppercase">
+              Buy It now
+            </button>
           </div>
+
+          <ul>
+
+          </ul>
         </div>
       </div>
 
