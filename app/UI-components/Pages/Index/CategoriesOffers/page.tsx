@@ -57,7 +57,7 @@ const categories = [
 const CategoriesOffers = () => {
   return (
     <>
-      <div className="px-2 lg:px-8 xl:px-12 pt-20 pb-10">
+      <div className="px-2 lg:px-8 xl:px-12 relative py-8 sm:py-16 bg-gray-light bg-[url('/freshbite-cat-bg.webp')] bg-no-repeat bg-contain">
         <div className="section-title flex flex-wrap pb-10 md:ps-5 gap-3">
           <h2 className="text-3xl md:text-5xl font-bold">Top Category Products</h2>
           <p className="text-black/50 flex items-center flex-wrap gap-4 text-lg md:text-xl font-medium">
