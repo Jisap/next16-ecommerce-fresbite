@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast"
 import { Navigation, Thumbs } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css" // Aseguramos que los estilos de Lightbox funcionen
 import organicProducts from "@/app/JsonData/OrganicProducts.json";
 import recentlyProducts from "@/app/JsonData/RecentlyProducts.json";
 import topProducts from "@/app/JsonData/TopProducts.json";
@@ -37,16 +38,17 @@ const ProductDetails = () => {
   const product = allProducts.find((p) => p.id === productId);
 
   const [openId, setOpenId] = useState<string | null>(null);
-  const [cartt, setCartt] = useState<CartProduct[]>([])
+  const [cart, setCart] = useState<CartProduct[]>([])
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [selectedWeight, setSelectedWeight] = useState<Record<string, string>>({});
   const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"];
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
+  
+  // Estados para el visor de imágenes (Lightbox)
   const [photoIndex, setPhotoIndex] = useState<number>(0);
-
-
+  const [open, setOpen] = useState<boolean>(false);
+ 
   if (!product) return <div className="p-10 text-xl">Product not found</div>
 
   const imagePairs = [
@@ -55,20 +57,17 @@ const ProductDetails = () => {
     { thumb: product.image3, main: product.mainimage3 },
     { thumb: product.image4, main: product.mainimage4 },
     { thumb: product.image5, main: product.mainimage5 },
-  ].filter(pair => pair.thumb && pair.main) as { // Revisa las 5 parejas de imágenes y quédate únicamente con aquellas donde tanto la miniatura (thumb) como la imagen principal (main) existan y no estén vacías.
-    thumb: string;                               // Garantiza al 100% que todos los elementos que han quedado son objetos válidos con un thumb tipo string y un main tipo string.
+  ].filter(pair => pair.thumb && pair.main) as { 
+    thumb: string;
     main: string
   }[];
 
   const {
-    cart,
     wishlist,
     qty,
     increaseQty,
     decreaseQty,
     addToCart,
-    removeFromCart,
-    updateCartItemQty,
     toggleWishlist,
     getPriceNumber,
     cartSubtotal
@@ -92,16 +91,19 @@ const ProductDetails = () => {
     <>
       <div className="px-4 lg:px-12 xl:px-[12%] py-8 sm:py-16 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          
+          {/* COLUMNA 1: Galería de imágenes (Swiper + Thumbs) */}
           <div>
             <div className="relative group">
               <Swiper
                 modules={[Navigation, Thumbs]}
                 thumbs={{ swiper: thumbsSwiper }}
                 onBeforeInit={(swiper) => {
-                  // @ts-ignore
-                  swiper.params.navigation.prevE1 = ".custom-prev";
-                  // @ts-ignore
-                  swiper.params.navigation.nextE1 = ".custom-next"
+                  // Corregido: prevEl y nextEl con 'l' de Element en lugar de '1' (y eliminados ts-ignore)
+                  if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
+                    swiper.params.navigation.prevEl = ".custom-prev";
+                    swiper.params.navigation.nextEl = ".custom-next";
+                  }
                 }}
                 navigation
                 className="border border-gray-200 rounded-md"
@@ -128,10 +130,67 @@ const ProductDetails = () => {
                   </SwiperSlide>
                 ))}
               </Swiper>
+
+              {/* Botones de navegación (solo los de dentro del group) */}
+              <button className="custom-prev absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white shadow rounded-full -translate-x-5 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-500 cursor-pointer">
+                <Icon
+                  icon="iconamoon:arrow-left-2-light"
+                  width={35}
+                />
+              </button>
+
+              <button className="custom-next absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white shadow rounded-full -translate-x-5 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-500 cursor-pointer">
+                <Icon
+                  icon="iconamoon:arrow-right-2-light"
+                  width={35}
+                />
+              </button>
             </div>
+
+            {/* Thumbs Swiper: ahora correctamente dentro de la Columna 1 debajo de la imagen principal */}
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              spaceBetween={20}
+              slidesPerView={5}
+              watchSlidesProgress
+              className="mt-4"
+              breakpoints={{
+                1600: { slidesPerView: 5 },
+                1000: { slidesPerView: 4 },
+                500: { slidesPerView: 3 },
+                0: { slidesPerView: 2 },
+              }}
+            >
+              {imagePairs.map((item, i) => (
+                <SwiperSlide key={i}>
+                  <Image
+                    src={item.thumb}
+                    alt="thumbnail"
+                    width={100}
+                    height={100}
+                    className="border border-gray-200 rounded-md cursor-pointer object-contain h-30 w-full"
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
+
+          {/* COLUMNA 2: Detalles del Producto (para que los implemente el instructor) */}
+          <div className="space-y-4">
+            <h1 className="text-3xl font-bold">{product.title}</h1>
+            <p className="text-gray-500">Aquí irá el resto de la UI del producto (precios, tallas, botón de compra)...</p>
+          </div>
+
         </div>
       </div>
+
+      {/* Visor de imágenes grandes */}
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        index={photoIndex}
+        slides={lightboxImage}
+      />
     </>
   )
 }

@@ -75,6 +75,8 @@ export const useCart = () => {
       return
     }
 
+
+
     const basePrice = getPriceNumber(product.price)
     const weights = ["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"]
     const multiplier = weights.indexOf(selectedWeight) + 1 // Ajustado el multiplicador
