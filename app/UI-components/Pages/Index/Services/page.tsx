@@ -21,6 +21,30 @@ const Services = () => {
               <p className="text-gray-600 max-w-55">Not only fast for us quality is also number one</p>
             </div>
           </div>
+
+          <div className="service-item flex items-center flex-col sm:flex-row gap-8">
+            <div className="service-image h-30 w-34">
+              <Image src={service2} alt="service2" className="w-full h-full object-contain" />
+            </div>
+
+            <div className="service-content sm:text-start text-center">
+              <span className="shadow-2xl bg-white rounded-2xl p-2 w-8 h-8">01</span>
+              <h4 className="text-xl font-medium pt-3">Easy to order</h4>
+              <p className="text-gray-600 max-w-55">You only need a few steps in ordering food</p>
+            </div>
+          </div>
+
+          <div className="service-item flex items-center flex-col sm:flex-row gap-8">
+            <div className="service-image h-30 w-34">
+              <Image src={service3} alt="service2" className="w-full h-full object-contain" />
+            </div>
+
+            <div className="service-content sm:text-start text-center">
+              <span className="shadow-2xl bg-white rounded-2xl p-2 w-8 h-8">01</span>
+              <h4 className="text-xl font-medium pt-3">Faster delivery</h4>
+              <p className="text-gray-600 max-w-55">Delivery that is always on time even faster</p>
+            </div>
+          </div>
         </div>
       </div>
     </>
