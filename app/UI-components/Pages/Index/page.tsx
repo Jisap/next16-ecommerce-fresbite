@@ -11,6 +11,7 @@ import LatestProducts from './LatestProducts/page'
 import Order from './Order/page'
 import Brands from './Brands/page'
 import Services from './Services/page'
+import Testimonials from './Testimonials/page'
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <Order />
       <Brands />
       <Services />
+      <Testimonials />
     </>
   )
 }
