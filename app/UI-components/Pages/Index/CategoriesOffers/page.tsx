@@ -82,7 +82,7 @@ const CategoriesOffers = () => {
           }}
           className="offer-swiper w-full"
         >
-          {categories.map((item, index) => (
+          {[...categories, ...categories].map((item, index) => (
             <SwiperSlide key={index}>
               <div className="ctg-item bg-white shadow-xl rounded-md flex justify-center items-center flex-col gap-8 p-6">
                 <div className="ctg-image">

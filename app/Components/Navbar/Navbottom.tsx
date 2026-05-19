@@ -71,7 +71,6 @@ const Navbottom = () => {
                         alt={cat.title}
                         width={25}
                         height={25}
-                        style={{ height: 'auto' }}
                         className="group-hover:scale-110 transition-transform duration-300"
                       />
                       <span className="text-sm font-medium text-gray-700 group-hover:text-prim">

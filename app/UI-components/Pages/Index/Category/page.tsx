@@ -67,14 +67,16 @@ const Category = () => {
             768: { slidesPerView: 3.5 },
           }}
         >
-          {categories.map((category, index) => (
+          {[...categories, ...categories].map((category, index) => (
             <SwiperSlide key={index}>
               <div className="category-wrap flex flex-col justify-center items-center cursor-pointer bg-gray-light rounded-md group h-62.5 px-4">
                 <div className="category-image bg-white shadow-md w-30 h-30 flex justify-center items-center rounded-full mb-2">
                   <Image
                     src={category.image}
                     alt={category.title}
-                    className="transition-all duration-300 w-14 h-14"
+                    width={56}
+                    height={56}
+                    className="transition-all duration-300"
                   />
                 </div>
 
