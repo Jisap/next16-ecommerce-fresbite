@@ -85,6 +85,17 @@ const Testimonials = () => {
                 <p className="text-lg text-gray-500 pb-4">
                   {item.text}
                 </p>
+
+                <div className="flex items-center text-yellow-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon
+                      key={i}
+                      icon="material-symbols:star-rounded"
+                      width="24"
+                      height="24"
+                    />
+                  ))}
+                </div>
               </div>
             </SwiperSlide>
           ))}

@@ -116,3 +116,7 @@ body {
 .offer-swiper {
   padding: 30px 0;
 }
+
+.tst-swiper {
+  padding: 30px 0 !important
+}
