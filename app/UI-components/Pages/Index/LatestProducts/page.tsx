@@ -57,12 +57,20 @@ const LatestProducts = () => {
           setOpenModal(true)
         }}
       >
-        {/* Etiqueta Super Saver - solo visible si el producto lo es */}
-        {product.supersaver === "Yes" && (
-          <div className="absolute top-0 left-0 bg-green-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-sm z-10 uppercase whitespace-nowrap">
+        {/* Renderizado Priorizado (Super Saver primero, luego Descuento, luego Megasale) */}
+        {product.supersaver === "Yes" ? (
+          <span className="absolute top-0 left-0 z-10 bg-green-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase whitespace-nowrap pointer-events-none">
             Super Saver
-          </div>
-        )}
+          </span>
+        ) : product.offer ? (
+          <span className="absolute top-0 left-0 z-10 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase whitespace-nowrap pointer-events-none">
+            {product.offer}
+          </span>
+        ) : product.megasale ? (
+          <span className="absolute top-0 left-0 z-10 bg-yellow-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase whitespace-nowrap pointer-events-none">
+            {product.megasale}
+          </span>
+        ) : null}
 
         <Image
           src={product.image1}
