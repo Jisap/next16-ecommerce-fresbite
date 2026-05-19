@@ -47,14 +47,6 @@ const OrganicProducts = () => {
     cartSubtotal
   } = useCart();
 
-  // Lógica para agrupar productos de 2 en 2 para los slides verticales
-  const productChunks = []
-  if (products && products.length > 0) {
-    for (let i = 0; i < products.length; i += 2) {
-      productChunks.push(products.slice(i, i + 2))
-    }
-  }
-
   // Precios para el modal según tamaño
   const priceBySize: Record<string, string> = {
     "1 kg": selectedProduct?.price || "0",
@@ -99,29 +91,25 @@ const OrganicProducts = () => {
             0: { slidesPerView: 1 },
           }}
         >
-          {productChunks.map((chunk, index) => (
-            <SwiperSlide key={index}>
-              <div className="flex flex-col gap-8">
-                {chunk.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    openId={openId}
-                    setOpenId={setOpenId}
-                    selectedWeight={selectedWeight}
-                    setSelectedWeight={setSelectedWeight}
-                    weights={weights}
-                    qty={qty}
-                    increaseQty={increaseQty}
-                    decreaseQty={decreaseQty}
-                    addToCart={addToCart}
-                    toggleWishlist={toggleWishlist}
-                    wishlist={wishlist}
-                    setSelectedProduct={setSelectedProduct}
-                    setOpenModal={setOpenModal}
-                  />
-                ))}
-              </div>
+          {products.map((product, index) => (
+            <SwiperSlide key={`${product.id}-${index}`}>
+              <ProductCard
+                key={product.id}
+                product={product}
+                openId={openId}
+                setOpenId={setOpenId}
+                selectedWeight={selectedWeight}
+                setSelectedWeight={setSelectedWeight}
+                weights={weights}
+                qty={qty}
+                increaseQty={increaseQty}
+                decreaseQty={decreaseQty}
+                addToCart={addToCart}
+                toggleWishlist={toggleWishlist}
+                wishlist={wishlist}
+                setSelectedProduct={setSelectedProduct}
+                setOpenModal={setOpenModal}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
