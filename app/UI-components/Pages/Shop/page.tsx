@@ -205,8 +205,8 @@ const Shop = () => {
       {/* Grid de Contenido Principal: Sidebar + Listado */}
       <div className="max-w-[1800px] mx-auto px-4 lg:px-8 xl:px-12 py-12 flex flex-col lg:flex-row gap-8">
         
-        {/* COLUMNA 1: Sidebar de Filtros */}
-        <aside className="w-full lg:w-1/4 flex flex-col gap-6 lg:sticky lg:top-24 h-fit">
+        {/* COLUMNA 1: Sidebar de Filtros (Ancho fijo en desktop para liberar espacio) */}
+        <aside className="w-full lg:w-[280px] shrink-0 flex flex-col gap-6 h-fit">
           
           {/* Filtro por Categorías */}
           <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
@@ -321,7 +321,7 @@ const Shop = () => {
         </aside>
 
         {/* COLUMNA 2: Listado y Ordenación de Productos */}
-        <main className="w-full lg:w-3/4 flex flex-col gap-6">
+        <main className="flex-1 w-full flex flex-col gap-6">
           
           {/* Header del Listado */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white rounded-xl p-5 border border-gray-100 shadow-[0_0_15px_rgba(0,0,0,0.02)] gap-4">
@@ -370,7 +370,7 @@ const Shop = () => {
 
           {/* Grid de Tarjetas de Productos */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
               {filteredProducts.map((product) => (
                 <div key={product.id} className="w-full flex justify-center">
                   <ProductCard
