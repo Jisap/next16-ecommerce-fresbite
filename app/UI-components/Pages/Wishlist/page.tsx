@@ -59,16 +59,16 @@ const Wishlist = () => {
 
         <div className="content z-0 w-full h-full flex justify-center items-center flex-col">
           <ul className="flex items-center gap-1">
-            <li className="uppercase text-sm font-unbounded text-white">
+            <li className="uppercase text-sm font-unbounded text-black">
               <Link href="/">Home</Link>
             </li>
-            <li className="text-white">-</li>
-            <li className="uppercase text-sm font-unbounded text-white">
+            <li className="text-black">-</li>
+            <li className="uppercase text-sm font-unbounded text-black">
               <Link href="/UI-components/Pages/Wishlist">Wishlist</Link>
             </li>
           </ul>
 
-          <h2 className="text-xl sm:text-3xl font-unbounded text-white mt-2">
+          <h2 className="text-xl sm:text-3xl font-unbounded text-black mt-2">
             Wishlist
           </h2>
         </div>

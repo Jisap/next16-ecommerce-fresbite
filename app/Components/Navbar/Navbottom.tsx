@@ -93,13 +93,13 @@ const Navbottom = () => {
               </li>
 
               <li className="relative group">
-                <Link href="/UI-Components/Pages/Shop" className="flex items-center gap-1 text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
+                <Link href="/UI-components/Pages/Shop" className="flex items-center gap-1 text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
                   Shop
                 </Link>
               </li>
 
               <li>
-                <Link href="/UI-Components/Pages/Blogs" className="text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
+                <Link href="/UI-components/Pages/Blogs" className="text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
                   Blogs
                 </Link>
               </li>
