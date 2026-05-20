@@ -12,6 +12,7 @@ import { Product, useCart } from "@/app/hooks/useCart"
 import { useState, useEffect } from "react"
 import ProductCard from "../Index/TopSelling/ProductCard"
 import ProductModal from "../Index/TopSelling/ProductModal"
+import TopProducts from "@/app/JsonData/TopProducts.json"
 
 type SortType = 
   | "featured"
@@ -304,6 +305,50 @@ const Shop = () => {
                   />
                   <span className="group-hover:translate-x-0.5 transition-transform duration-300">{size}</span>
                 </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Productos Recomendados (Alineado con el diseño del instructor) */}
+          <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
+            <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+              <span>Recommended</span>
+              <Icon icon="solar:fire-bold" className="text-prim" width="18" />
+            </h3>
+            <div className="flex flex-col gap-4">
+              {TopProducts.slice(0, 3).map((product: any) => (
+                <div 
+                  key={product.id} 
+                  onClick={() => {
+                    setSelectedProduct(product);
+                    setOpenModal(true);
+                  }}
+                  className="flex items-center gap-3 group cursor-pointer border-b border-gray-50 pb-3 last:border-0 last:pb-0"
+                >
+                  <div className="relative h-16 w-16 shrink-0 bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center p-1">
+                    <img 
+                      src={product.image1} 
+                      alt={product.title} 
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-[13px] font-bold text-gray-800 hover:text-prim transition-colors truncate">
+                      {product.title}
+                    </h4>
+                    <div className="flex items-center my-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Icon key={i} icon="material-symbols:star-rounded" className="text-orange-400" width="12" />
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-bold text-black text-xs">{product.price}</span>
+                      {product.lessprice && (
+                        <span className="line-through text-gray-400 text-[10px]">{product.lessprice}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
