@@ -50,27 +50,31 @@ const Blogs = () => {
                     />
 
                     <div className='absolute top-0 left-0 w-full h-full bg-black opacity-0 group-hover:opacity-30 transition-all duration-300'></div>
+                  </div>
                   
-                    <div className='flex flex-col my-5 px-5'>
-                      <h2 className='text-2xl hover:text-prim transition-all duration-200 line-clamp-1 min-h-8'>
-                        {blog.title}
+                  <div className='flex flex-col my-5 px-5'>
+                    <h2 className='text-2xl hover:text-prim transition-all duration-200 line-clamp-1 min-h-8'>
+                      {blog.title}
+                    </h2>
+
+                    <div className='flex gap-4 mt-3'>
+                      <h2 className='text-xl'>
+                        <i className='bi bi-calendar4-week'></i>{" "}
+                        {blog.date}
                       </h2>
 
-                      <div className='flex gap-4 mt-3'>
-                        <h2 className='text-xl'>
-                          <i className='bi bi-calendar4-week'></i>{" "}
-                          {blog.date}
-                        </h2>
+                      <h2 className='text-xl'>
+                        <i className='bi bi-chat-dots'></i> {" "}
+                        {blog.comments}
+                      </h2>
+                    </div>
 
-                        <h2 className='text-xl'>
-                          <i className='bi bi-chat-dots'></i> {" "}
-                          {blog.comments}
-                        </h2>
-                      </div>
-
-                      <div>
-                        
-                      </div>
+                    <div>
+                      <button className='btn text-black font-semibold px-5 py-2 rounded-lg mt-5 border border-black transition-all duration-300 cursor-pointer'>
+                        <div className='btn-text'>
+                          Explore More <i className='bi bi-arrow-right ps2'></i>
+                        </div>
+                      </button>
                     </div>
                   </div>
                 </div>

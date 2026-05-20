@@ -2,7 +2,7 @@
   {
     "id": 1,
     "img": "/Blog-1.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "Los 5 beneficios de elegir alimentos orgánicos certificados",
     "date": "8 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "2 Comments"
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "img": "/Blog-2.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "Cómo reconocer productos verdaderamente ecológicos en el supermercado",
     "date": "10 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "3 Comments"
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "img": "/Blog-3.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "Agricultura regenerativa: el futuro de la comida orgánica",
     "date": "12 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "6 Comments"
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "img": "/Blog-4.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "Recetas sencillas con ingredientes 100% orgánicos para toda la familia",
     "date": "15 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "10 Comments"
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "img": "/Blog-5.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "Diferencias entre producto orgánico, natural y ecológico: guía práctica",
     "date": "16 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "8 Comments"
@@ -42,7 +42,7 @@
   {
     "id": 6,
     "img": "/Blog-6.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "El impacto ambiental de los pesticidas y por qué lo orgánico importa",
     "date": "18 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "12 Comments"
@@ -50,7 +50,7 @@
   {
     "id": 7,
     "img": "/Blog-7.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "Cómo empezar tu propio huerto orgánico en espacios pequeños",
     "date": "20 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "4 Comments"
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "img": "/Blog-8.webp",
-    "title": "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "title": "Certificaciones orgánicas: qué significan y cómo confiar en ellas",
     "date": "22 jul, 2026",
     "author": "By Andrew Johns",
     "comments": "6 Comments"
