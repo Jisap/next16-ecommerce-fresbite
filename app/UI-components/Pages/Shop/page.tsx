@@ -74,6 +74,20 @@ const Shop = () => {
     }
   }, [selectedProduct]);
 
+  // Sincronizar el peso activo de las tarjetas de producto con el filtro de tamaño seleccionado
+  useEffect(() => {
+    if (sizeFilter.length > 0) {
+      const activeSize = sizeFilter[0]; // Usar el primer tamaño seleccionado en el filtro
+      const updatedWeights: Record<string, string> = {};
+      productsData.forEach(product => {
+        updatedWeights[product.id] = activeSize;
+      });
+      setSelectedWeight(updatedWeights);
+    } else {
+      setSelectedWeight({});
+    }
+  }, [sizeFilter]);
+
   // --- LÓGICA DE FILTRADO DINÁMICA ---
   const filteredProducts = sortedData?.filter(product => {
     // 1. Disponibilidad (Stock): marcamos como agotado de manera realista (p. ej., IDs divisibles por 5)
@@ -96,9 +110,9 @@ const Shop = () => {
     const productPriceVal = getPriceNumber(product.price);
     const priceMatch = productPriceVal <= maxPrice;
     
-    // 4. Filtro por Peso/Tamaño
+    // 4. Filtro por Peso/Tamaño (Todos los productos del catálogo soportan los pesos disponibles)
     const sizeMatch = 
-      sizeFilter.length === 0 || sizeFilter.includes("1 kg"); // En nuestro catálogo todos los productos admiten selección de peso
+      sizeFilter.length === 0 || sizeFilter.some(size => weights.includes(size));
 
     return availabilityMatch && categoryMatch && priceMatch && sizeMatch;
   });
@@ -129,7 +143,6 @@ const Shop = () => {
         );
         break;
       case "price-low":
-        // Solucionado bug original que restaba a.price de a.price
         sorted.sort(
           (a, b) => getPriceNumber(a.price) - getPriceNumber(b.price)
         );
@@ -192,7 +205,7 @@ const Shop = () => {
       {/* Grid de Contenido Principal: Sidebar + Listado */}
       <div className="max-w-[1800px] mx-auto px-4 lg:px-8 xl:px-12 py-12 flex flex-col lg:flex-row gap-8">
         
-        {/* COLUMNA 1: Sidebar de Filtros Moderno */}
+        {/* COLUMNA 1: Sidebar de Filtros */}
         <aside className="w-full lg:w-1/4 flex flex-col gap-6 lg:sticky lg:top-24 h-fit">
           
           {/* Filtro por Categorías */}
