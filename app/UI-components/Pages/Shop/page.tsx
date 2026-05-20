@@ -309,12 +309,13 @@ const Shop = () => {
             </div>
           </div>
 
-          {/* Productos Recomendados (Alineado con el diseño del instructor) */}
+          {/* Productos Recomendados */}
           <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
             <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
               <span>Recommended</span>
               <Icon icon="solar:fire-bold" className="text-prim" width="18" />
             </h3>
+
             <div className="flex flex-col gap-4">
               {TopProducts.slice(0, 3).map((product: any) => (
                 <div 
@@ -332,15 +333,18 @@ const Shop = () => {
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
+
                   <div className="flex-1 min-w-0">
                     <h4 className="text-[13px] font-bold text-gray-800 hover:text-prim transition-colors truncate">
                       {product.title}
                     </h4>
+
                     <div className="flex items-center my-0.5">
                       {[...Array(5)].map((_, i) => (
                         <Icon key={i} icon="material-symbols:star-rounded" className="text-orange-400" width="12" />
                       ))}
                     </div>
+
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-black text-xs">{product.price}</span>
                       {product.lessprice && (
@@ -374,6 +378,7 @@ const Shop = () => {
               <h2 className="font-bold text-gray-800 text-lg tracking-wide">
                 Products Found ({filteredProducts.length})
               </h2>
+              
               {(availabilityFilter.length > 0 || sizeFilter.length > 0 || categoryFilter || maxPrice < 5000) && (
                 <button
                   onClick={clearFilters}
