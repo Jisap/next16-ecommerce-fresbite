@@ -2,6 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import sectionbanner from "@/public/section-banner.png"
 import aboutImg01 from "@/public/about-img-01.webp"
+import teamImg01 from "@/public/team-01.webp"
+import teamImg02 from "@/public/team-02.webp"
+import teamImg03 from "@/public/team-03.webp"
+import teamImg04 from "@/public/team-04.webp"
 
 
 const missionData = [
@@ -21,6 +25,57 @@ const missionData = [
     desc: "Our customers are at the heart of everything we do, and we are committed to providing reliable support, quality service, and products you can trust every day."
   }
 ]
+
+const teamData = [
+  {
+    img: teamImg01,
+    name: "Johnny Smith",
+    role: "Founder & Organic Specialist"
+  },
+  {
+    img: teamImg02,
+    name: "Cathy Warren",
+    role: "Sustainability Manager"
+  },
+  {
+    img: teamImg03,
+    name: "Daniel Green",
+    role: "Nutrition & Wellness Advisor"
+  },
+  {
+    img: teamImg04,
+    name: "Emma Carter",
+    role: "Customer Experience Manager"
+  }
+]
+
+const features = [
+  {
+    icon: "bi-geo-alt",
+    title: "Order tracking",
+    desc: "Sigue tu pedido en tiempo real, desde la finca ecológica hasta la puerta de tu hogar."
+  },
+  {
+    icon: "bi-arrow-counterclockwise",
+    title: "90 days return",
+    desc: "Hasta 90 días para devoluciones sin complicaciones si la frescura o calidad orgánica no cumple tus expectativas."
+  },
+  {
+    icon: "bi-currency-dollar",
+    title: "Money guarantee",
+    desc: "Garantía de calidad 100% orgánica certificada. Reembolso total si el producto no alcanza nuestros estándares."
+  },
+  {
+    icon: "bi-credit-card",
+    title: "Flexible payment",
+    desc: "Opciones de pago adaptadas a ti: cuotas sin interés, transferencia bancaria o billeteras digitales."
+  },
+  {
+    icon: "bi-shield",
+    title: "Secure checkout",
+    desc: "Compra con total tranquilidad gracias a nuestra pasarela de pago encriptada y verificada por estándares internacionales."
+  }
+];
 
 
 
@@ -109,6 +164,54 @@ const About = () => {
               <h3 className='uppercase font-medium mb-2 mt-5'>{item.title}</h3>
 
               <p className='text-center text-black/50 lg:w-[65%] font-medium'>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16 lg:py-20'>
+        <div className='flex flex-col items-center justify-center'>
+          <span className='text-lg mb-3'>Highly skiled</span>
+
+          <h2 className='text-3xl md:text-4xl font-bold'>
+            Meet our teams
+          </h2>
+        </div>
+
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-15'>
+          {teamData.map((member, index) => (
+            <div key={index} className='group'>
+              <div className='overflow-hidden rounded-md'>
+                <Image 
+                  src={member.img}
+                  alt="team-image"
+                  className='w-full transition-transform duration-500 ease-in-out transform-gpu group-hover:scale-110'
+                />
+              </div>
+
+              <div className='text-center mt-5'>
+                <h4 className='uppercase font-medium text-md'>
+                  {member.name}
+                </h4>
+
+                <span className='text-black/80 font-medium'>
+                  {member.role}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16 lg:py-20 bg-gray-light'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10'>
+          {features.map((item, index) => (
+            <div key={index} className='group flex flex-col items-center text-center'>
+              <i className={`bi ${item.icon} text-3xl transition-transform duration-500 ease-in-out group-hover:scale-x-[-1]`}></i>
+
+              <h3 className='text-xl font-semibold mt-5'>{item.title}</h3>
+
+              <p className='text-black/50 text-lg font-medium'>{item.desc}</p>
             </div>
           ))}
         </div>
