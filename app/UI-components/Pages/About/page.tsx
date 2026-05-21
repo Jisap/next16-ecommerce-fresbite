@@ -4,6 +4,26 @@ import sectionbanner from "@/public/section-banner.png"
 import aboutImg01 from "@/public/about-img-01.webp"
 
 
+const missionData = [
+  {
+    icon: "bi bi-bullseye",
+    title: "Our mission",
+    desc: "Our mission is to make organic living more accessible by offering carefully selected products that promote health, sustainability, and a more conscious lifestyle."
+  },
+  {
+    icon: "bi bi-crosshair",
+    title: "Our vision",
+    desc: "We envision a future where natural and organic products become part of everyday life, helping people and communities live healthier while protecting the planet."
+  },
+  {
+    icon: "bi bi-headphones",
+    title: "Your support",
+    desc: "Our customers are at the heart of everything we do, and we are committed to providing reliable support, quality service, and products you can trust every day."
+  }
+]
+
+
+
 const About = () => {
   return (
     <>
@@ -77,6 +97,20 @@ const About = () => {
               Harlie Puth
             </span>
           </div>
+        </div>
+      </div>
+
+      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16 bg-gray-light'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+          {missionData.map((item, index) => (
+            <div key={index} className='flex flex-col items-center'>
+              <i className={`${item.icon} text-3xl`}></i>
+
+              <h3 className='uppercase font-medium mb-2 mt-5'>{item.title}</h3>
+
+              <p className='text-center text-black/50 lg:w-[65%] font-medium'>{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </>
