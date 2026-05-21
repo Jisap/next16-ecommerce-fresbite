@@ -12,6 +12,8 @@ import gallery4 from "@/public/blog-det-gallery4.avif"
 import gallery5 from "@/public/blog-det-gallery5.avif"
 import gallery6 from "@/public/blog-det-gallery6.avif"
 import gallery7 from "@/public/blog-det-gallery7.avif"
+import articlesDes1 from "@/public/artical-des1.jpg"
+import articlesDes2 from "@/public/artical-des2.webp"
 
 const BlogDetails = () => {
 
@@ -208,6 +210,86 @@ const BlogDetails = () => {
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='w-full lg:w-1/1'>
+          <div className='blog-image relative overflow-hidden rounded-lg group'>
+            <Image 
+              src={blog.img}
+              alt="blogimg"
+              width={1000}
+              height={1000}
+              className='w-full h-full object-contain gorup-hover:scale-105 transition-all duration-300'
+            />
+
+            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-0 group-hover:opacity-30 transition-all duration-300'></div>
+          </div>
+
+          <div className='mt-10'>
+            <div className='flex gap-4 mt-3'>
+              <h2 className='text-xl'>
+                <i className='bi bi-calendar4-week'></i>{" "}
+                {blog.date}
+              </h2>
+
+              <h2 className='text-xl'>
+                <i className='bi bi-person'></i>{" "}
+                {blog.author}
+              </h2>
+            </div>
+
+            <h2 className='mt-5 text-4xl font-semibold hover:text-prim transition-all duration-200'>
+              {blog.title}
+            </h2>
+
+            <p className='mt-5 text-lg text-gray-500 tracking-wide'>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ipsam repellendus iure, saepe deleniti eligendi natus similique quasi quia mollitia nostrum veritatis vitae consequatur omnis minus tempora quod ab repellat.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta inventore dolor aperiam placeat vitae nobis praesentium accusantium cumque id, rerum exercitationem magnam, aut sit saepe, ut officia earum quas iusto!
+            </p>
+
+            <p className='mt-5 text-lg text-gray-500 tracking-wide'>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam pariatur veritatis expedita quam consequatur, hic ipsa odit corrupti dicta quo vero obcaecati enim minima unde sit in reiciendis magni fuga!
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium eum ut est molestias at, libero voluptates dolor numquam id hic ex quos. Eius corrupti nostrum sequi dolorum sunt dolorem corporis?
+            </p>
+
+            <div className='mt-5'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+                <Image 
+                  src={articlesDes1}
+                  alt="articlesDes1"
+                  className='w-full h-full rounded-md'
+                />
+                <Image 
+                  src={articlesDes2}
+                  alt="articlesDes2"
+                  className='w-full h-full rounded-md'
+                />
+              </div>
+
+              <h2 className='mt-5 text-4xl font-semibold'>
+                Something reflecte from our soul to the outside world - and emotion
+              </h2>
+
+              <p className='mt-5 text-lg text-gray-500 tracking-wide'>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit voluptatum fugiat facilis laudantium distinctio. At rerum assumenda quos iusto delectus! Iure nisi neque harum ullam aliquid rerum error ea architecto!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias repellendus fugiat commodi quidem omnis incidunt quis doloremque dolores libero. Aut cum dolorum quam, vel atque beatae ullam assumenda nobis quasi.
+              </p>
+
+              <div className='flex flex-wrap mt-5'>
+                {TagsData.map((tag, index) => (
+                  <Link
+                    key={index}
+                    href={`/UI-components/Pages/Blogs?category=${tag}`}
+                    className='px-4 py-2 border rounded-md me-2 hover:bg-black hover:text-white transition-all duration-300'
+                  >
+                    <span className='font-medium'>
+                      {tag}
+                    </span>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
