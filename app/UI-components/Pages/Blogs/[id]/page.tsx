@@ -9,6 +9,23 @@ import { useParams } from 'next/navigation'
 
 const BlogDetails = () => {
 
+  const CategoriesData = [
+    "Babystore",
+    "Bag",
+    "Cosmetic",
+    "Decorate",
+    "Electronic",
+    "Fashion",
+    "Furniture"
+  ];
+
+  const TagsData = [
+    "Fruit",
+    "Grocery",
+    "Vegetable",
+    "Dried Fruit"
+  ]
+
   const { id } = useParams();
   const blog = ArticlesData.find((item) => item.id === Number(id));
 
@@ -77,9 +94,67 @@ const BlogDetails = () => {
                         className='w-full h-fit object-cover rounded-lg'
                       />
                     </div>
+
+                    <div className='w-full py-1'>
+                      <div className='flex h-full flex-col justify-between'>
+                        <div className='flex gap-4 mt-3'>
+                          <span className='font-medium'>
+                            <i className='bi bi-calendar4-week'></i>{" "}
+                            {blog.date}
+                          </span>
+
+                          <span className='font-medium'>
+                            <i className='bi bi-chat-dots'></i>{" "}
+                            {blog.comments}
+                          </span>
+                        </div>
+
+                        <span className='text-xl font-medium hover:text-prim duration-300 transition-colors'>
+                          {blog.title}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </Link>
               ))}
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1'>
+              <div>
+                <h2 className='text-2xl mt-7 mb-3 font-medium'>
+                  Categories
+                </h2>
+
+                {CategoriesData.map((category, index) => (
+                  <Link 
+                    key={index} 
+                    href={`/UI-components/Page/Blogs?category=${category}`}
+                    className='flex items-center gap-2 mt-2 ps-2 hover:ps-4 transition-all duration-300'  
+                  >
+                    <span className='font-medium hover:text-prim duration-300 transition-colors'>
+                      {category}
+                    </span>
+                  </Link>
+                ))}
+
+                <h2 className='text-2xl mt-7 mb-3 font-medium'>
+                  Tags
+                </h2>
+
+                <div className='flex flex-wrap'>
+                  {TagsData.map((tag, index) => (
+                    <Link 
+                      key={index}
+                      href={`/UI-components/Pages/Blogs?category=${tag}`}
+                      className='px-4 py-2 border rounded-md me-2 hover:bg-black hover:text-white transition-all duration-300'
+                    >
+                      <span className='font-medium'>
+                        {tag}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
