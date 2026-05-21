@@ -5,7 +5,13 @@ import Link from 'next/link'
 import sectionbanner from "@/public/section-banner.png"
 import ArticlesData from "@/app/JsonData/BlogsData.json"
 import { useParams } from 'next/navigation'
-
+import gallery1 from "@/public/blog-det-gallery1.avif"
+import gallery2 from "@/public/blog-det-gallery2.webp"
+import gallery3 from "@/public/blog-det-gallery3.avif"
+import gallery4 from "@/public/blog-det-gallery4.avif"
+import gallery5 from "@/public/blog-det-gallery5.avif"
+import gallery6 from "@/public/blog-det-gallery6.avif"
+import gallery7 from "@/public/blog-det-gallery7.avif"
 
 const BlogDetails = () => {
 
@@ -24,6 +30,15 @@ const BlogDetails = () => {
     "Grocery",
     "Vegetable",
     "Dried Fruit"
+  ]
+
+  const GalleryData = [
+    gallery1,
+    gallery2,
+    gallery3,
+    gallery4,
+    gallery5,
+    gallery6
   ]
 
   const { id } = useParams();
@@ -152,6 +167,45 @@ const BlogDetails = () => {
                         {tag}
                       </span>
                     </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h2 className='text-2xl mt-7 mb-3 font-medium'>
+                  Newsletter
+                </h2>
+
+                <div className='flex justify-between items-center gap-2 w-full md:w-3/4 border-b border-gray-300 pb-2 px-2'>
+                  <input 
+                    type="text"
+                    placeholder='Enter your email'
+                    className='w-full outline-none'
+                  />
+                    <i className='bi bi-envelope'></i>
+                </div>
+
+                <h2 className='text-2xl mt-7 mb-3'>
+                  Instagram
+                </h2>
+
+                <div className='grid grid-cols-3 gap-2 w-full md:w-3/4'>
+                  {GalleryData.map((img, index) => (
+                    <div key={index} className='relative cursor-pointer group overflow-hidden rounded-lg'>
+                      <Image 
+                        src={img}
+                        alt="img"
+                        width={1000}
+                        height={1000}
+                        className='w-full h-full object-cover cursor-pointer rounded-lg transition-all duration-300'
+                      />
+
+                      <div className='absolute inset-0 bg-black/20 group-hover:bg-black/60 transition-all duration-300'></div>
+
+                      <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300'>
+                        <i className='bi bi-instagram text-white text-3xl'></i>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
