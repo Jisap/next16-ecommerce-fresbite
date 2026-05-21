@@ -367,61 +367,34 @@ const BlogDetails = () => {
 
   return (
     <>
-      {/* ── Hero Banner ── */}
-      <div className="relative h-[55vh] min-h-[380px] overflow-hidden">
+      {/* Banner Principal */}
+      <div className="page-banner bg-black h-55 flex justify-between items-center relative">
         <Image
           src={sectionbanner}
           alt="Section Banner"
           fill
-          className="object-cover"
-          priority
+          className="w-full h-full object-cover absolute top-0 left-0 right-0"
         />
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
 
-        <div className="relative z-10 h-full flex flex-col justify-end pb-12 px-8 lg:px-20">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 mb-5">
-            <Link
-              href="/"
-              className="text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors duration-300"
-            >
-              Home
-            </Link>
-            <span className="text-white/30 text-xs">—</span>
-            <Link
-              href="/UI-components/Pages/Blogs"
-              className="text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors duration-300"
-            >
-              Journal
-            </Link>
-            <span className="text-white/30 text-xs">—</span>
-            <span className="text-xs tracking-widest uppercase text-white">Article</span>
-          </nav>
+        <div className="content z-10 w-full h-full flex justify-center items-center flex-col">
+          <ul className="flex items-center gap-1.5 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm">
+            <li className="uppercase text-xs font-unbounded text-gray-800 hover:text-prim transition-colors">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="text-gray-500 font-bold">•</li>
+            <li className="uppercase text-xs font-unbounded text-prim font-semibold">
+              <Link href="/UI-components/Pages/Blogs">Blogs Details</Link>
+            </li>
+          </ul>
 
-          {/* Category pill */}
-          <span className="inline-block mb-4 text-[10px] tracking-[0.2em] uppercase bg-prim/90 text-white px-3 py-1 w-fit">
-            {CategoriesData[0]}
-          </span>
-
-          {/* Title */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white leading-[1.1] tracking-tight max-w-4xl line-clamp-2">
+          <h2 className="text-2xl sm:text-4xl font-unbounded font-bold text-black mt-3 drop-shadow-sm text-center px-4 max-w-3xl line-clamp-2">
             {blog.title}
-          </h1>
-
-          {/* Meta */}
-          <div className="flex items-center gap-6 mt-5 text-white/50 text-xs tracking-widest uppercase">
-            <span>{blog.date}</span>
-            <span className="w-4 h-px bg-white/30" />
-            <span>By {blog.author}</span>
-            <span className="w-4 h-px bg-white/30" />
-            <span>{blog.comments} comments</span>
-          </div>
+          </h2>
         </div>
       </div>
 
       {/* ── Body ── */}
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-16 xl:px-20 py-16 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 xl:px-20 py-16 lg:py-24">
         <div className="flex flex-col lg:flex-row gap-16 xl:gap-24">
 
           {/* ── Main content ── */}
@@ -457,7 +430,7 @@ const BlogDetails = () => {
 
             {/* Dual image grid */}
             <div className="grid grid-cols-2 gap-3 my-12">
-              <div className="aspect-[4/3] relative overflow-hidden rounded-sm group">
+              <div className="aspect-4/3 relative overflow-hidden rounded-sm group">
                 <Image
                   src={articlesDes1}
                   alt="Article detail 1"
@@ -465,7 +438,7 @@ const BlogDetails = () => {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="aspect-[4/3] relative overflow-hidden rounded-sm group">
+              <div className="aspect-4/3 relative overflow-hidden rounded-sm group">
                 <Image
                   src={articlesDes2}
                   alt="Article detail 2"
