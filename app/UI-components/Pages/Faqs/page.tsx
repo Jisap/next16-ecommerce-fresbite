@@ -148,8 +148,14 @@ const Faqs = () => {
                     )}
                   </button>
 
-                  <div>
-
+                  <div
+                    className={`
+                      transition-all duration-500 overflow-hidden ${openShopping === index ? "max-h-75 opcity-100 py-3" : "max-h-0 opacity-0"}  
+                   `}
+                  >
+                    <p className='text-black/50 font-medium'>
+                      {item.answer}
+                    </p>
                   </div>
                 </div>
               ))}
