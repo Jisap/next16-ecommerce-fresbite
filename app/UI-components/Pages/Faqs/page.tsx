@@ -28,12 +28,44 @@ const ShoppingData = [
   }
 ];
 
+const ExchangeData = [
+  {
+    question: "Can I return or exchange something in store?",
+    answer: "Yes! If you have a physical store or partner location near you, you can return or exchange eligible items in person. Just bring your order confirmation (digital or printed) and the product in its original packaging. For organic perishables, please note that in-store exchanges are only accepted within 48 hours of delivery and with proof of purchase. Our staff will gladly assist you with a replacement, store credit, or refund—whichever works best for you."
+  },
+  {
+    question: "How do I request an exchange for a different product?",
+    answer: "To exchange an item for a different product (e.g., swapping one organic snack for another), simply log into your account, go to 'My Orders', and select 'Request Exchange'. Choose the replacement item of equal or lesser value, or pay the difference if upgrading. For fresh produce, exchanges are subject to seasonal availability. Once we receive the original item (non-perishable), we'll ship your new selection at no extra cost. If you need help, our support team can process the exchange manually via email or chat."
+  },
+  {
+    question: "What if I receive a damaged or spoiled organic product?",
+    answer: "We take quality seriously. If your organic produce arrives damaged, wilted, or spoiled, please contact us within 48 hours of delivery with photos of the issue. We'll immediately send a replacement at no cost or issue a full refund for that item—your choice. For non-perishable items with packaging defects, we cover return shipping. Just initiate a claim through your account or reply to your order confirmation email with 'Quality Issue' in the subject line for priority handling."
+  },
+  {
+    question: "Can I exchange a product after the return window has closed?",
+    answer: "Our standard exchange window is 90 days from delivery. After this period, exchanges are evaluated case-by-case. If the product is non-perishable, unopened, and in resalable condition, we may still accept it for store credit. For organic certification concerns or product recalls, we always honor exchanges regardless of timeframe. Contact our customer care team with your order details, and we'll do our best to find a fair solution that aligns with our commitment to quality and sustainability."
+  },
+  {
+    question: "Do I pay for return shipping when exchanging an item?",
+    answer: "For exchanges due to our error (wrong item, damaged goods, quality issues), we provide a prepaid return label at no cost to you. For voluntary exchanges (e.g., changing your mind about a non-perishable item), return shipping is the customer's responsibility, unless you're an enrolled member of our loyalty program, which includes free return shipping. Once the returned item is received and inspected, we'll ship your replacement immediately. All return labels and instructions are provided via email for a hassle-free experience."
+  },
+  {
+    question: "What about exchanges for subscription boxes or recurring orders?",
+    answer: "If you receive an organic subscription box and want to exchange an item, let us know within 72 hours of delivery. We can replace the item in your next box or send a standalone replacement right away. To modify upcoming boxes (swap products, skip a month, or adjust frequency), simply manage your subscription from your account dashboard. Changes made before the 5th of the month apply to that month's shipment. Need help? Our subscription specialists are ready to personalize your organic experience."
+  }
+];
+
 const Faqs = () => {
 
   const [openShopping, setOpenShopping] = useState<number | null>(null);
+  const [openExchange, setOpenExchange] = useState<number | null>(null);
 
   const toggleShopping = (index: any) => {
     setOpenShopping(openShopping === index ? null : index);
+  };
+
+  const toggleExchange = (index: any) => {
+    setOpenExchange(openExchange === index ? null : index);
   };
 
   return (
@@ -160,6 +192,53 @@ const Faqs = () => {
                 </div>
               ))}
             </div>
+
+            <h2 className='font-bold text-3xl'>
+              Return & Exchanges
+            </h2>
+
+            <div className='space-y-4 w-full'>
+              {ExchangeData.map((item, index) => (
+                <div
+                  key={index}
+                  className={`
+                    overflow-hidden py-4 transition.all duration-300
+                    ${index !== ExchangeData.length - 1 ? "border-b border-gray-200" : ""}  
+                  `}
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleExchange(index)}
+                    className="w-full flex justify-between items-center"
+                  >
+                    <span className='text-md text-left md:text-lg uppercase font-medium'>
+                      {item.question}
+                    </span>
+
+                    {openExchange === index ? (
+                      <i className='bi bi-dash text-2xl transition-all duration-300'></i>
+                    ) : (
+                      <i className='bi bi-plus text-2xl transition-all duration-300'></i>
+                    )}
+                  </button>
+
+                  <div
+                    className={`
+                      transition-all duration-500 overflow-hidden ${openExchange === index ? "max-h-75 opcity-100 py-3" : "max-h-0 opacity-0"}  
+                   `}
+                  >
+                    <p className='text-black/50 font-medium'>
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+
+            <h2 className='font-bold text-3xl'>
+              Payment information
+            </h2>
           </div>
         </div>
       </div>
