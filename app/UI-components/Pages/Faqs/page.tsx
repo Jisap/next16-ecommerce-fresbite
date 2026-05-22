@@ -142,9 +142,9 @@ const Faqs = () => {
                     </span>
 
                     {openShopping === index ? (
-                      <i className='bi bi-dash text-2xl'></i>
+                      <i className='bi bi-dash text-2xl transition-all duration-300'></i>
                     ) : (
-                      <i className='bi bi-plus text-2xl'></i>
+                      <i className='bi bi-plus text-2xl transition-all duration-300'></i>
                     )}
                   </button>
 
