@@ -155,6 +155,77 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      <div className='px-2 lg:px-8 xl:px-12 py-8 lg:py-0 sm:py-16'>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232559.02673210207!2d-3.844343464188269!3d40.438098610297125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e1!3m2!1ses!2ses!4v1779462336762!5m2!1ses!2ses" width="100%" height="400" loading="lazy"></iframe>
+      </div>
+
+      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16'>
+        <div className='flex flex-col items-center justify-center'>
+          <span className='text-lg mb-3'>
+            Keep in touch with us
+          </span>
+
+          <h2 className='text-3xl md:text-4xl font-bold'>
+            Let&apos;s get in touch with us
+          </h2>
+        </div>
+
+        <div className='flex flex-col lg:flex-row py-10 gap-8'>
+          <div className='w-full lg:w-1/2'>
+            <div className='space-y-6'>
+              <div className=''>
+                <input
+                  type="text"
+                  placeholder="Your full name"
+                  className='outline-none border border-gray-300 w-full px-5 py-3 rounded-md'
+                />
+              </div>
+              <div className=''>
+                <input
+                  type="email"
+                  placeholder="Your Email Address"
+                  className='outline-none border border-gray-300 w-full px-5 py-3 rounded-md'
+                />
+              </div>
+              <div className=''>
+                <input
+                  type="number"
+                  placeholder="Your Phone Number"
+                  className='outline-none border border-gray-300 w-full px-5 py-3 rounded-md'
+                />
+              </div>
+
+              <div className='flex gap-5'>
+                <input
+                  type="checkbox"
+                  className='outline-none'
+                />
+
+                <p className='text-black/50 text-lg font-medium'>
+                  I accept the terms & conditions and I understand that my data will be hold securely in accordance with the privacy policy
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className='w-full lg:w-1/2'>
+            <textarea
+              rows={7}
+              placeholder="Your message"
+              className='px-5 py-3 outline-none border border-gray-300 w-full rounded-md'
+            />
+
+            <div className='mt-5'>
+              <button
+                className='uppercase bg-prim text-white px-4 py-2 rounded-md transition-all duration-300 cursor-pointer hover:bg-black'
+              >
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
