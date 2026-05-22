@@ -55,10 +55,42 @@ const ExchangeData = [
   }
 ];
 
+const PaymentsData = [
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit and debit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, Google Pay, bank transfers, and regional payment methods depending on your location. For orders over $100, we offer installment plans with 0% interest (subject to approval). Prices are displayed in your local currency with real-time conversion. All transactions are processed through secure, encrypted channels compliant with PCI-DSS standards. For wholesale or corporate accounts, we also provide invoicing options and flexible payment terms—contact our B2B team to set up your account."
+  },
+  {
+    question: "Is my payment information secure?",
+    answer: "Absolutely. Security is non-negotiable for us. Our checkout uses industry-standard SSL/TLS encryption, 3D Secure authentication, and PCI-DSS Level 1 compliance. We never store your full credit card details on our servers—tokenization ensures your data remains protected end-to-end. Additionally, our 'Secure checkout' feature includes fraud monitoring and purchase verification alerts via email or SMS. Shop with confidence: your financial and personal information is safeguarded at every step."
+  },
+  {
+    question: "Can I use multiple payment methods for a single order?",
+    answer: "Yes, with some conditions. You can combine store credit, gift cards, or loyalty points (if enrolled) with one primary payment method (card, PayPal, etc.) to cover the remaining balance. For subscription boxes, your default payment method is charged automatically, but you can update it anytime in your account. Split payments across two cards aren't supported at checkout, but for large wholesale orders, our sales team can arrange custom payment structures—just reach out before finalizing your purchase."
+  },
+  {
+    question: "Do you offer payment plans or financing options?",
+    answer: "Yes! For orders over $100, you can split your payment into 3, 6, or 12 interest-free installments through our partner Affirm (subject to credit approval). This is especially useful for stocking up on organic pantry staples or seasonal produce boxes. Corporate accounts and wholesale clients can also negotiate custom payment terms (Net 30, Net 60) after account verification. All financing options are clearly displayed at checkout with no hidden fees. Remember: choosing installments doesn't affect our 90-day return policy or your eligibility for loyalty rewards."
+  },
+  {
+    question: "What happens if my payment is declined?",
+    answer: "If your payment is declined, first verify that your card details, billing address, and CVV are correct. Common causes include: insufficient funds, international transaction blocks (contact your bank to authorize), or temporary holds from fraud prevention systems. If the issue persists, try an alternative method (PayPal, Apple Pay, or bank transfer). For partial failures (e.g., one item in a multi-item order), we'll notify you via email within 1 hour and hold your cart for 24 hours while you resolve the payment. Our support team is available 24/7 to help—just reply to your order confirmation or use the live chat. Note: declined payments do not affect your loyalty points or subscription status."
+  },
+  {
+    question: "Do you charge sales tax or import duties?",
+    answer: "Sales tax is calculated automatically based on your shipping address and local regulations. For international orders, import duties, VAT, or customs fees are not included in your checkout total and are the responsibility of the recipient—these are collected by your local carrier upon delivery. We provide all necessary organic certification documentation to help streamline customs clearance. Tax-exempt organizations (schools, nonprofits, etc.) can submit their certificate via our wholesale portal to have tax removed from future orders. Digital gift cards are not taxed at purchase, but sales tax applies when they're redeemed for physical products."
+  },
+  {
+    question: "How and when will I receive my refund?",
+    answer: "Refunds are processed to your original payment method within 5-7 business days after we receive and verify the returned item. For perishable organic products reported within our 48-hour quality window, refunds are often issued immediately upon photo verification—no need to wait for return shipping. Store credit refunds are available instantly if you prefer to shop again sooner. You'll receive an email confirmation once the refund is initiated. Note: bank processing times may add 2-3 additional business days for card refunds. If you used an installment plan, refunds are applied proportionally to your remaining balance."
+  }
+];
+
 const Faqs = () => {
 
   const [openShopping, setOpenShopping] = useState<number | null>(null);
   const [openExchange, setOpenExchange] = useState<number | null>(null);
+  const [openPayments, setOpenPayments] = useState<number | null>(null);
 
   const toggleShopping = (index: any) => {
     setOpenShopping(openShopping === index ? null : index);
@@ -66,6 +98,10 @@ const Faqs = () => {
 
   const toggleExchange = (index: any) => {
     setOpenExchange(openExchange === index ? null : index);
+  };
+
+  const togglePayments = (index: any) => {
+    setOpenPayments(openPayments === index ? null : index);
   };
 
   return (
@@ -239,6 +275,44 @@ const Faqs = () => {
             <h2 className='font-bold text-3xl'>
               Payment information
             </h2>
+
+            <div className='space-y-4 w-full'>
+              {PaymentsData.map((item, index) => (
+                <div
+                  key={index}
+                  className={`
+                    overflow-hidden py-4 transition.all duration-300
+                    ${index !== PaymentsData.length - 1 ? "border-b border-gray-200" : ""}  
+                  `}
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleExchange(index)}
+                    className="w-full flex justify-between items-center"
+                  >
+                    <span className='text-md text-left md:text-lg uppercase font-medium'>
+                      {item.question}
+                    </span>
+
+                    {openPayments === index ? (
+                      <i className='bi bi-dash text-2xl transition-all duration-300'></i>
+                    ) : (
+                      <i className='bi bi-plus text-2xl transition-all duration-300'></i>
+                    )}
+                  </button>
+
+                  <div
+                    className={`
+                      transition-all duration-500 overflow-hidden ${openPayments === index ? "max-h-75 opcity-100 py-3" : "max-h-0 opacity-0"}  
+                   `}
+                  >
+                    <p className='text-black/50 font-medium'>
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
