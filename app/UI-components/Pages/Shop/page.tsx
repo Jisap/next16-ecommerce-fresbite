@@ -13,6 +13,7 @@ import { useState, useEffect } from "react"
 import ProductCard from "../Index/TopSelling/ProductCard"
 import ProductModal from "../Index/TopSelling/ProductModal"
 import TopProducts from "@/app/JsonData/TopProducts.json"
+import { EntranceAnimation } from "@/app/Animations"
 
 type SortType = 
   | "featured"
@@ -186,7 +187,7 @@ const Shop = () => {
           className="w-full h-full object-cover absolute top-0 left-0 right-0"
         />
 
-        <div className="content z-10 w-full h-full flex justify-center items-center flex-col">
+        <EntranceAnimation type="fadeDown" duration={0.8} scrollTrigger={false} className="content z-10 w-full h-full flex justify-center items-center flex-col">
           <ul className="flex items-center gap-1.5 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm">
             <li className="uppercase text-xs font-unbounded text-gray-800 hover:text-prim transition-colors">
               <Link href="/">Home</Link>
@@ -200,174 +201,176 @@ const Shop = () => {
           <h2 className="text-2xl sm:text-4xl font-unbounded font-bold text-black mt-3 drop-shadow-sm">
             Shop Best Products
           </h2>
-        </div>
+        </EntranceAnimation>
       </div>
 
       {/* Grid de Contenido Principal: Sidebar + Listado */}
-      <div className="max-w-[1800px] mx-auto px-4 lg:px-8 xl:px-12 py-12 flex flex-col lg:flex-row gap-8">
+      <div className="max-w-[1800px] mx-auto px-4 lg:px-8 xl:px-12 py-12 flex flex-col lg:flex-row gap-8 overflow-hidden">
         
-        {/* COLUMNA 1: Sidebar de Filtros (Ancho fijo en desktop para liberar espacio) */}
-        <aside className="w-full lg:w-[280px] shrink-0 flex flex-col gap-6 h-fit">
-          
-          {/* Filtro por Categorías */}
-          <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
-            <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
-              <span>Categories</span>
-              <Icon icon="solar:folder-with-files-bold" className="text-prim" width="18" />
-            </h3>
-            <div className="flex flex-col gap-2">
-              {[
-                { id: "", label: "All Categories" },
-                { id: "dairy", label: "Dairy, Bread & Eggs" },
-                { id: "fruits", label: "Fruits & Veggies" },
-                { id: "bakery", label: "Bakery & Snacks" }
-              ].map(cat => (
-                <button
-                  key={cat.id}
-                  onClick={() => setCategoryFilter(cat.id)}
-                  className={`text-left px-3 py-2 rounded-lg text-[15px] transition-all duration-300 flex items-center justify-between ${
-                    categoryFilter === cat.id 
-                      ? "bg-prim text-white font-semibold" 
-                      : "text-gray-600 hover:bg-gray-100 hover:text-black"
-                  }`}
-                >
-                  <span>{cat.label}</span>
-                  {categoryFilter === cat.id && <Icon icon="solar:check-circle-bold" width="16" />}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Filtro por Disponibilidad (Stock) */}
-          <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
-            <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
-              <span>Availability</span>
-              <Icon icon="solar:checklist-minimalistic-bold" className="text-prim" width="18" />
-            </h3>
-            <div className="flex flex-col gap-3">
-              <label className="flex items-center gap-3 cursor-pointer group text-[15px] text-gray-600 hover:text-black">
-                <input 
-                  type="checkbox"
-                  checked={availabilityFilter.includes("in")}
-                  onChange={() => toggleAvailabilityFilter("in")}
-                  className="w-4 h-4 rounded border-gray-300 text-prim focus:ring-prim accent-prim cursor-pointer"
-                />
-                <span className="group-hover:translate-x-0.5 transition-transform duration-300">In Stock</span>
-              </label>
-              <label className="flex items-center gap-3 cursor-pointer group text-[15px] text-gray-600 hover:text-black">
-                <input 
-                  type="checkbox"
-                  checked={availabilityFilter.includes("out")}
-                  onChange={() => toggleAvailabilityFilter("out")}
-                  className="w-4 h-4 rounded border-gray-300 text-prim focus:ring-prim accent-prim cursor-pointer"
-                />
-                <span className="group-hover:translate-x-0.5 transition-transform duration-300">Out of Stock</span>
-              </label>
-            </div>
-          </div>
-
-          {/* Filtro por Rango de Precios */}
-          <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
-            <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
-              <span>Filter by Price</span>
-              <Icon icon="solar:double-alt-arrow-right-bold" className="text-prim" width="16" />
-            </h3>
-            <div className="flex flex-col gap-2">
-              <input 
-                type="range" 
-                min="0" 
-                max="5000" 
-                value={maxPrice} 
-                onChange={(e) => setMaxPrice(Number(e.target.value))} 
-                className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-prim"
-              />
-              <div className="flex justify-between items-center text-sm font-semibold text-gray-600 mt-2">
-                <span>Min: Rs. 0</span>
-                <span className="text-prim bg-prim/10 px-2 py-1 rounded">Max: Rs. {maxPrice}</span>
+        {/* COLUMNA 1: Sidebar de Filtros */}
+        <EntranceAnimation type="fadeRight" duration={0.8} className="w-full lg:w-[280px] shrink-0 h-fit">
+          <aside className="w-full flex flex-col gap-6">
+            
+            {/* Filtro por Categorías */}
+            <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
+              <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+                <span>Categories</span>
+                <Icon icon="solar:folder-with-files-bold" className="text-prim" width="18" />
+              </h3>
+              <div className="flex flex-col gap-2">
+                {[
+                  { id: "", label: "All Categories" },
+                  { id: "dairy", label: "Dairy, Bread & Eggs" },
+                  { id: "fruits", label: "Fruits & Veggies" },
+                  { id: "bakery", label: "Bakery & Snacks" }
+                ].map(cat => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setCategoryFilter(cat.id)}
+                    className={`text-left px-3 py-2 rounded-lg text-[15px] transition-all duration-300 flex items-center justify-between ${
+                      categoryFilter === cat.id 
+                        ? "bg-prim text-white font-semibold" 
+                        : "text-gray-600 hover:bg-gray-100 hover:text-black"
+                    }`}
+                  >
+                    <span>{cat.label}</span>
+                    {categoryFilter === cat.id && <Icon icon="solar:check-circle-bold" width="16" />}
+                  </button>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Filtro por Tamaño/Peso */}
-          <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
-            <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
-              <span>Size / Weight</span>
-              <Icon icon="solar:scale-bold" className="text-prim" width="18" />
-            </h3>
-            <div className="flex flex-col gap-3">
-              {["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"].map(size => (
-                <label key={size} className="flex items-center gap-3 cursor-pointer group text-[15px] text-gray-600 hover:text-black">
+            {/* Filtro por Disponibilidad (Stock) */}
+            <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
+              <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+                <span>Availability</span>
+                <Icon icon="solar:checklist-minimalistic-bold" className="text-prim" width="18" />
+              </h3>
+              <div className="flex flex-col gap-3">
+                <label className="flex items-center gap-3 cursor-pointer group text-[15px] text-gray-600 hover:text-black">
                   <input 
                     type="checkbox"
-                    checked={sizeFilter.includes(size)}
-                    onChange={() => toggleSizeFilter(size)}
+                    checked={availabilityFilter.includes("in")}
+                    onChange={() => toggleAvailabilityFilter("in")}
                     className="w-4 h-4 rounded border-gray-300 text-prim focus:ring-prim accent-prim cursor-pointer"
                   />
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-300">{size}</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-300">In Stock</span>
                 </label>
-              ))}
+                <label className="flex items-center gap-3 cursor-pointer group text-[15px] text-gray-600 hover:text-black">
+                  <input 
+                    type="checkbox"
+                    checked={availabilityFilter.includes("out")}
+                    onChange={() => toggleAvailabilityFilter("out")}
+                    className="w-4 h-4 rounded border-gray-300 text-prim focus:ring-prim accent-prim cursor-pointer"
+                  />
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-300">Out of Stock</span>
+                </label>
+              </div>
             </div>
-          </div>
 
-          {/* Productos Recomendados */}
-          <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
-            <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
-              <span>Recommended</span>
-              <Icon icon="solar:fire-bold" className="text-prim" width="18" />
-            </h3>
-
-            <div className="flex flex-col gap-4">
-              {TopProducts.slice(0, 3).map((product: any) => (
-                <div 
-                  key={product.id} 
-                  onClick={() => {
-                    setSelectedProduct(product);
-                    setOpenModal(true);
-                  }}
-                  className="flex items-center gap-3 group cursor-pointer border-b border-gray-50 pb-3 last:border-0 last:pb-0"
-                >
-                  <div className="relative h-16 w-16 shrink-0 bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center p-1">
-                    <img 
-                      src={product.image1} 
-                      alt={product.title} 
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-[13px] font-bold text-gray-800 hover:text-prim transition-colors truncate">
-                      {product.title}
-                    </h4>
-
-                    <div className="flex items-center my-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Icon key={i} icon="material-symbols:star-rounded" className="text-orange-400" width="12" />
-                      ))}
-                    </div>
-
-                    <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-black text-xs">{product.price}</span>
-                      {product.lessprice && (
-                        <span className="line-through text-gray-400 text-[10px]">{product.lessprice}</span>
-                      )}
-                    </div>
-                  </div>
+            {/* Filtro por Rango de Precios */}
+            <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
+              <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+                <span>Filter by Price</span>
+                <Icon icon="solar:double-alt-arrow-right-bold" className="text-prim" width="16" />
+              </h3>
+              <div className="flex flex-col gap-2">
+                <input 
+                  type="range" 
+                  min="0" 
+                  max="5000" 
+                  value={maxPrice} 
+                  onChange={(e) => setMaxPrice(Number(e.target.value))} 
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-prim"
+                />
+                <div className="flex justify-between items-center text-sm font-semibold text-gray-600 mt-2">
+                  <span>Min: Rs. 0</span>
+                  <span className="text-prim bg-prim/10 px-2 py-1 rounded">Max: Rs. {maxPrice}</span>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
 
-          {/* Banner de Oferta de la Barra Lateral */}
-          <div className="hidden lg:block mt-2 rounded-xl overflow-hidden shadow-md group relative">
-            <Image 
-              src={shopsideBanner}
-              alt="Promo Sale Banner"
-              className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
-              style={{ width: 'auto', height: 'auto' }}
-            />
-          </div>
+            {/* Filtro por Tamaño/Peso */}
+            <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
+              <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+                <span>Size / Weight</span>
+                <Icon icon="solar:scale-bold" className="text-prim" width="18" />
+              </h3>
+              <div className="flex flex-col gap-3">
+                {["1 kg", "2 kg", "3 kg", "4 kg", "5 kg"].map(size => (
+                  <label key={size} className="flex items-center gap-3 cursor-pointer group text-[15px] text-gray-600 hover:text-black">
+                    <input 
+                      type="checkbox"
+                      checked={sizeFilter.includes(size)}
+                      onChange={() => toggleSizeFilter(size)}
+                      className="w-4 h-4 rounded border-gray-300 text-prim focus:ring-prim accent-prim cursor-pointer"
+                    />
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-300">{size}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
 
-        </aside>
+            {/* Productos Recomendados */}
+            <div className="bg-white rounded-xl p-6 shadow-[0_0_15px_rgba(0,0,0,0.03)] border border-gray-100">
+              <h3 className="font-bold text-gray-800 text-lg mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+                <span>Recommended</span>
+                <Icon icon="solar:fire-bold" className="text-prim" width="18" />
+              </h3>
+
+              <div className="flex flex-col gap-4">
+                {TopProducts.slice(0, 3).map((product: any) => (
+                  <div 
+                    key={product.id} 
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      setOpenModal(true);
+                    }}
+                    className="flex items-center gap-3 group cursor-pointer border-b border-gray-50 pb-3 last:border-0 last:pb-0"
+                  >
+                    <div className="relative h-16 w-16 shrink-0 bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center p-1">
+                      <img 
+                        src={product.image1} 
+                        alt={product.title} 
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-[13px] font-bold text-gray-800 hover:text-prim transition-colors truncate">
+                        {product.title}
+                      </h4>
+
+                      <div className="flex items-center my-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Icon key={i} icon="material-symbols:star-rounded" className="text-orange-400" width="12" />
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-bold text-black text-xs">{product.price}</span>
+                        {product.lessprice && (
+                          <span className="line-through text-gray-400 text-[10px]">{product.lessprice}</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Banner de Oferta de la Barra Lateral */}
+            <div className="hidden lg:block mt-2 rounded-xl overflow-hidden shadow-md group relative">
+              <Image 
+                src={shopsideBanner}
+                alt="Promo Sale Banner"
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                style={{ width: 'auto', height: 'auto' }}
+              />
+            </div>
+
+          </aside>
+        </EntranceAnimation>
 
         {/* COLUMNA 2: Listado y Ordenación de Productos */}
         <main className="flex-1 w-full flex flex-col gap-6">
@@ -409,39 +412,43 @@ const Shop = () => {
           </div>
 
           {/* Banner Horizontal Superior */}
-          <div className="shop-banner rounded-xl overflow-hidden shadow-sm relative h-48 md:h-64 lg:h-72">
-            <Image 
-              src={shopBanner}
-              alt="shopbanner"
-              fill
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Grid de Tarjetas de Productos */}
-          {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <div key={product.id} className="w-full flex justify-center">
-                  <ProductCard
-                    product={product}
-                    openId={openId}
-                    setOpenId={setOpenId}
-                    selectedWeight={selectedWeight}
-                    setSelectedWeight={setSelectedWeight}
-                    weights={weights}
-                    qty={qty}
-                    increaseQty={increaseQty}
-                    decreaseQty={decreaseQty}
-                    addToCart={addToCart}
-                    toggleWishlist={toggleWishlist}
-                    wishlist={wishlist}
-                    setSelectedProduct={setSelectedProduct}
-                    setOpenModal={setOpenModal}
-                  />
-                </div>
-              ))}
+          <EntranceAnimation type="scaleIn" duration={0.8}>
+            <div className="shop-banner rounded-xl overflow-hidden shadow-sm relative h-48 md:h-64 lg:h-72">
+              <Image 
+                src={shopBanner}
+                alt="shopbanner"
+                fill
+                className="w-full h-full object-cover"
+              />
             </div>
+          </EntranceAnimation>
+
+          {/* Grid de Tarjetas de Productos con animación Stagger */}
+          {filteredProducts.length > 0 ? (
+            <EntranceAnimation type="stagger" selector=".product-card-wrap" duration={0.8} stagger={0.06} delay={0.1}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+                {filteredProducts.map((product) => (
+                  <div key={product.id} className="product-card-wrap w-full flex justify-center">
+                    <ProductCard
+                      product={product}
+                      openId={openId}
+                      setOpenId={setOpenId}
+                      selectedWeight={selectedWeight}
+                      setSelectedWeight={setSelectedWeight}
+                      weights={weights}
+                      qty={qty}
+                      increaseQty={increaseQty}
+                      decreaseQty={decreaseQty}
+                      addToCart={addToCart}
+                      toggleWishlist={toggleWishlist}
+                      wishlist={wishlist}
+                      setSelectedProduct={setSelectedProduct}
+                      setOpenModal={setOpenModal}
+                    />
+                  </div>
+                ))}
+              </div>
+            </EntranceAnimation>
           ) : (
             /* Estado Vacío (Sin productos) */
             <div className="flex flex-col items-center justify-center py-20 bg-white border border-gray-100 rounded-xl">

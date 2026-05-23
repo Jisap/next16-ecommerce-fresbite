@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import sectionbanner from "@/public/section-banner.png"
 import { useState } from 'react';
+import { EntranceAnimation } from "@/app/Animations"
 
 const ShoppingData = [
   {
@@ -108,64 +109,66 @@ const AccordionSection = ({ title, data, openIndex, onToggle }: AccordionSection
       <div className="flex-1 h-px bg-gray-200" />
     </div>
 
-    {/* Items */}
-    <div>
-      {data.map((item, index) => {
-        const isOpen = openIndex === index;
-        return (
-          <div
-            key={index}
-            className="border-b border-gray-100 first:border-t first:border-gray-100"
-          >
-            <button
-              type="button"
-              onClick={() => onToggle(index)}
-              className="w-full flex items-center justify-between gap-4 py-4 text-left group"
-              aria-expanded={isOpen}
+    {/* Items with scroll-triggered stagger reveal */}
+    <EntranceAnimation type="stagger" selector=".faq-accordion-item" duration={0.8} stagger={0.08}>
+      <div>
+        {data.map((item, index) => {
+          const isOpen = openIndex === index;
+          return (
+            <div
+              key={index}
+              className="faq-accordion-item border-b border-gray-100 first:border-t first:border-gray-100"
             >
-              <span className="text-[15px] font-medium text-gray-900 leading-snug">
-                {item.question}
-              </span>
+              <button
+                type="button"
+                onClick={() => onToggle(index)}
+                className="w-full flex items-center justify-between gap-4 py-4 text-left group"
+                aria-expanded={isOpen}
+              >
+                <span className="text-[15px] font-medium text-gray-900 leading-snug">
+                  {item.question}
+                </span>
 
-              {/* Icon circle */}
-              <span
+                {/* Icon circle */}
+                <span
+                  className={`
+                    shrink-0 w-6 h-6 rounded-full border flex items-center justify-center
+                    transition-all duration-200
+                    ${isOpen
+                      ? 'border-gray-400 bg-gray-100'
+                      : 'border-gray-200 group-hover:border-gray-300 group-hover:bg-gray-50'
+                    }
+                  `}
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    aria-hidden="true"
+                    className={`transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
+                  >
+                    <path d="M5 1V9M1 5H9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </span>
+              </button>
+
+              {/* Answer */}
+              <div
                 className={`
-                  shrink-0 w-6 h-6 rounded-full border flex items-center justify-center
-                  transition-all duration-200
-                  ${isOpen
-                    ? 'border-gray-400 bg-gray-100'
-                    : 'border-gray-200 group-hover:border-gray-300 group-hover:bg-gray-50'
-                  }
+                  overflow-hidden transition-all duration-400 ease-in-out
+                  ${isOpen ? 'max-h-64 pb-4 opacity-100' : 'max-h-0 opacity-0'}
                 `}
               >
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 10 10"
-                  fill="none"
-                  aria-hidden="true"
-                  className={`transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
-                >
-                  <path d="M5 1V9M1 5H9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </span>
-            </button>
-
-            {/* Answer */}
-            <div
-              className={`
-                overflow-hidden transition-all duration-400 ease-in-out
-                ${isOpen ? 'max-h-64 pb-4 opacity-100' : 'max-h-0 opacity-0'}
-              `}
-            >
-              <p className="text-sm text-gray-500 leading-relaxed pr-10">
-                {item.answer}
-              </p>
+                <p className="text-sm text-gray-500 leading-relaxed pr-10">
+                  {item.answer}
+                </p>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </EntranceAnimation>
   </div>
 );
 
@@ -192,7 +195,7 @@ const Faqs = () => {
           fill
           className="w-full h-full object-cover absolute top-0 left-0 right-0"
         />
-        <div className="content z-10 w-full h-full flex justify-center items-center flex-col">
+        <EntranceAnimation type="fadeDown" duration={0.8} scrollTrigger={false} className="content z-10 w-full h-full flex justify-center items-center flex-col">
           <ul className="flex items-center gap-1.5 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm">
             <li className="uppercase text-xs font-unbounded text-gray-800 hover:text-prim transition-colors">
               <Link href="/">Home</Link>
@@ -208,83 +211,84 @@ const Faqs = () => {
           <h2 className="text-2xl sm:text-4xl font-unbounded font-bold text-black mt-3 drop-shadow-sm text-center px-4 max-w-3xl line-clamp-2">
             Faq&apos;s
           </h2>
-        </div>
+        </EntranceAnimation>
       </div>
 
       {/* Body */}
       <div className="px-4 lg:px-8 xl:px-16 pb-16 pt-10 sm:pt-16">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
 
-          {/* Sidebar */}
-          <aside className="w-full lg:w-56 xl:w-64 shrink-0 lg:sticky lg:top-8 lg:self-start">
+          {/* Sidebar animado */}
+          <EntranceAnimation type="fadeRight" duration={0.8} className="w-full lg:w-56 xl:w-64 shrink-0 lg:sticky lg:top-8 lg:self-start">
+            <aside className="w-full">
+              <div className="pb-6 mb-6 border-b border-gray-100">
+                <p className="text-[11px] font-medium tracking-[0.08em] uppercase text-black/40 mb-3">
+                  Frequently asked
+                </p>
 
-            <div className="pb-6 mb-6 border-b border-gray-100">
-              <p className="text-[11px] font-medium tracking-[0.08em] uppercase text-black/40 mb-3">
-                Frequently asked
-              </p>
-
-              <h2 className="text-2xl font-semibold text-gray-900 leading-tight">
-                We&apos;re here to help
-              </h2>
-            </div>
-
-            <div className="pb-6 mb-6 border-b border-gray-100">
-              <p className="text-[11px] font-medium tracking-[0.08em] uppercase text-black/40 mb-3">
-                Ask us anything
-              </p>
-
-              <div className="space-y-2">
-                <a
-                  href="tel:+001234567890"
-                  className="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 2h2.5l1 2.5L4 6c.9 1.8 2.2 3.1 4 4l1.5-1.5L12 9.5V12c-5.5.5-10.5-4.5-10-10z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  +00-1234567890
-                </a>
-
-                <a
-                  href="mailto:demo@support.com"
-                  className="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <rect x="1" y="3" width="12" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.2" />
-                    <path d="M1 4l6 4 6-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                  </svg>
-                  demo@support.com
-                </a>
+                <h2 className="text-2xl font-semibold text-gray-900 leading-tight">
+                  We&apos;re here to help
+                </h2>
               </div>
-            </div>
 
-            <div>
-              <p className="text-[11px] font-medium tracking-[0.08em] uppercase text-black/40 mb-3">
-                My account
-              </p>
+              <div className="pb-6 mb-6 border-b border-gray-100">
+                <p className="text-[11px] font-medium tracking-[0.08em] uppercase text-black/40 mb-3">
+                  Ask us anything
+                </p>
 
-              <nav className="space-y-0">
-                {['Company policies', 'Payment options', 'Terms & conditions'].map((item) => (
+                <div className="space-y-2">
                   <a
-                    key={item}
-                    href="#"
-                    className="flex items-center justify-between py-2.5 text-sm font-medium text-gray-600 border-b border-gray-100 last:border-0 hover:text-gray-900 transition-colors group"
+                    href="tel:+001234567890"
+                    className="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 transition-colors"
                   >
-                    {item}
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      aria-hidden="true"
-                      className="opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M2 2h2.5l1 2.5L4 6c.9 1.8 2.2 3.1 4 4l1.5-1.5L12 9.5V12c-5.5.5-10.5-4.5-10-10z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
+                    +00-1234567890
                   </a>
-                ))}
-              </nav>
-            </div>
-          </aside>
+
+                  <a
+                    href="mailto:demo@support.com"
+                    className="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <rect x="1" y="3" width="12" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.2" />
+                      <path d="M1 4l6 4 6-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                    </svg>
+                    demo@support.com
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-[11px] font-medium tracking-[0.08em] uppercase text-black/40 mb-3">
+                  My account
+                </p>
+
+                <nav className="space-y-0">
+                  {['Company policies', 'Payment options', 'Terms & conditions'].map((item) => (
+                    <a
+                      key={item}
+                      href="#"
+                      className="flex items-center justify-between py-2.5 text-sm font-medium text-gray-600 border-b border-gray-100 last:border-0 hover:text-gray-900 transition-colors group"
+                    >
+                      {item}
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        aria-hidden="true"
+                        className="opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </aside>
+          </EntranceAnimation>
 
           {/* Main content */}
           <main className="flex-1 min-w-0 lg:border-l border-gray-100 lg:pl-16">

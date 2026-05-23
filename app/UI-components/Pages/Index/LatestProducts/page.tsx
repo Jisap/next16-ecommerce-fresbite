@@ -14,6 +14,7 @@ import "swiper/css"
 import { useCart } from "@/app/hooks/useCart"
 import { Toaster } from "react-hot-toast"
 import ProductModal from "../TopSelling/ProductModal"
+import { EntranceAnimation } from "@/app/Animations"
 
 const LatestProducts = () => {
   const topSellingRef = useRef<SwiperType | null>(null)
@@ -49,17 +50,17 @@ const LatestProducts = () => {
 
   // Componente reutilizable para la tarjeta horizontal (DRY)
   const HorizontalCard = ({ product }: { product: any }) => (
-    <div className="flex items-center gap-4 group cursor-pointer mb-8 justify-center">
+    <div className="flex items-center gap-4 group cursor-pointer mb-8 justify-center w-full">
       <div
-        className="relative h-24 w-24 shrink-0 bg-white flex items-center justify-center"
+        className="relative h-24 w-24 shrink-0 bg-white flex items-center justify-center rounded-lg border border-gray-100 overflow-hidden"
         onClick={() => {
           setSelectedProduct(product)
           setOpenModal(true)
         }}
       >
-        {/* Renderizado Priorizado (Super Saver primero, luego Descuento, luego Megasale) */}
+        {/* Renderizado Priorizado */}
         {product.supersaver === "Yes" ? (
-          <span className="absolute top-0 left-0 z-10 bg-green-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase whitespace-nowrap pointer-events-none">
+          <span className="absolute top-0 left-0自动 z-10 bg-green-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm uppercase whitespace-nowrap pointer-events-none">
             Super Saver
           </span>
         ) : product.offer ? (
@@ -116,7 +117,7 @@ const LatestProducts = () => {
             e.stopPropagation();
             addToCart(product, "1 kg");
           }}
-          className="text-[11px] p-1 rounded bg-prim text-white font-bold uppercase hover:bg-black flex items-center transition-colors duration-300"
+          className="text-[11px] p-1.5 rounded-md bg-prim text-white font-bold uppercase hover:bg-black flex items-center transition-colors duration-300"
         >
           Add to Cart <Icon icon="lucide:shopping-bag" className="ml-1" width="14" />
         </button>
@@ -126,132 +127,132 @@ const LatestProducts = () => {
 
   return (
     <>
-      <div className="w-full bg-gray-50/30 py-8 sm:py-16">
+      <div className="w-full bg-gray-50/30 py-8 sm:py-16 overflow-hidden">
         <div className="max-w-[1800px] mx-auto px-4 lg:px-8 xl:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10 relative">
+          <EntranceAnimation type="stagger" selector=".column-animation-wrap" duration={0.8} stagger={0.15}>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10 relative">
 
-            {/* COLUMNA 1: Top Selling */}
-            <div className="bg-white shadow-[0_0_15px_rgba(0,0,0,0.04)] rounded-lg p-6 sm:p-8 w-full max-w-[540px] mx-auto border border-gray-50">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl font-bold text-black tracking-tight">Top selling</h2>
-                <div className="flex items-center gap-3">
-                  <button onClick={() => topSellingRef.current?.slidePrev()} className="transition-colors hover:text-prim">
-                    <Icon icon="mingcute:arrow-left-line" width="18" className="text-gray-800" />
-                  </button>
-                  <button onClick={() => topSellingRef.current?.slideNext()} className="transition-colors hover:text-prim">
-                    <Icon icon="mingcute:arrow-right-line" width="18" className="text-gray-800" />
-                  </button>
+              {/* COLUMNA 1: Top Selling */}
+              <div className="column-animation-wrap bg-white shadow-[0_0_15px_rgba(0,0,0,0.04)] rounded-lg p-6 sm:p-8 w-full max-w-[540px] mx-auto border border-gray-50">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-xl font-bold text-black tracking-tight">Top selling</h2>
+                  <div className="flex items-center gap-3">
+                    <button onClick={() => topSellingRef.current?.slidePrev()} className="transition-colors hover:text-prim">
+                      <Icon icon="mingcute:arrow-left-line" width="18" className="text-gray-800" />
+                    </button>
+                    <button onClick={() => topSellingRef.current?.slideNext()} className="transition-colors hover:text-prim">
+                      <Icon icon="mingcute:arrow-right-line" width="18" className="text-gray-800" />
+                    </button>
+                  </div>
                 </div>
+
+                <Swiper
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  className="w-full"
+                  loop={true}
+                  modules={[Autoplay]}
+                  autoplay={{ delay: 3500, disableOnInteraction: false }}
+                  onSwiper={(swiper) => (topSellingRef.current = swiper)}
+                >
+                  <SwiperSlide>
+                    <div className="flex flex-col items-center">
+                      {TopProducts.slice(0, 3).map((product) => (
+                        <HorizontalCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="flex flex-col items-center">
+                      {TopProducts.slice(3, 6).map((product) => (
+                        <HorizontalCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
               </div>
 
-              <Swiper
-                spaceBetween={30}
-                slidesPerView={1}
-                className="w-full"
-                loop={true}
-                modules={[Autoplay]}
-                autoplay={{ delay: 3500, disableOnInteraction: false }}
-                onSwiper={(swiper) => (topSellingRef.current = swiper)}
-              >
-                {/* Slide 1 (3 productos) */}
-                <SwiperSlide>
-                  <div className="flex flex-col items-center">
-                    {TopProducts.slice(0, 3).map((product) => (
-                      <HorizontalCard key={product.id} product={product} />
-                    ))}
+              {/* COLUMNA 2: Trending Products */}
+              <div className="column-animation-wrap bg-white shadow-[0_0_15px_rgba(0,0,0,0.04)] rounded-lg p-6 sm:p-8 w-full max-w-[540px] mx-auto border border-gray-50">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-xl font-bold text-black tracking-tight">Tranding product</h2>
+                  <div className="flex items-center gap-3">
+                    <button onClick={() => trendingRef.current?.slidePrev()} className="transition-colors hover:text-prim">
+                      <Icon icon="mingcute:arrow-left-line" width="18" className="text-gray-800" />
+                    </button>
+                    <button onClick={() => trendingRef.current?.slideNext()} className="transition-colors hover:text-prim">
+                      <Icon icon="mingcute:arrow-right-line" width="18" className="text-gray-800" />
+                    </button>
                   </div>
-                </SwiperSlide>
-                {/* Slide 2 (3 productos) */}
-                <SwiperSlide>
-                  <div className="flex flex-col items-center">
-                    {TopProducts.slice(3, 6).map((product) => (
-                      <HorizontalCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-            </div>
-
-            {/* COLUMNA 2: Trending Products */}
-            <div className="bg-white shadow-[0_0_15px_rgba(0,0,0,0.04)] rounded-lg p-6 sm:p-8 w-full max-w-[540px] mx-auto border border-gray-50">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl font-bold text-black tracking-tight">Tranding product</h2>
-                <div className="flex items-center gap-3">
-                  <button onClick={() => trendingRef.current?.slidePrev()} className="transition-colors hover:text-prim">
-                    <Icon icon="mingcute:arrow-left-line" width="18" className="text-gray-800" />
-                  </button>
-                  <button onClick={() => trendingRef.current?.slideNext()} className="transition-colors hover:text-prim">
-                    <Icon icon="mingcute:arrow-right-line" width="18" className="text-gray-800" />
-                  </button>
                 </div>
+
+                <Swiper
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  className="w-full"
+                  loop={true}
+                  modules={[Autoplay]}
+                  autoplay={{ delay: 4000, disableOnInteraction: false }}
+                  onSwiper={(swiper) => (trendingRef.current = swiper)}
+                >
+                  <SwiperSlide>
+                    <div className="flex flex-col items-center">
+                      {TrendingProducts.slice(0, 3).map((product) => (
+                        <HorizontalCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="flex flex-col items-center">
+                      {TrendingProducts.slice(3, 6).map((product) => (
+                        <HorizontalCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
               </div>
 
-              <Swiper
-                spaceBetween={30}
-                slidesPerView={1}
-                className="w-full"
-                loop={true}
-                modules={[Autoplay]}
-                autoplay={{ delay: 4000, disableOnInteraction: false }}
-                onSwiper={(swiper) => (trendingRef.current = swiper)}
-              >
-                <SwiperSlide>
-                  <div className="flex flex-col items-center">
-                    {TrendingProducts.slice(0, 3).map((product) => (
-                      <HorizontalCard key={product.id} product={product} />
-                    ))}
+              {/* COLUMNA 3: Recently Added */}
+              <div className="column-animation-wrap bg-white shadow-[0_0_15px_rgba(0,0,0,0.04)] rounded-lg p-6 sm:p-8 w-full max-w-[540px] mx-auto border border-gray-50">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-xl font-bold text-black tracking-tight">Recently added</h2>
+                  <div className="flex items-center gap-3">
+                    <button onClick={() => recentlyRef.current?.slidePrev()} className="transition-colors hover:text-prim">
+                      <Icon icon="mingcute:arrow-left-line" width="18" className="text-gray-800" />
+                    </button>
+                    <button onClick={() => recentlyRef.current?.slideNext()} className="transition-colors hover:text-prim">
+                      <Icon icon="mingcute:arrow-right-line" width="18" className="text-gray-800" />
+                    </button>
                   </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="flex flex-col items-center">
-                    {TrendingProducts.slice(3, 6).map((product) => (
-                      <HorizontalCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-            </div>
-
-            {/* COLUMNA 3: Recently Added */}
-            <div className="bg-white shadow-[0_0_15px_rgba(0,0,0,0.04)] rounded-lg p-6 sm:p-8 w-full max-w-[540px] mx-auto border border-gray-50">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl font-bold text-black tracking-tight">Recently added</h2>
-                <div className="flex items-center gap-3">
-                  <button onClick={() => recentlyRef.current?.slidePrev()} className="transition-colors hover:text-prim">
-                    <Icon icon="mingcute:arrow-left-line" width="18" className="text-gray-800" />
-                  </button>
-                  <button onClick={() => recentlyRef.current?.slideNext()} className="transition-colors hover:text-prim">
-                    <Icon icon="mingcute:arrow-right-line" width="18" className="text-gray-800" />
-                  </button>
                 </div>
-              </div>
 
-              <Swiper
-                spaceBetween={30}
-                slidesPerView={1}
-                className="w-full"
-                loop={true}
-                modules={[Autoplay]}
-                autoplay={{ delay: 4500, disableOnInteraction: false }}
-                onSwiper={(swiper) => (recentlyRef.current = swiper)}
-              >
-                <SwiperSlide>
-                  <div className="flex flex-col items-center">
-                    {RecentlyProducts.slice(0, 3).map((product) => (
-                      <HorizontalCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="flex flex-col items-center">
-                    {RecentlyProducts.slice(3, 6).map((product) => (
-                      <HorizontalCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                </SwiperSlide>
-              </Swiper>
+                <Swiper
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  className="w-full"
+                  loop={true}
+                  modules={[Autoplay]}
+                  autoplay={{ delay: 4500, disableOnInteraction: false }}
+                  onSwiper={(swiper) => (recentlyRef.current = swiper)}
+                >
+                  <SwiperSlide>
+                    <div className="flex flex-col items-center">
+                      {RecentlyProducts.slice(0, 3).map((product) => (
+                        <HorizontalCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="flex flex-col items-center">
+                      {RecentlyProducts.slice(3, 6).map((product) => (
+                        <HorizontalCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
+              </div>
             </div>
-          </div>
+          </EntranceAnimation>
         </div>
       </div>
 

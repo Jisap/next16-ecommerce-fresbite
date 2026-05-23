@@ -12,6 +12,7 @@ import ProductCard from "../Index/TopSelling/ProductCard"
 import ProductModal from "../Index/TopSelling/ProductModal"
 import { useCart } from "@/app/hooks/useCart"
 import { Toaster } from "react-hot-toast"
+import { EntranceAnimation } from "@/app/Animations"
 
 // Unificamos todos los productos para poder buscar los favoritos vengan de donde vengan
 const allProducts = [...topSellingData, ...organicData, ...tradingData]
@@ -57,38 +58,38 @@ const Wishlist = () => {
           className="w-full h-full object-cover absolute top-0 left-0 right-0"
         />
 
-        <div className="content z-0 w-full h-full flex justify-center items-center flex-col">
-          <ul className="flex items-center gap-1">
-            <li className="uppercase text-sm font-unbounded text-black">
+        <EntranceAnimation type="fadeDown" duration={0.8} scrollTrigger={false} className="content z-10 w-full h-full flex justify-center items-center flex-col">
+          <ul className="flex items-center gap-1.5 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm">
+            <li className="uppercase text-xs font-unbounded text-gray-800 hover:text-prim transition-colors">
               <Link href="/">Home</Link>
             </li>
-            <li className="text-black">-</li>
-            <li className="uppercase text-sm font-unbounded text-black">
+            <li className="text-gray-500 font-bold">•</li>
+            <li className="uppercase text-xs font-unbounded text-prim font-semibold">
               <Link href="/UI-components/Pages/Wishlist">Wishlist</Link>
             </li>
           </ul>
 
-          <h2 className="text-xl sm:text-3xl font-unbounded text-black mt-2">
+          <h2 className="text-2xl sm:text-4xl font-unbounded font-bold text-black mt-3 drop-shadow-sm text-center px-4 max-w-3xl line-clamp-2">
             Wishlist
           </h2>
-        </div>
+        </EntranceAnimation>
       </div>
 
       {/* Empty State */}
       {wishlistProducts.length === 0 && (
-        <div className="text-center py-20 text-gray-500 flex flex-col items-center">
-          <Icon icon="tabler:heart-broken" width="60" className="text-gray-300 mb-4" />
+        <EntranceAnimation type="scaleIn" duration={0.8} className="text-center py-20 text-gray-500 flex flex-col items-center">
+          <Icon icon="tabler:heart-broken" width="60" className="text-gray-300 mb-4 animate-bounce" />
           <h3 className="text-xl font-bold text-gray-700 mb-2">Your Wishlist is empty</h3>
           <p className="text-gray-500 mb-6">Looks like you haven't added any products to your wishlist yet.</p>
           <Link href="/" className="bg-prim text-white px-6 py-3 rounded-full font-bold hover:bg-black transition-colors">
             Start Shopping
           </Link>
-        </div>
+        </EntranceAnimation>
       )}
 
-      {/* Grid de Productos */}
+      {/* Grid de Productos con animación stagger */}
       {wishlistProducts.length > 0 && (
-        <div className="w-full py-16 px-4 sm:px-6 lg:px-8 xl:px-12">
+        <EntranceAnimation type="stagger" selector=".product-card" duration={0.8} stagger={0.1} className="w-full py-16 px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8">
             {wishlistProducts.map((product) => (
               <ProductCard
@@ -113,7 +114,7 @@ const Wishlist = () => {
               />
             ))}
           </div>
-        </div>
+        </EntranceAnimation>
       )}
 
       {/* Modal Reutilizado */}

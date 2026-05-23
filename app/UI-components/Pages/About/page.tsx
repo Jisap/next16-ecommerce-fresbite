@@ -6,7 +6,7 @@ import teamImg01 from "@/public/team-01.webp"
 import teamImg02 from "@/public/team-02.webp"
 import teamImg03 from "@/public/team-03.webp"
 import teamImg04 from "@/public/team-04.webp"
-
+import { EntranceAnimation } from "@/app/Animations"
 
 const missionData = [
   {
@@ -75,9 +75,7 @@ const features = [
     title: "Secure checkout",
     desc: "Compra con total tranquilidad gracias a nuestra pasarela de pago encriptada y verificada por estándares internacionales."
   }
-];
-
-
+]
 
 const About = () => {
   return (
@@ -91,7 +89,7 @@ const About = () => {
           className="w-full h-full object-cover absolute top-0 left-0 right-0"
         />
 
-        <div className="content z-10 w-full h-full flex justify-center items-center flex-col">
+        <EntranceAnimation type="fadeDown" duration={0.8} scrollTrigger={false} className="content z-10 w-full h-full flex justify-center items-center flex-col">
           <ul className="flex items-center gap-1.5 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm">
             <li className="uppercase text-xs font-unbounded text-gray-800 hover:text-prim transition-colors">
               <Link href="/">Home</Link>
@@ -103,85 +101,89 @@ const About = () => {
           </ul>
 
           <h2 className="text-2xl sm:text-4xl font-unbounded font-bold text-black mt-3 drop-shadow-sm text-center px-4 max-w-3xl line-clamp-2">
-            About
+            About Us
           </h2>
-        </div>
+        </EntranceAnimation>
       </div>
 
-      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16'>
+      {/* Introducción */}
+      <EntranceAnimation type="fadeUp" duration={0.8} className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16'>
         <div className='flex flex-col items-center justify-center'>
-          <h4 className='text-lg font-medium uppercase mb-3'>
+          <h4 className='text-lg font-semibold uppercase mb-3 text-prim'>
             Since 1982 our story
           </h4>
 
-          <p className='text-center text-black/50 text-lg md:text-xl lg:w-[68%] font-medium'>
+          <p className='text-center text-black/50 text-lg md:text-xl lg:w-[68%] font-medium leading-relaxed'>
             In early 1982, it all started with a simple idea: 
             to bring high-quality organic products closer to people who value a more natural, 
             transparent, and environmentally conscious lifestyle.
           </p>
         </div>
-      </div>
+      </EntranceAnimation>
 
-      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16'>
+      {/* Historia Detallada */}
+      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16 overflow-hidden'>
         <div className='flex flex-col lg:items-center lg:flex-row gap-5 lg:gap-15'>
-          <div className='relative w-full lg:w-1/2 overflow-hidden group'>
+          <EntranceAnimation type="fadeRight" className='relative w-full lg:w-1/2 overflow-hidden group rounded-lg shadow-sm'>
             <Image 
               src={aboutImg01}
               alt="about-img"
-              className='transition-transform duration-500 ease-in-out group-hover:scale-110 object-cover'
+              className='transition-transform duration-500 ease-in-out group-hover:scale-110 object-cover w-full h-full'
             />
-          </div>
+          </EntranceAnimation>
 
-          <div className='w-full lg:w-1/2'>
+          <EntranceAnimation type="fadeLeft" className='w-full lg:w-1/2'>
             <h2 className='text-3xl md:text-5xl font-bold mb-8'>
               Story about us
             </h2>
 
-            <p className='text-black/50 text-lg md:text-xl lg:w-[75%] font-medium mb-5'>
+            <p className='text-black/50 text-lg md:text-xl lg:w-[85%] font-medium mb-5 leading-relaxed'>
               Our mission is to make organic living more accessible by offering carefully selected products that combine quality, sustainability, and trust, 
-              while supporting healthier choices for our customers and a better future for our planet
+              while supporting healthier choices for our customers and a better future for our planet.
             </p>
 
-            <p className='text-black/50 text-lg md:text-xl lg:w-[75%] font-medium mb-5'>
+            <p className='text-black/50 text-lg md:text-xl lg:w-[85%] font-medium mb-5 leading-relaxed'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere alias possimus tempore,
-               optio aspernatur, nam dolorem corporis quos minima in sed ea 
+              optio aspernatur, nam dolorem corporis quos minima in sed ea 
               deserunt eveniet, cupiditate laboriosam esse aliquid sit temporibus.
             </p>
 
-            <span className='text-lg italic cursor-pointer'>
-              Harlie Puth
+            <span className='text-lg font-semibold italic text-prim cursor-pointer block mt-6 hover:text-black transition-colors duration-300'>
+              — Harlie Puth
             </span>
-          </div>
+          </EntranceAnimation>
         </div>
       </div>
 
-      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16 bg-gray-light'>
+      {/* Tarjetas de Misión */}
+      <EntranceAnimation type="stagger" selector=".animate-mission-item" duration={0.8} stagger={0.15} className='px-2 lg:px-8 xl:px-12 py-12 sm:py-20 bg-gray-light'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
           {missionData.map((item, index) => (
-            <div key={index} className='flex flex-col items-center'>
-              <i className={`${item.icon} text-3xl`}></i>
+            <div key={index} className='animate-mission-item flex flex-col items-center p-6 bg-white rounded-lg shadow-xs hover:shadow-md transition-all duration-300'>
+              <i className={`${item.icon} text-3xl text-prim`}></i>
 
-              <h3 className='uppercase font-medium mb-2 mt-5'>{item.title}</h3>
+              <h3 className='uppercase font-semibold mb-2 mt-5 text-lg'>{item.title}</h3>
 
-              <p className='text-center text-black/50 lg:w-[65%] font-medium'>{item.desc}</p>
+              <p className='text-center text-black/50 lg:w-[85%] font-medium leading-relaxed'>{item.desc}</p>
             </div>
           ))}
         </div>
-      </div>
+      </EntranceAnimation>
 
-      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16 lg:py-20'>
-        <div className='flex flex-col items-center justify-center'>
-          <span className='text-lg mb-3'>Highly skiled</span>
+      {/* Equipo */}
+      <div className='px-2 lg:px-8 xl:px-12 py-12 sm:py-20 lg:py-24'>
+        <EntranceAnimation type="fadeUp" className='flex flex-col items-center justify-center mb-12'>
+          <span className='text-lg mb-3 text-prim font-medium'>Highly skilled</span>
 
           <h2 className='text-3xl md:text-4xl font-bold'>
             Meet our teams
           </h2>
-        </div>
+        </EntranceAnimation>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-15'>
+        <EntranceAnimation type="stagger" selector=".animate-team-card" duration={0.8} stagger={0.12} className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
           {teamData.map((member, index) => (
-            <div key={index} className='group'>
-              <div className='overflow-hidden rounded-md'>
+            <div key={index} className='animate-team-card group flex flex-col items-center'>
+              <div className='overflow-hidden rounded-lg shadow-sm w-full'>
                 <Image 
                   src={member.img}
                   alt="team-image"
@@ -190,32 +192,33 @@ const About = () => {
               </div>
 
               <div className='text-center mt-5'>
-                <h4 className='uppercase font-medium text-md'>
+                <h4 className='uppercase font-semibold text-md tracking-wider'>
                   {member.name}
                 </h4>
 
-                <span className='text-black/80 font-medium'>
+                <span className='text-black/60 font-medium text-sm mt-1 block'>
                   {member.role}
                 </span>
               </div>
             </div>
           ))}
-        </div>
+        </EntranceAnimation>
       </div>
 
-      <div className='px-2 lg:px-8 xl:px-12 py-8 sm:py-16 lg:py-20 bg-gray-light'>
+      {/* Características */}
+      <EntranceAnimation type="stagger" selector=".animate-feature-item" duration={0.8} stagger={0.1} className='px-2 lg:px-8 xl:px-12 py-12 sm:py-20 bg-gray-light'>
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10'>
           {features.map((item, index) => (
-            <div key={index} className='group flex flex-col items-center text-center'>
-              <i className={`bi ${item.icon} text-3xl transition-transform duration-500 ease-in-out group-hover:scale-x-[-1]`}></i>
+            <div key={index} className='animate-feature-item group flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-xs hover:shadow-md transition-all duration-300'>
+              <i className={`bi ${item.icon} text-3xl text-prim transition-transform duration-500 ease-in-out group-hover:scale-x-[-1]`}></i>
 
-              <h3 className='text-xl font-semibold mt-5'>{item.title}</h3>
+              <h3 className='text-lg font-semibold mt-5 mb-2'>{item.title}</h3>
 
-              <p className='text-black/50 text-lg font-medium'>{item.desc}</p>
+              <p className='text-black/50 text-sm font-medium leading-relaxed'>{item.desc}</p>
             </div>
           ))}
         </div>
-      </div>
+      </EntranceAnimation>
     </>
   )
 }
