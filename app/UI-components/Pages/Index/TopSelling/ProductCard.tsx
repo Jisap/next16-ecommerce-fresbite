@@ -58,7 +58,7 @@ const ProductCard = ({
 
   return (
     <div className={`
-      group border border-gray-200 w-full rounded-lg bg-white relative hover:shadow-xl transition-all duration-500 
+      product-card group border border-gray-200 w-full rounded-lg bg-white relative hover:shadow-xl transition-all duration-500 
       ${openId === product.id ? "z-50" : "z-10"}`}
     >
       {/* Badges */}

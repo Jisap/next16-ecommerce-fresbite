@@ -12,6 +12,7 @@ import { Toaster } from "react-hot-toast"
 import ProductCard from "./ProductCard"
 import ProductModal from "./ProductModal"
 import { useCart } from "@/app/hooks/useCart"
+import { EntranceAnimation } from "@/app/Animations"
 
 export interface Product {
   id: string;
@@ -88,56 +89,62 @@ const TopSelling = ({ product: Products }: { product: Product[] }) => {
   return (
     <>
       <div className="px-2 lg:px-8 xl:px-12 pt-20 pb-10">
-        <div className="section-title flex flex-wrap pb-10 md:ps-5 gap-3">
-          <h2 className="text-3xl md:text-5xl font-bold">Top Selling Products</h2>
-          <p className="text-black/50 flex items-center flex-wrap gap-4 text-lg md:text-xl font-medium">
-            <Image src={titleicon} alt="titleicon" />
-            Fresh and fabulous from farm to table.
-          </p>
-        </div>
+        {/* Título de la sección animado */}
+        <EntranceAnimation type="fadeUp" scrollTrigger={true} duration={0.8}>
+          <div className="section-title flex flex-wrap pb-10 md:ps-5 gap-3">
+            <h2 className="text-3xl md:text-5xl font-bold">Top Selling Products</h2>
+            <p className="text-black/50 flex items-center flex-wrap gap-4 text-lg md:text-xl font-medium">
+              <Image src={titleicon} alt="titleicon" />
+              Fresh and fabulous from farm to table.
+            </p>
+          </div>
+        </EntranceAnimation>
 
-        <Swiper
-          slidesPerView={5}
-          spaceBetween={30}
-          className="w-full product-swiper"
-          modules={[Autoplay]}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          speed={1500}
-          breakpoints={{
-            1600: { slidesPerView: 5 },
-            1400: { slidesPerView: 4 },
-            1100: { slidesPerView: 3 },
-            768: { slidesPerView: 2.5 },
-            600: { slidesPerView: 2 },
-            0: { slidesPerView: 1 },
-          }}
-        >
-          {productChunks.map((chunk, index) => (
-            <SwiperSlide key={index}>
-              <div className="flex flex-col gap-8">
-                {chunk.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    openId={openId}
-                    setOpenId={setOpenId}
-                    selectedWeight={selectedWeight}
-                    setSelectedWeight={setSelectedWeight}
-                    weights={weights}
-                    qty={qty}
-                    increaseQty={increaseQty}
-                    decreaseQty={decreaseQty}
-                    addToCart={addToCart}
-                    toggleWishlist={toggleWishlist}
-                    wishlist={wishlist}
-                    setSelectedProduct={setSelectedProduct}
-                    setOpenModal={setOpenModal}
-                  />
-                ))}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/* Listado de productos con stagger en las tarjetas */}
+        <EntranceAnimation type="stagger" selector=".product-card" scrollTrigger={true} duration={0.8} stagger={0.08} delay={0.1}>
+          <Swiper
+            slidesPerView={5}
+            spaceBetween={30}
+            className="w-full product-swiper"
+            modules={[Autoplay]}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            speed={1500}
+            breakpoints={{
+              1600: { slidesPerView: 5 },
+              1400: { slidesPerView: 4 },
+              1100: { slidesPerView: 3 },
+              768: { slidesPerView: 2.5 },
+              600: { slidesPerView: 2 },
+              0: { slidesPerView: 1 },
+            }}
+          >
+            {productChunks.map((chunk, index) => (
+              <SwiperSlide key={index}>
+                <div className="flex flex-col gap-8">
+                  {chunk.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      openId={openId}
+                      setOpenId={setOpenId}
+                      selectedWeight={selectedWeight}
+                      setSelectedWeight={setSelectedWeight}
+                      weights={weights}
+                      qty={qty}
+                      increaseQty={increaseQty}
+                      decreaseQty={decreaseQty}
+                      addToCart={addToCart}
+                      toggleWishlist={toggleWishlist}
+                      wishlist={wishlist}
+                      setSelectedProduct={setSelectedProduct}
+                      setOpenModal={setOpenModal}
+                    />
+                  ))}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </EntranceAnimation>
       </div>
 
       <ProductModal
