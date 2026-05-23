@@ -11,6 +11,7 @@ import { Autoplay } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/pagination"
 import titleicon from "@/public/freshbite-title-icon3.webp"
+import { EntranceAnimation } from "@/app/Animations"
 
 const testimonials = [
   {
@@ -23,7 +24,7 @@ const testimonials = [
     img: tst2,
     name: "Kevin Smith",
     role: "Grocery store",
-    text: "I’ve been shopping at freshbite for years and I can honestly say it’s been a game changer for my family and I. "
+    text: "I've been shopping at freshbite for years and I can honestly say it's been a game changer for my family and I. "
   },
   {
     img: tst3,
@@ -35,46 +36,61 @@ const testimonials = [
     img: tst4,
     name: "Emma Smith",
     role: "Grocery store",
-    text: "I’ve been shopping at freshbite for years and I can honestly say it’s been a game changer for my family and I."
+    text: "I've been shopping at freshbite for years and I can honestly say it's been a game changer for my family and I."
   }
 ]
 
 const Testimonials = () => {
   return (
-    <>
-      <div className="px-2 lg:px-8 xl:px-12 pt-20 pb-10">
-        <div className="section-title flex flex-wrap pb-10 md:ps-5 gap-3">
-          <h2 className="text-3xl md:text-5xl font-bold">What Our Customers Says</h2>
-          <p className="text-black/50 flex items-center flex-wrap gap-4 text-lg md:text-xl font-medium">
-            <Image src={titleicon} alt="titleicon" />
-            People say a lot. So, I watch what they do.
-          </p>
-        </div>
+    <div className="px-2 lg:px-8 xl:px-12 pt-20 pb-10">
 
+      {/* Título: h2 y párrafo en stagger */}
+      <EntranceAnimation
+        type="stagger"
+        selector=".section-title-item"
+        stagger={0.15}
+        duration={0.7}
+        ease="power2.out"
+        scrollTrigger
+        scrollStart="top 88%"
+        className="section-title flex flex-wrap pb-10 md:ps-5 gap-3"
+      >
+        <h2 className="section-title-item text-3xl md:text-5xl font-bold">
+          What Our Customers Says
+        </h2>
+
+        <p className="section-title-item text-black/50 flex items-center flex-wrap gap-4 text-lg md:text-xl font-medium">
+          <Image src={titleicon} alt="titleicon" />
+          People say a lot. So, I watch what they do.
+        </p>
+      </EntranceAnimation>
+
+      {/* Swiper como unidad: fadeUp al entrar en viewport */}
+      <EntranceAnimation
+        type="fadeUp"
+        duration={0.8}
+        delay={0.1}
+        ease="power2.out"
+        scrollTrigger
+        scrollStart="top 90%"
+      >
         <Swiper
           spaceBetween={30}
           slidesPerView={3}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false
-          }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
           modules={[Autoplay]}
           breakpoints={{
             1000: { slidesPerView: 3 },
             768: { slidesPerView: 2 },
-            0: { slidesPerView: 1 }
+            0: { slidesPerView: 1 },
           }}
           className="tst-swiper"
         >
           {testimonials.map((item, index) => (
-            <SwiperSlide>
+            <SwiperSlide key={index}>
               <div className="testimonials-item h-75 bg-white shadow-md rounded-md p-5 sm:p-10 border border-gray-100">
                 <div className="tst-top flex items-center gap-4 pb-4">
-                  <Image
-                    src={item.img}
-                    alt={item.name}
-                    className="w-18 h-18 rounded-full"
-                  />
+                  <Image src={item.img} alt={item.name} className="w-18 h-18 rounded-full" />
 
                   <div>
                     <h6 className="text-xl font-semibold">{item.name}</h6>
@@ -82,26 +98,20 @@ const Testimonials = () => {
                   </div>
                 </div>
 
-                <p className="text-lg text-gray-500 pb-4">
-                  {item.text}
-                </p>
+                <p className="text-lg text-gray-500 pb-4">{item.text}</p>
 
                 <div className="flex items-center text-yellow-400">
                   {[...Array(5)].map((_, i) => (
-                    <Icon
-                      key={i}
-                      icon="material-symbols:star-rounded"
-                      width="24"
-                      height="24"
-                    />
+                    <Icon key={i} icon="material-symbols:star-rounded" width="24" height="24" />
                   ))}
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-    </>
+      </EntranceAnimation>
+
+    </div>
   )
 }
 
