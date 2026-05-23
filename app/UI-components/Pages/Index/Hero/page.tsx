@@ -83,7 +83,7 @@ const Hero = () => {
                       </h3>
 
                       <Link
-                        href="/UI-Componentes/Pages/Shop"
+                        href="/shop"
                         className="bg-white hover:bg-black hover:text-white transition-all duration-300 px-4 py-2 mt-2 rounded-md 
                         inline-flex items-center font-bold uppercase"
                       >

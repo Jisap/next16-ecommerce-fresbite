@@ -301,7 +301,7 @@ const Checkout = () => {
               </button>
 
               <Link
-                href="/UI-components/Pages/Shop"
+                href="/shop"
                 className="block text-center py-2 mt-2 border border-gray-300 rounded-xl hover:bg-gray-100 font-semibold text-gray-600 transition cursor-pointer"
               >
                 Back to Shop

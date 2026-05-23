@@ -57,7 +57,7 @@ const Navmiddle = () => {
 
   return (
     <>
-      <div className="px-2 lg:px-8 xl:px-12 border-b border-gray-100 lg:border-none relative bg-white z-[100]">
+      <div className="px-2 lg:px-8 xl:px-12 border-b border-gray-100 lg:border-none relative bg-white z-30">
         <div className="flex relative justify-between items-center py-3 lg:py-5">
           {/* Mobile Menu Button */}
           <button onClick={() => setOpenMenu(true)} className="flex lg:hidden cursor-pointer p-1">
@@ -91,7 +91,7 @@ const Navmiddle = () => {
 
             <li>
               <Link
-                href='/UI-components/Pages/Wishlist'
+                href="/wishlist"
                 className="lg:bg-gray-light lg:w-12 lg:h-12 rounded-full flex justify-center items-center cursor-pointer lg:border border-gray-300 relative hover:bg-prim hover:text-white transition-all"
               >
                 <Icon

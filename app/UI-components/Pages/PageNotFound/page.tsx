@@ -1,71 +1,4 @@
-// import { EntranceAnimation } from '@/app/Animations'
-// import Image from 'next/image'
-// import Link from 'next/link'
-// import sectionbanner from "@/public/section-banner.png";
-// import pagenotfound from "@/public/pagenotfound.webp"
 
-// const PageNotFound = () => {
-//   return (
-//     <>
-//       {/* Banner Principal */}
-//       <div className="page-banner bg-black h-55 flex justify-between items-center relative">
-//         <Image
-//           src={sectionbanner}
-//           alt="Section Banner"
-//           fill
-//           className="w-full h-full object-cover absolute top-0 left-0 right-0"
-//         />
-
-//         <EntranceAnimation type="fadeDown" duration={0.8} scrollTrigger={false} className="content z-10 w-full h-full flex justify-center items-center flex-col">
-//           <ul className="flex items-center gap-1.5 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm">
-//             <li className="uppercase text-xs font-unbounded text-gray-800 hover:text-prim transition-colors">
-//               <Link href="/">Home</Link>
-//             </li>
-
-//             <li className="text-gray-500 font-bold">•</li>
-
-//             <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-//               <Link href="/UI-components/Pages/Blogs">404</Link>
-//             </li>
-//           </ul>
-
-//           <h2 className="text-2xl sm:text-4xl font-unbounded font-bold text-black mt-3 drop-shadow-sm">
-//             404 Page Not Found
-//           </h2>
-//         </EntranceAnimation>
-//       </div>
-
-//       <div className='flex justify-center flex-col-reverse items-center lg:flex-row gap-5 px-5 lg:px-8 xl:px-20 py-12'>
-//         <div className='w-full lg:w-1/2'>
-//           <Image
-//             src={pagenotfound}
-//             alt="404"
-//             className='w-full h-125 object-contain'
-//           />
-//         </div>
-
-//         <div className='w-full lg:w-1/2 flex flex-col text-center lg:items-start'>
-//           <h3 className='text-6xl font-bold font-unbounded'>
-//             Oops!
-//           </h3>
-
-//           <span className='text-gray-500 pb-2 text-lg'>
-//             Page Not Found
-//           </span>
-
-//           <Link
-//             href="UI-components/Pages/shop"
-//             className='bg-prim text-white hover:bg-black hover:text-white transition-colors lg:mx-0 mx-auto w-fit duration-300 p-2 rounded-sm'
-//           >
-//             Continue Shopping
-//           </Link>
-//         </div>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default PageNotFound
 
 import { EntranceAnimation } from '@/app/Animations'
 import Image from 'next/image'
@@ -76,7 +9,7 @@ import pagenotfound from "@/public/pagenotfound.webp"
 const PageNotFound = () => {
   return (
     <>
-      {/* Banner Principal - SIN MODIFICACIONES */}
+      {/* Banner Principal  */}
       <div className="page-banner bg-black h-55 flex justify-between items-center relative">
         <Image
           src={sectionbanner}
@@ -94,7 +27,7 @@ const PageNotFound = () => {
             <li className="text-gray-500 font-bold">•</li>
 
             <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-              <Link href="/UI-components/Pages/Blogs">404</Link>
+              <Link href="/blogs">404</Link>
             </li>
           </ul>
 
@@ -167,7 +100,7 @@ const PageNotFound = () => {
           >
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <Link
-                href="/UI-components/Pages/shop"
+                href="/shop"
                 className='group inline-flex items-center gap-2 bg-prim text-white hover:bg-black hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 px-8 py-3.5 rounded-lg font-medium text-sm uppercase tracking-wide'
               >
                 Continue Shopping
@@ -199,7 +132,7 @@ const PageNotFound = () => {
           >
             <div className="pt-8 flex items-center gap-4 text-gray-400 text-sm">
               <div className="h-px w-12 bg-gray-300" />
-              <span>Need help? <Link href="/UI-components/Pages/Contact" className="text-prim hover:underline">Contact us</Link></span>
+              <span>Need help? <Link href="/contact" className="text-prim hover:underline">Contact us</Link></span>
             </div>
           </EntranceAnimation>
         </div>

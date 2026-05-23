@@ -25,7 +25,7 @@ const Contact = () => {
             <li className="text-gray-500 font-bold">•</li>
 
             <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-              <Link href="/UI-components/Pages/Contact">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
 

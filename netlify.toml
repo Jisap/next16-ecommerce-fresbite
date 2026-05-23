@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Do not set "publish" — Netlify's Next.js runtime serves from the build output automatically.

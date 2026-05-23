@@ -16,6 +16,7 @@ import ctg8 from "@/public/freshbite-cat8.png"
 const Navbottom = () => {
 
   const [catOpen, setCatOpen] = useState<boolean>(false);
+  const [pagesOpen, setPagesOpen] = useState<boolean>(false);
 
   const categories = [
     { title: "Milk and dairy products", img: ctg1 },
@@ -57,13 +58,13 @@ const Navbottom = () => {
             {/* Categories Dropdown */}
             <div className={`
             absolute top-full left-0 w-full bg-white border border-gray-200 shadow-xl rounded-b-md z-50 overflow-hidden transition-all duration-300 ease-in-out
-            ${catOpen ? "max-h-[500px] opacity-100 visible" : "max-h-0 opacity-0 invisible"}
+            ${catOpen ? "max-h-[500px] opacity-100 visible" : "max-h-0 opacity-0 invisible pointer-events-none"}
           `}>
               <ul className="py-2">
                 {categories.map((cat, index) => (
                   <li key={index} className="border-b border-gray-50 last:border-0">
                     <Link
-                      href="/UI-Components/Pages/Shop"
+                      href="/shop"
                       className="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 hover:text-prim transition-all duration-300 group"
                     >
                       <Image
@@ -93,36 +94,50 @@ const Navbottom = () => {
               </li>
 
               <li className="relative group">
-                <Link href="/UI-components/Pages/Shop" className="flex items-center gap-1 text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
+                <Link href="/shop" className="flex items-center gap-1 text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
                   Shop
                 </Link>
               </li>
 
               <li>
-                <Link href="/UI-components/Pages/Blogs" className="text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
+                <Link href="/blogs" className="text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
                   Blogs
                 </Link>
               </li>
 
-              <li className="relative group">
-                <button className="flex items-center gap-1 text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide cursor-pointer">
+              <li className="relative">
+                <button
+                  type="button"
+                  onClick={() => setPagesOpen(!pagesOpen)}
+                  className="flex items-center gap-1 text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide cursor-pointer"
+                  aria-expanded={pagesOpen}
+                >
                   Pages
-                  <Icon icon="solar:alt-arrow-down-outline" width="16" height="16" className="group-hover:rotate-180 transition-transform duration-300" />
+                  <Icon
+                    icon={pagesOpen ? "solar:alt-arrow-up-outline" : "solar:alt-arrow-down-outline"}
+                    width="16"
+                    height="16"
+                    className="transition-transform duration-300"
+                  />
                 </button>
 
                 {/* Pages Dropdown */}
-                <div className="absolute top-full left-0 w-48 bg-white shadow-2xl border border-gray-100 py-3 rounded-b-md 
-              opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0"
+                <div
+                  className={`absolute top-full left-0 w-48 bg-white shadow-2xl border border-gray-100 py-3 rounded-b-md z-50 transition-all duration-300 ${
+                    pagesOpen
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible -translate-y-2 pointer-events-none"
+                  }`}
                 >
-                  <Link href="/UI-components/Pages/About" className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">About Us</Link>
-                  <Link href="/UI-components/Pages/Faqs" className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">FAQ's</Link>
-                  <Link href="/UI-components/Pages/Contact" className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">Contact Us</Link>
-                  <Link href="/UI-components/Pages/PageNotFound" className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">404 Page</Link>
+                  <Link href="/about" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">About Us</Link>
+                  <Link href="/faqs" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">FAQ&apos;s</Link>
+                  <Link href="/contact" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">Contact Us</Link>
+                  <Link href="/UI-components/Pages/PageNotFound" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">404 Page</Link>
                 </div>
               </li>
 
               <li>
-                <Link href="/UI-components/Pages/Contact" className="text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
+                <Link href="/contact" className="text-[15px] font-semibold text-white transition-colors duration-300 uppercase tracking-wide">
                   Contact
                 </Link>
               </li>
@@ -132,7 +147,7 @@ const Navbottom = () => {
 
           {/*  Deals Today */}
           <div className="flex lg:gap-1 xl:gap-3 flex-shrink-0">
-            <Link href="/UI-components/Pages/Shop" className="bg-secondary text-black lg:px-2 xl:px-4 py-2 rounded-md flex items-center cursor-pointer whitespace-nowrap text-sm">
+            <Link href="/shop" className="bg-secondary text-black lg:px-2 xl:px-4 py-2 rounded-md flex items-center cursor-pointer whitespace-nowrap text-sm">
               <Icon
                 icon="material-symbols:bookmark-outline-rounded"
                 width="20"
@@ -141,7 +156,7 @@ const Navbottom = () => {
               <span className="hidden xl:block ml-1">Deals Today</span>
               <span className="xl:hidden ml-1">Deals</span>
             </Link>
-            <Link href="/UI-components/Pages/Shop" className="bg-white text-black lg:px-2 xl:px-4 py-2 rounded-md flex items-center cursor-pointer whitespace-nowrap text-sm">
+            <Link href="/shop" className="bg-white text-black lg:px-2 xl:px-4 py-2 rounded-md flex items-center cursor-pointer whitespace-nowrap text-sm">
               <Icon
                 icon="ic:outline-local-offer"
                 width="20"

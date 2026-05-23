@@ -65,7 +65,7 @@ const Wishlist = () => {
             </li>
             <li className="text-gray-500 font-bold">•</li>
             <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-              <Link href="/UI-components/Pages/Wishlist">Wishlist</Link>
+              <Link href="/wishlist">Wishlist</Link>
             </li>
           </ul>
 

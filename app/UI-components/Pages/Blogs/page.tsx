@@ -27,7 +27,7 @@ const Blogs = () => {
             <li className="text-gray-500 font-bold">•</li>
 
             <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-              <Link href="/UI-components/Pages/Blogs">Blogs</Link>
+              <Link href="/blogs">Blogs</Link>
             </li>
           </ul>
 
@@ -43,7 +43,7 @@ const Blogs = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {ArticlesData.map((blog, index) => (
               <div key={index} className="blog-post-card group">
-                <Link href={`/UI-components/Pages/Blogs/${blog.id}`}>
+                <Link href={`/blogs/${blog.id}`}>
                   <div className="flex flex-col h-full bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-2 overflow-hidden border border-gray-100">
 
                     {/* Contenedor de imagen con aspecto de galería premium */}

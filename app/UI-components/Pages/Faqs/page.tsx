@@ -204,7 +204,7 @@ const Faqs = () => {
             <li className="text-gray-500 font-bold">•</li>
 
             <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-              <Link href="/UI-components/Pages/Faqs">Faq&apos;s</Link>
+              <Link href="/faqs">Faq&apos;s</Link>
             </li>
           </ul>
 

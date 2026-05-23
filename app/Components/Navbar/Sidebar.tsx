@@ -35,13 +35,13 @@ const Sidebar = ({ open, onClose }: { open: boolean, onClose: () => void }) => {
 
         <ul>
           <li>
-            <Link href="/" className="p-4 block border-b border-b-gray-100 text-md hover:text-prim transition-colors duration-300 cursor-pointer font-medium">
+            <Link href="/" onClick={onClose} className="p-4 block border-b border-b-gray-100 text-md hover:text-prim transition-colors duration-300 cursor-pointer font-medium">
               Home
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md hover:text-prim transition-colors duration-300 cursor-pointer font-medium">
+            <Link href="/shop" onClick={onClose} className="p-4 block border-b border-b-gray-100 text-md hover:text-prim transition-colors duration-300 cursor-pointer font-medium">
               Shop
             </Link>
-            <Link href="/UI-Components/Pages/Blogs" className="p-4 block border-b border-b-gray-100 text-md hover:text-prim transition-colors duration-300 cursor-pointer font-medium">
+            <Link href="/blogs" onClick={onClose} className="p-4 block border-b border-b-gray-100 text-md hover:text-prim transition-colors duration-300 cursor-pointer font-medium">
               Blogs
             </Link>
           </li>
@@ -63,19 +63,19 @@ const Sidebar = ({ open, onClose }: { open: boolean, onClose: () => void }) => {
 
             <ul className={`overflow-hidden transition-all duration-300 ease-in-out ${pagesOpen ? "max-h-96" : "max-h-0"}`}>
               <li className="p-4 border-b border-gray-100 text-md">
-                <Link href="/UI-components/Pages/About" className="font-medium">About</Link>
+                <Link href="/about" onClick={onClose} className="font-medium">About</Link>
               </li>
 
               <li className="p-4 border-b border-gray-100 text-md">
-                <Link href="/UI-components/Pages/Faqs" className="font-medium">Faq's</Link>
+                <Link href="/faqs" onClick={onClose} className="font-medium">Faq&apos;s</Link>
               </li>
 
               <li className="p-4 border-b border-gray-100 text-md">
-                <Link href="/UI-components/Pages/Contact" className="font-medium">Contact</Link>
+                <Link href="/contact" onClick={onClose} className="font-medium">Contact</Link>
               </li>
 
               <li className="p-4 border-b border-gray-100 text-md">
-                <Link href="/UI-components/Pages/PageNotFound" className="font-medium">Page Not Found</Link>
+                <Link href="/UI-components/Pages/PageNotFound" onClick={onClose} className="font-medium">Page Not Found</Link>
               </li>
             </ul>
           </li>
@@ -87,22 +87,22 @@ const Sidebar = ({ open, onClose }: { open: boolean, onClose: () => void }) => {
 
         <ul>
           <li>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+            <Link href="/shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Milk and dairy products
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+            <Link href="/shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Vegetable and fruits
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+            <Link href="/shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Animal biscuits and products
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+            <Link href="/shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Bread, toast and biscuits
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+            <Link href="/shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Chicken, meat and Fish
             </Link>
-            <Link href="/UI-Components/Pages/Shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
+            <Link href="/shop" className="p-4 block border-b border-b-gray-100 text-md font-medium hover:text-prim transition-colors duration-300 cursor-pointer">
               Vitamins and minerals
             </Link>
           </li>

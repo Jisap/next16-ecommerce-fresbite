@@ -41,7 +41,7 @@ const BannerOffers = () => {
             </h3>
 
             <Link
-              href="/UI-componentes/Pages/Shop"
+              href="/shop"
               className="bg-yellow-300 px-4 w-fit flex items-center py-2 mt-8 rounded-sm cursor-pointer hover:bg-black hover:text-white duration-300 transition-colors"
             >
               Shop Now

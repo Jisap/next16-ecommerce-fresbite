@@ -68,7 +68,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/UI-components/Pages/Wishlist" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
+                <Link href="/wishlist" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
                   <span className="w-1 h-1 rounded-full bg-prim opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 shrink-0" />
                   My wishlist
                 </Link>
@@ -108,7 +108,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/UI-components/Pages/Wishlist" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
+                <Link href="/wishlist" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
                   <span className="w-1 h-1 rounded-full bg-prim opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 shrink-0" />
                   About us
                 </Link>
@@ -148,7 +148,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/UI-components/Pages/Wishlist" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
+                <Link href="/wishlist" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
                   <span className="w-1 h-1 rounded-full bg-prim opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 shrink-0" />
                   Privacy policy
                 </Link>

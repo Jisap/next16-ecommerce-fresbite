@@ -213,7 +213,7 @@ const ProductDetails = () => {
             <button
               onClick={() => {
                 addToCart(product, selectedWeight[product.id] || "1 kg");
-                router.push("/UI-components/Pages/Checkout");
+                router.push("/checkout");
               }}
               className="bg-black text-white px-6 py-3 rounded hover:bg-prim transition duration-300 w-full cursor-pointer uppercase font-bold tracking-wider mb-6"
             >

@@ -116,7 +116,7 @@ const CartSidebar = () => {
               </p>
 
               <Link
-                href="/UI-Components/Pages/Shop"
+                href="/shop"
                 className="bg-prim px-5 py-3 cursor-pointer text-white font-medium rounded-sm"
               >
                 Continue shopping
@@ -298,7 +298,7 @@ const CartSidebar = () => {
           </div>
 
           <Link
-            href="/UI-components/Pages/Checkout"
+            href="/checkout"
             onClick={() => setIsCartOpen(false)}
             className="bg-prim text-white rounded-sm w-full text-center py-2 text-md font-medium hover:bg-black transition-colors duration-300 mt-3 block"
           >

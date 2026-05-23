@@ -38,7 +38,7 @@ const BlogDetails = () => {
         <h2 className="text-2xl font-light text-gray-400 tracking-wide">Article not found</h2>
 
         <Link
-          href="/UI-components/Pages/Blogs"
+          href="/blogs"
           className="mt-2 inline-flex items-center gap-2 text-sm tracking-widest uppercase border-b border-current pb-0.5 text-gray-700 hover:text-prim transition-colors duration-300"
         >
           <span>←</span> Back to Journal
@@ -70,7 +70,7 @@ const BlogDetails = () => {
               <li className="text-gray-500 font-bold">•</li>
 
               <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-                <Link href="/UI-components/Pages/Blogs">Blogs Details</Link>
+                <Link href="/blogs">Blogs Details</Link>
               </li>
             </ul>
           </EntranceAnimation>
@@ -186,7 +186,7 @@ const BlogDetails = () => {
               {TagsData.map((tag, index) => (
                 <Link
                   key={index}
-                  href={`/UI-components/Pages/Blogs?category=${tag}`}
+                  href={`/blogs?category=${tag}`}
                   className="tag-item text-xs tracking-widest uppercase px-4 py-2 border border-gray-200 text-gray-500 hover:border-gray-900 hover:text-gray-900 transition-all duration-300"
                 >
                   {tag}
@@ -217,7 +217,7 @@ const BlogDetails = () => {
                   className="space-y-6"
                 >
                   {ArticlesData.slice(0, 4).map((item, index) => (
-                    <Link key={index} href={`/UI-components/Pages/Blogs/${item.id}`} className="recent-post-item flex gap-4 group">
+                    <Link key={index} href={`/blogs/${item.id}`} className="recent-post-item flex gap-4 group">
                       <div className="relative w-20 h-20 shrink-0 overflow-hidden rounded-sm">
                         <Image
                           src={item.img}
@@ -246,7 +246,7 @@ const BlogDetails = () => {
                 <ul className="space-y-1">
                   {CategoriesData.map((category, index) => (
                     <li key={index}>
-                      <Link href={`/UI-components/Page/Blogs?category=${category}`} className="flex items-center justify-between py-2.5 border-b border-gray-50 text-sm text-gray-600 hover:text-prim hover:pl-2 transition-all duration-300 group">
+                      <Link href={`/blogs?category=${category}`} className="flex items-center justify-between py-2.5 border-b border-gray-50 text-sm text-gray-600 hover:text-prim hover:pl-2 transition-all duration-300 group">
                         <span>{category}</span>
                         <span className="text-gray-300 group-hover:text-prim transition-colors duration-300 text-xs">→</span>
                       </Link>
@@ -289,7 +289,7 @@ const BlogDetails = () => {
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {TagsData.map((tag, index) => (
-                    <Link key={index} href={`/UI-components/Pages/Blogs?category=${tag}`} className="sidebar-tag text-xs tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-500 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300">
+                    <Link key={index} href={`/blogs?category=${tag}`} className="sidebar-tag text-xs tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-500 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300">
                       {tag}
                     </Link>
                   ))}

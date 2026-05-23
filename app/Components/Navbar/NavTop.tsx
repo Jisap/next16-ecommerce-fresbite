@@ -13,7 +13,7 @@ const NavTop = () => {
             <Icon icon="famicons:call-outline" width="24" height="24" />
             <span>
               Need Help? :{" "}
-              <Link href="/UI-Components/Pages/Contact">
+              <Link href="/contact">
                 +91 9876543210
               </Link>
             </span>
@@ -21,13 +21,13 @@ const NavTop = () => {
         </ul>
 
         <ul className='flex gap-3'>
-          <Link href='/UI-Components/Pages/Contact'>
+          <Link href='/contact'>
             <li>Contact</li>
           </Link>
-          <Link href='/UI-Components/Pages/Blog'>
+          <Link href='/blogs'>
             <li>Blogs</li>
           </Link>
-          <Link href='/UI-Components/Pages/Order-Tracking'>
+          <Link href='/order'>
             <li>Order Tracking</li>
           </Link>
         </ul>
@@ -42,7 +42,7 @@ const NavTop = () => {
               <Icon icon="famicons:call-outline" width="24" height="24" />
               <span>
                 Need Help? :{" "}
-                <Link href="/UI-Components/Pages/Contact">
+                <Link href="/contact">
                   +91 9876543210
                 </Link>
               </span>
@@ -50,13 +50,13 @@ const NavTop = () => {
           </ul>
 
           <ul className='flex gap-3'>
-            <Link href='/UI-Components/Pages/Contact'>
+            <Link href='/contact'>
               <li>Contact</li>
             </Link>
-            <Link href='/UI-Components/Pages/Blog'>
+            <Link href='/blogs'>
               <li>Blogs</li>
             </Link>
-            <Link href='/UI-Components/Pages/Order-Tracking'>
+            <Link href='/order'>
               <li>Order Tracking</li>
             </Link>
           </ul>
