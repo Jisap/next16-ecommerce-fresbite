@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Sen, Unbounded } from "next/font/google";
 import "./globals.css";
-import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/page";
-import CartSidebar from "./UI-components/Pages/Cart/page";
+import Navbar from "@/app/_components/navbar/Navbar";
+import Footer from "@/app/_components/footer/Footer";
+import CartSidebar from "@/app/_components/cart/CartSidebar";
 
 const sen = Sen({
   variable: "--font-sen",

@@ -9,8 +9,8 @@ import titleicon from "@/public/freshbite-title-icon2.webp"
 import { useRouter } from "next/navigation"
 import { Toaster } from "react-hot-toast"
 
-import ProductCard from "./ProductCard"
-import ProductModal from "./ProductModal"
+import ProductCard from "@/app/_components/products/ProductCard"
+import ProductModal from "@/app/_components/products/ProductModal"
 import { useCart } from "@/app/hooks/useCart"
 import { EntranceAnimation } from "@/app/Animations"
 

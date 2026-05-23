@@ -13,7 +13,7 @@ import { Autoplay } from "swiper/modules"
 import "swiper/css"
 import { useCart } from "@/app/hooks/useCart"
 import { Toaster } from "react-hot-toast"
-import ProductModal from "../TopSelling/ProductModal"
+import ProductModal from "@/app/_components/products/ProductModal"
 import { EntranceAnimation } from "@/app/Animations"
 
 const LatestProducts = () => {

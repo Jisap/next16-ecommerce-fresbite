@@ -16,7 +16,7 @@ import topProducts from "@/app/JsonData/TopProducts.json";
 import topSelling from "@/app/JsonData/TopSelling.json";
 import trendingProducts from "@/app/JsonData/TradingProducts.json";
 import { CartProduct, Product, useCart } from "@/app/hooks/useCart"
-import ProductCard from "@/app/UI-components/Pages/Index/TopSelling/ProductCard"
+import ProductCard from "@/app/_components/products/ProductCard"
 
 
 

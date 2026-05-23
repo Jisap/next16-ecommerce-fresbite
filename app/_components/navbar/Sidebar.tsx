@@ -75,7 +75,7 @@ const Sidebar = ({ open, onClose }: { open: boolean, onClose: () => void }) => {
               </li>
 
               <li className="p-4 border-b border-gray-100 text-md">
-                <Link href="/UI-components/Pages/PageNotFound" onClick={onClose} className="font-medium">Page Not Found</Link>
+                <Link href="/page-not-found" onClick={onClose} className="font-medium">Page Not Found</Link>
               </li>
             </ul>
           </li>

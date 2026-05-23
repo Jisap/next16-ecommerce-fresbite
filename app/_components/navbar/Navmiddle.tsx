@@ -6,8 +6,8 @@ import React, { useEffect, useState, useMemo } from "react"
 import Sidebar from "./Sidebar"
 import Search from "./Search"
 import { useCart } from "@/app/hooks/useCart"
-import ProductCard from "../../UI-components/Pages/Index/TopSelling/ProductCard"
-import ProductModal from "../../UI-components/Pages/Index/TopSelling/ProductModal"
+import ProductCard from "@/app/_components/products/ProductCard"
+import ProductModal from "@/app/_components/products/ProductModal"
 import productsData from "@/app/JsonData/OrganicProducts.json"
 
 const Navmiddle = () => {

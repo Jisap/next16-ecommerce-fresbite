@@ -132,7 +132,7 @@ const Navbottom = () => {
                   <Link href="/about" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">About Us</Link>
                   <Link href="/faqs" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">FAQ&apos;s</Link>
                   <Link href="/contact" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">Contact Us</Link>
-                  <Link href="/UI-components/Pages/PageNotFound" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">404 Page</Link>
+                  <Link href="/page-not-found" onClick={() => setPagesOpen(false)} className="block px-5 py-2 text-sm text-gray-600 hover:text-prim hover:bg-gray-50 font-medium">404 Page</Link>
                 </div>
               </li>
 

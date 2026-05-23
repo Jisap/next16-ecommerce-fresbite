@@ -11,9 +11,9 @@ import "swiper/css"
 import { Autoplay } from "swiper/modules"
 import Link from "next/link"
 import { useCart } from "@/app/hooks/useCart"
-import ProductCard from "../TopSelling/ProductCard"
+import ProductCard from "@/app/_components/products/ProductCard"
 import { Toaster } from "react-hot-toast"
-import ProductModal from "../TopSelling/ProductModal"
+import ProductModal from "@/app/_components/products/ProductModal"
 import { EntranceAnimation } from "@/app/Animations"
 
 const OrganicProducts = () => {

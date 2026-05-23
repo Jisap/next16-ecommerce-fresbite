@@ -62,10 +62,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/UI-components/Pages/Cart" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event("cart-open"))}
+                  className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group cursor-pointer"
+                >
                   <span className="w-1 h-1 rounded-full bg-prim opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 shrink-0" />
                   My cart
-                </Link>
+                </button>
               </li>
               <li>
                 <Link href="/wishlist" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
@@ -102,7 +106,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/UI-components/Pages/Cart" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
+                <Link href="/contact" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
                   <span className="w-1 h-1 rounded-full bg-prim opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 shrink-0" />
                   Accessibility
                 </Link>
@@ -142,7 +146,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/UI-components/Pages/Cart" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
+                <Link href="/contact" className="text-gray-500 hover:text-prim text-[15px] font-normal transition-all duration-300 flex items-center gap-1 group">
                   <span className="w-1 h-1 rounded-full bg-prim opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 shrink-0" />
                   Keep in touch
                 </Link>
