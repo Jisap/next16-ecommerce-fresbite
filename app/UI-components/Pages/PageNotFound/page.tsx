@@ -24,12 +24,12 @@ const PageNotFound = () => {
             <li className="text-gray-500 font-bold">•</li>
 
             <li className="uppercase text-xs font-unbounded text-prim font-semibold">
-              <Link href="/UI-components/Pages/Blogs">Blogs</Link>
+              <Link href="/UI-components/Pages/Blogs">404</Link>
             </li>
           </ul>
 
           <h2 className="text-2xl sm:text-4xl font-unbounded font-bold text-black mt-3 drop-shadow-sm">
-            Our Articles
+            404 Page Not Found
           </h2>
         </EntranceAnimation>
       </div>
