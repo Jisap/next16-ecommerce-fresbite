@@ -55,7 +55,7 @@ const Hero = () => {
         </EntranceAnimation>
 
         {/* Banner Central - Swiper Slider */}
-        <EntranceAnimation type="scaleIn" duration={1} className="w-full lg:w-[40%] h-full" scrollTrigger={false}>
+        <EntranceAnimation type="scaleIn" duration={1} delay={0.3} className="w-full lg:w-[40%] h-full" scrollTrigger={false}>
           <div className="w-full h-full relative">
             <Swiper
               modules={[Autoplay, Pagination]}
@@ -99,7 +99,7 @@ const Hero = () => {
         </EntranceAnimation>
 
         {/* Banner Derecho - Fresh Vegetables */}
-        <EntranceAnimation type="fadeLeft" duration={1} delay={0.2} className="w-full lg:w-[30%] h-full" scrollTrigger={false}>
+        <EntranceAnimation type="fadeLeft" duration={1} delay={0.4} className="w-full lg:w-[30%] h-full" scrollTrigger={false}>
           <div className="w-full h-full bg-[url('/freshbite-banner2.png')] bg-cover bg-center flex justify-center items-start rounded-lg relative overflow-hidden">
             <div className="content h-full pt-20 z-1">
               <h3 className="text-white text-4xl font-medium mb-3 text-center">

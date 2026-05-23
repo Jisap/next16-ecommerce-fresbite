@@ -10,62 +10,50 @@ import ctg3 from "@/public/freshbite-ctg-03.webp"
 import ctg4 from "@/public/freshbite-ctg-04.webp"
 import ctg5 from "@/public/freshbite-ctg-05.webp"
 import ctg6 from "@/public/freshbite-ctg-06.webp"
-import ctg7 from "@/public/freshbite-ctg-07.webp"
-
+import { EntranceAnimation } from "@/app/Animations"
 
 const categories = [
-  {
-    image: ctg1,
-    title: "Dals and pulses",
-    offer: "Min 20% off",
-    desc: "Get over 20$ in saving",
-  },
-  {
-    image: ctg2,
-    title: "Fresh Vegetables",
-    offer: "Min 15% off",
-    desc: "Healthy & fresh picks",
-  },
-  {
-    image: ctg3,
-    title: "Organic Fruits",
-    offer: "Min 15% off",
-    desc: "Healthy & fresh Picks",
-  },
-  {
-    image: ctg4,
-    title: "Bakery Itemsd",
-    offer: "Min 10% off",
-    desc: "Freshly baked",
-  },
-  {
-    image: ctg5,
-    title: "Dairy Products",
-    offer: "Min 20% off",
-    desc: "Pure & fresh dairy",
-  },
-  {
-    image: ctg6,
-    title: "Snacks & Chips",
-    offer: "Min 30% off",
-    desc: "Crunchy snacks",
-  },
+  { image: ctg1, title: "Dals and pulses", offer: "Min 20% off", desc: "Get over 20$ in saving" },
+  { image: ctg2, title: "Fresh Vegetables", offer: "Min 15% off", desc: "Healthy & fresh picks" },
+  { image: ctg3, title: "Organic Fruits", offer: "Min 15% off", desc: "Healthy & fresh Picks" },
+  { image: ctg4, title: "Bakery Items", offer: "Min 10% off", desc: "Freshly baked" },
+  { image: ctg5, title: "Dairy Products", offer: "Min 20% off", desc: "Pure & fresh dairy" },
+  { image: ctg6, title: "Snacks & Chips", offer: "Min 30% off", desc: "Crunchy snacks" },
 ]
-
-
 
 const CategoriesOffers = () => {
   return (
-    <>
-      <div className="px-2 lg:px-8 xl:px-12 relative py-8 sm:py-16 bg-gray-light bg-[url('/freshbite-cat-bg.webp')] bg-no-repeat bg-contain">
-        <div className="section-title flex flex-wrap pb-10 md:ps-5 gap-3">
-          <h2 className="text-3xl md:text-5xl font-bold">Top Category Products</h2>
-          <p className="text-black/50 flex items-center flex-wrap gap-4 text-lg md:text-xl font-medium">
-            <Image src={titleicon} alt="titleicon" />
-            Stocking up on goodness, one aisle at a time.
-          </p>
-        </div>
+    <div className="px-2 lg:px-8 xl:px-12 relative py-8 sm:py-16 bg-gray-light bg-[url('/freshbite-cat-bg.webp')] bg-no-repeat bg-contain">
 
+      {/* Título: h2 y párrafo entran escalonados */}
+      <EntranceAnimation
+        type="stagger"
+        selector=".section-title-item"
+        stagger={0.15}
+        duration={0.7}
+        ease="power2.out"
+        scrollTrigger
+        scrollStart="top 88%"
+        className="section-title flex flex-wrap pb-10 md:ps-5 gap-3"
+      >
+        <h2 className="section-title-item text-3xl md:text-5xl font-bold">
+          Top Category Products
+        </h2>
+        <p className="section-title-item text-black/50 flex items-center flex-wrap gap-4 text-lg md:text-xl font-medium">
+          <Image src={titleicon} alt="titleicon" />
+          Stocking up on goodness, one aisle at a time.
+        </p>
+      </EntranceAnimation>
+
+      {/* Swiper completo: fadeUp al entrar en viewport */}
+      <EntranceAnimation
+        type="fadeUp"
+        duration={0.8}
+        delay={0.1}
+        ease="power2.out"
+        scrollTrigger
+        scrollStart="top 90%"
+      >
         <Swiper
           slidesPerView={5}
           spaceBetween={30}
@@ -86,11 +74,7 @@ const CategoriesOffers = () => {
             <SwiperSlide key={index}>
               <div className="ctg-item bg-white shadow-xl rounded-md flex justify-center items-center flex-col gap-8 p-6">
                 <div className="ctg-image">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
+                  <Image src={item.image} alt={item.title} className="w-full h-full object-cover" />
                 </div>
 
                 <div className="content text-center">
@@ -99,22 +83,18 @@ const CategoriesOffers = () => {
                   </span>
 
                   <div className="py-5">
-                    <h6 className="text-xl font-medium">
-                      {item.title}
-                    </h6>
+                    <h6 className="text-xl font-medium">{item.title}</h6>
 
-                    <p className="text-gray-400">
-                      {item.desc}
-                    </p>
+                    <p className="text-gray-400">{item.desc}</p>
                   </div>
                 </div>
               </div>
             </SwiperSlide>
-
           ))}
         </Swiper>
-      </div>
-    </>
+      </EntranceAnimation>
+
+    </div>
   )
 }
 

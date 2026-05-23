@@ -129,7 +129,15 @@ const LatestProducts = () => {
     <>
       <div className="w-full bg-gray-50/30 py-8 sm:py-16 overflow-hidden">
         <div className="max-w-[1800px] mx-auto px-4 lg:px-8 xl:px-12">
-          <EntranceAnimation type="stagger" selector=".column-animation-wrap" duration={0.8} stagger={0.15}>
+          <EntranceAnimation
+            type="stagger"
+            selector=".column-animation-wrap"
+            duration={0.8}
+            stagger={0.15}
+            ease="power3.out"
+            scrollTrigger
+            scrollStart="top 85%"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10 relative">
 
               {/* COLUMNA 1: Top Selling */}
